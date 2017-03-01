@@ -1,7 +1,7 @@
 *.class
 *.log
 
-# sbt specific
+# SBT specific
 .cache
 .history
 .lib/
@@ -11,7 +11,12 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+.DS_Store
 
 # Scala-IDE specific
 .scala_dependencies
 .worksheet
+
+# IntelliJ specific
+.idea
+*.iml
