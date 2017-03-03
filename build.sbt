@@ -14,6 +14,9 @@ libraryDependencies ++= {
     "com.typesafe.akka"   %%  "akka-actor"    % akkaVersion,
     "com.typesafe.akka"   %%  "akka-testkit"  % akkaVersion   % "test",
     "com.typesafe.slick" %% "slick" % slickVersion,
-    "com.typesafe.slick" %% "slick-hikaricp" % slickVersion
+    "com.typesafe.slick" %% "slick-hikaricp" % slickVersion,
+    "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0",
+    "mysql" % "mysql-connector-java" % "5.1.36",
+    "ch.qos.logback" % "logback-classic" % "1.1.3"
   )
 }
