@@ -17,6 +17,8 @@ libraryDependencies ++= {
     "com.typesafe.slick" %% "slick-hikaricp" % slickVersion,
     "com.typesafe.scala-logging" %% "scala-logging" % "3.1.0",
     "mysql" % "mysql-connector-java" % "5.1.36",
-    "ch.qos.logback" % "logback-classic" % "1.1.3"
+    "ch.qos.logback" % "logback-classic" % "1.1.3",
+    "org.slf4j" % "slf4j-nop" % "1.6.4",
+    "joda-time" % "joda-time" % "2.9.4"
   )
 }

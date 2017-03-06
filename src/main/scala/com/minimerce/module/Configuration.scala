@@ -4,7 +4,7 @@ import java.io.File
 
 import com.typesafe.config.{Config, ConfigFactory}
 
-trait ConfigurationModule {
+trait Configuration {
   private val internalConfig: Config = {
     val configDefaults = ConfigFactory.load(this.getClass().getClassLoader(), "application.conf")
     
