@@ -1,4 +1,4 @@
-package com.minimerce.domain.order
+package com.minimerce.domain.order.item
 
 import java.sql.Timestamp
 

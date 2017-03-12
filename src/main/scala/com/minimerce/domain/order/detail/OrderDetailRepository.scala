@@ -1,4 +1,4 @@
-package com.minimerce.domain.order
+package com.minimerce.domain.order.detail
 
 import com.minimerce.domain.BaseRepository
 import slick.driver.MySQLDriver.api._

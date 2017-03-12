@@ -1,4 +1,4 @@
-package com.minimerce.domain.deal
+package com.minimerce.domain.deal.option
 
 import java.sql.Timestamp
 
