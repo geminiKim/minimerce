@@ -10,5 +10,8 @@ import slick.lifted.Tag
 case class Order(id: Long, createdAt: Timestamp, updatedAt: Timestamp) extends BaseDomain
 
 class OrderTable(tag: Tag) extends BaseTable[Order](tag, "order") {
+  def userId = column[String]("user_id")
+  def title = column[String]("title")
+  def price = column[String]("order_price")
   def * = (id, createdAt, updatedAt) <> (Order.tupled, Order.unapply)
 }
