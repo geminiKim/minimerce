@@ -13,5 +13,7 @@ class OrderTable(tag: Tag) extends BaseTable[Order](tag, "order") {
   def userId = column[String]("user_id")
   def title = column[String]("title")
   def price = column[String]("price")
+  def dealIds = column[String]("dealIds")
+  def cartIds = column[String]("cartIds")
   def * = (id, createdAt, updatedAt) <> (Order.tupled, Order.unapply)
 }
