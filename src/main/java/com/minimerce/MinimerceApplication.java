@@ -1,4 +1,4 @@
-package com.minimerce.application;
+package com.minimerce;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -31,6 +31,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('javax.inject:javax.inject')
+	compile('org.hibernate:hibernate-java8')
+	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 	compile('org.apache.commons:commons-lang3')
 	compile('com.google.guava:guava')
 	compileOnly('org.projectlombok:lombok')
