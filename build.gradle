@@ -33,9 +33,38 @@ dependencies {
 	compile('javax.inject:javax.inject')
 	compile('org.hibernate:hibernate-java8')
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+	compile('com.querydsl:querydsl-jpa')
+	compile('com.querydsl:querydsl-core')
+	compile('com.querydsl:querydsl-apt')
 	compile('org.apache.commons:commons-lang3')
 	compile('com.google.guava:guava')
-	compileOnly('org.projectlombok:lombok')
+//	compileOnly('org.projectlombok:lombok')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+
+
+def queryDslOutput = file("src/main/java/query-dsl")
+
+task generateQueryDSL(type: JavaCompile, group: 'build') {
+	doFirst {
+		if (queryDslOutput.exists()) return
+		logger.info("Creating `$queryDslOutput` directory")
+		if(queryDslOutput.mkdirs()) return
+		else throw new InvalidUserDataException("Unable to create `$queryDslOutput` directory")
+	}
+
+	source = sourceSets.main.java
+	classpath = configurations.compile
+	options.compilerArgs = [
+			"-proc:only",
+			"-processor", "com.querydsl.apt.jpa.JPAAnnotationProcessor"
+	]
+	destinationDir = queryDslOutput
+}
+compileJava.dependsOn(generateQueryDSL)
+
+clean {
+	delete queryDslOutput
 }

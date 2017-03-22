@@ -1,7 +1,5 @@
 package com.minimerce.domain;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -12,8 +10,8 @@ import java.time.LocalDateTime;
 /**
  * Created by gemini on 23/03/2017.
  */
-@Setter
-@Getter
+//@Setter
+//@Getter
 @DynamicInsert
 @DynamicUpdate
 @MappedSuperclass
