@@ -1,4 +1,4 @@
-package com.minimerce;
+package com.minimerce.application;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
