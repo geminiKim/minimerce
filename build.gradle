@@ -45,7 +45,15 @@ dependencies {
 
 
 
-def queryDslOutput = file("src/main/java/query-dsl")
+def queryDslOutput = file("src/main/query-dsl")
+
+sourceSets {
+	main {
+		java {
+			srcDir queryDslOutput
+		}
+	}
+}
 
 task generateQueryDSL(type: JavaCompile, group: 'build') {
 	doFirst {
