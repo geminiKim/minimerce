@@ -30,20 +30,4 @@ public class Deal extends BaseDomain {
         options.forEach(e -> e.setDeal(this));
         this.options.addAll(options);
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<DealOption> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<DealOption> options) {
-        this.options = options;
-    }
 }

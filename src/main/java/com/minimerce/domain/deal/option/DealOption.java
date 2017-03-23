@@ -22,20 +22,4 @@ public class DealOption extends BaseDomain {
 
     @ManyToOne(fetch = FetchType.LAZY)
     public Deal deal;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Deal getDeal() {
-        return deal;
-    }
-
-    public void setDeal(Deal deal) {
-        this.deal = deal;
-    }
 }
