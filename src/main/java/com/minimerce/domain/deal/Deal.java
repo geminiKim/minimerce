@@ -3,6 +3,7 @@ package com.minimerce.domain.deal;
 import com.google.common.collect.Lists;
 import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.deal.option.DealOption;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ public class Deal extends BaseDomain {
     @Column(length = 200)
     private String name;
 
+    @Setter(AccessLevel.NONE)
     @OneToMany(mappedBy = "deal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<DealOption> options = Lists.newArrayList();
 
