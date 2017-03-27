@@ -18,6 +18,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Table(name = "`order`")
 public class Order extends BaseDomain {
     @Column
     private Long clientId;

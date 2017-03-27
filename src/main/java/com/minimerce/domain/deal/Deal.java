@@ -3,6 +3,7 @@ package com.minimerce.domain.deal;
 import com.google.common.collect.Lists;
 import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.deal.option.DealOption;
+import com.minimerce.domain.type.DealType;
 import com.minimerce.util.Yn;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,6 +20,9 @@ import java.util.List;
 @Getter
 @Entity
 public class Deal extends BaseDomain {
+    @Column
+    private Long clientId;
+
     @Column(length = 200)
     private String name;
 
@@ -53,7 +57,7 @@ public class Deal extends BaseDomain {
     private String thumbnailJson;
 
     @Column
-    private int price;
+    private int salePrice;
 
     @Column
     private int displayPrice;

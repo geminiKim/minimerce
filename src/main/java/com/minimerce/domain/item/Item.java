@@ -4,6 +4,7 @@ import com.minimerce.domain.BaseDomain;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -13,4 +14,26 @@ import javax.persistence.Entity;
 @Getter
 @Entity
 public class Item extends BaseDomain {
+
+    @Column
+    private Long clientId;
+
+
+    @Column
+    private int salePrice;
+
+    @Column
+    private int costPrice;
+
+
+    @Column
+    private int stock;
+
+
+
+
+    @Column(length = 200)
+    private String name;
+    @Column(columnDefinition = "TEXT NOT NULL")
+    private String description;
 }
