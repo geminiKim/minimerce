@@ -23,6 +23,8 @@ public class Order extends BaseDomain {
     @Column
     private Long clientId;
     @Column
+    private Long clientOrderId;
+    @Column
     private Long customerId;
     @Column(length = 100)
     private String title;
@@ -38,7 +40,7 @@ public class Order extends BaseDomain {
     private String cartIds;
     @Column
     private LocalDate paidAt;
-    @Column
+    @Column(length = 10)
     @Enumerated(EnumType.STRING)
     private PaidStatus paidStatus;
 

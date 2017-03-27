@@ -1,6 +1,5 @@
-package com.minimerce.domain.item;
+package com.minimerce.domain.order.item;
 
-import com.minimerce.domain.order.item.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * Created by gemini on 25/03/2017.
  */
 @Repository
-public interface ItemRepository extends JpaRepository<OrderItem, Long> {
+public interface StockOrderItemRepository extends JpaRepository<StockOrderItem, Long> {
 }
