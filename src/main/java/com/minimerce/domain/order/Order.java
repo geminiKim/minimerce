@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -28,19 +28,19 @@ public class Order extends BaseDomain {
     private Long customerId;
     @Column(length = 100)
     private String title;
-    @Column
+    @Column(nullable = false)
     private int totalAmount;
-    @Column
+    @Column(nullable = false)
     private int paidAmount;
-    @Column
+    @Column(nullable = false)
     private int discountAmount;
     @Column(columnDefinition = "TEXT NOT NULL")
     private String dealIds;
     @Column(columnDefinition = "TEXT NOT NULL")
     private String cartIds;
     @Column
-    private LocalDate paidAt;
-    @Column(length = 10)
+    private LocalDateTime paidAt;
+    @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private PaidStatus paidStatus;
 

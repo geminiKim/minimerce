@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by gemini on 25/03/2017.
@@ -19,18 +19,18 @@ public class StockItem extends BaseDomain {
     private Long clientId;
     @Column(length = 200)
     private String name;
-    @Column
+    @Column(nullable = false)
     private int salePrice;
-    @Column
+    @Column(nullable = false)
     private int costPrice;
-    @Column
+    @Column(nullable = false)
     private int stock;
-    @Column
+    @Column(nullable = false)
     private int usableCount;
     @Column
-    private LocalDate availableStartAt;
+    private LocalDateTime availableStartAt;
     @Column
-    private LocalDate availableEndAt;
+    private LocalDateTime availableEndAt;
 
 
 }

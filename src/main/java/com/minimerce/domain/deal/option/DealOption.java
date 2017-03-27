@@ -39,10 +39,10 @@ public class DealOption extends BaseDomain {
     @Enumerated(EnumType.STRING)
     private Yn display;
 
-    @Column
+    @Column(nullable = false)
     private int salePrice;
 
-    @Column
+    @Column(nullable = false)
     private int displayPrice;
 
     @Column(length = 5, nullable = false)
@@ -61,7 +61,7 @@ public class DealOption extends BaseDomain {
     @Column(columnDefinition = "TEXT NOT NULL")
     private String thumbnailJson;
 
-    @Column
+    @Column(nullable = false)
     private int sort;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -28,12 +28,12 @@ public class OrderDetail extends BaseDomain {
     private Long customerId;
     @Column(length = 100)
     private String title;
-    @Column
+    @Column(nullable = false)
     private int price;
-    @Column(length = 10)
+    @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-    @Column(length = 10)
+    @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private CancelStatus cancelStatus;
 

@@ -13,7 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by gemini on 25/03/2017.
@@ -26,18 +26,18 @@ public class StockOrderItem extends BaseDomain {
     private Long clientId;
     @Column(length = 100)
     private String title;
-    @Column
+    @Column(nullable = false)
     private int salePrice;
-    @Column
+    @Column(nullable = false)
     private int costPrice;
-    @Column
+    @Column(nullable = false)
     private int usableCount;
-    @Column
+    @Column(nullable = false)
     private int usedCount;
     @Column
-    private LocalDate availableStartAt;
+    private LocalDateTime availableStartAt;
     @Column
-    private LocalDate availableEndAt;
+    private LocalDateTime availableEndAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     public StockItem stockItem;

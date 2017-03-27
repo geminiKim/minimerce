@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -42,10 +42,10 @@ public class Deal extends BaseDomain {
     private DealStatus status;
 
     @Column(nullable = false)
-    private LocalDate saleStartAt;
+    private LocalDateTime saleStartAt;
 
     @Column(nullable = false)
-    private LocalDate saleEndAt;
+    private LocalDateTime saleEndAt;
 
     @Column(columnDefinition = "TEXT NOT NULL")
     private String informationJson;
@@ -56,10 +56,10 @@ public class Deal extends BaseDomain {
     @Column(columnDefinition = "TEXT NOT NULL")
     private String thumbnailJson;
 
-    @Column
+    @Column(nullable = false)
     private int salePrice;
 
-    @Column
+    @Column(nullable = false)
     private int displayPrice;
 
     @Column(length = 5, nullable = false)
