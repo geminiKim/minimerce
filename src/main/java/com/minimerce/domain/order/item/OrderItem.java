@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
 
 /**
  * Created by gemini on 25/03/2017.
@@ -29,11 +30,20 @@ public class OrderItem extends BaseDomain {
     @Column(length = 100)
     private String title;
 
+    @Column
+    private int price;
+
+    @Column
+    private LocalDate saleStartAt;
+
+
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     public Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    public OrderDetail orderDetail;
+    public OrderDetail detail;
 
     @ManyToOne(fetch = FetchType.LAZY)
     public Deal deal;

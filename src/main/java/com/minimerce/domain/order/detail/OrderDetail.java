@@ -30,7 +30,7 @@ public class OrderDetail extends BaseDomain {
     @Column(length = 100)
     private String title;
     @Column
-    private Integer price;
+    private int price;
     @Column
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
@@ -41,13 +41,24 @@ public class OrderDetail extends BaseDomain {
     @ManyToOne(fetch = FetchType.LAZY)
     public Order order;
 
+    @Setter(AccessLevel.NONE)
+    @OneToMany(mappedBy = "detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<OrderItem> items = Lists.newArrayList();
+
+
+    public void addItem(OrderItem item) {
+        item.setDetail(this);
+        this.items.add(item);
+    }
+    public void addItems(List<OrderItem> items) {
+        items.forEach(e -> e.setDetail(this));
+        this.items.addAll(items);
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     public Deal deal;
 
     @ManyToOne(fetch = FetchType.LAZY)
     public DealOption dealOption;
 
-    @Setter(AccessLevel.NONE)
-    @OneToMany(mappedBy = "orderDetail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<OrderItem> orderDetails = Lists.newArrayList();
 }

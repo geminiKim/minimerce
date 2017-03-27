@@ -26,11 +26,11 @@ public class Order extends BaseDomain {
     @Column(length = 100)
     private String title;
     @Column
-    private Integer totalAmount;
+    private int totalAmount;
     @Column
-    private Integer paidAmount;
+    private int paidAmount;
     @Column
-    private Integer discountAmount;
+    private int discountAmount;
     @Column(columnDefinition = "TEXT NOT NULL")
     private String dealIds;
     @Column(columnDefinition = "TEXT NOT NULL")
@@ -43,6 +43,15 @@ public class Order extends BaseDomain {
 
 
     @Setter(AccessLevel.NONE)
-    @OneToMany(mappedBy = "deal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    public List<OrderDetail> orderDetails = Lists.newArrayList();
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<OrderDetail> details = Lists.newArrayList();
+
+    public void addDetail(OrderDetail detail) {
+        detail.setOrder(this);
+        this.details.add(detail);
+    }
+    public void addDetails(List<OrderDetail> details) {
+        details.forEach(e -> e.setOrder(this));
+        this.details.addAll(details);
+    }
 }
