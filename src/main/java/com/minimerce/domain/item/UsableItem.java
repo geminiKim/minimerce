@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Entity
-public class StockItem extends BaseDomain {
+public class UsableItem extends BaseDomain {
     @Column
     private Long clientId;
     @Column(length = 200)
@@ -31,6 +31,4 @@ public class StockItem extends BaseDomain {
     private LocalDateTime availableStartAt;
     @Column
     private LocalDateTime availableEndAt;
-
-
 }

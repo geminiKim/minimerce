@@ -1,5 +1,6 @@
 package com.minimerce.domain.deal.option;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.DealStatus;
@@ -64,6 +65,7 @@ public class DealOption extends BaseDomain {
     @Column(nullable = false)
     private int sort;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     public Deal deal;
 }

@@ -2,10 +2,7 @@ package com.minimerce.controller;
 
 import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.OrderRepository;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
@@ -25,5 +22,17 @@ public class OrderController {
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
     public Order findOrder(@PathVariable Long orderId) {
         return orderRepository.findOne(orderId);
+    }
+    @RequestMapping(method = RequestMethod.POST)
+    public String saveOrder(@RequestBody Order order) {
+        order.getDetails().forEach(e -> {
+            e.setOrder(order);
+            e.getItems().forEach(i -> {
+                i.setOrder(order);
+                i.setDetail(e);
+            });
+        });
+        orderRepository.save(order);
+        return "OK";
     }
 }
