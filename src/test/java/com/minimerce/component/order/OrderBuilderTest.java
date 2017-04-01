@@ -1,5 +1,6 @@
 package com.minimerce.component.order;
 
+import com.minimerce.component.order.item.OptionItemReader;
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.deal.option.DealOptionRepository;
 import com.minimerce.domain.item.UsableItem;
