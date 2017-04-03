@@ -30,12 +30,12 @@ public class OrderBuilderTest {
         when(mockDealOptionRepository.findByClientIdAndId(anyLong())).thenReturn(new DealOption());
         when(optionItemReader.read(anyLong())).thenReturn(new UsableItem());
 
-        maker = new OrderBuilder(mockOrderRepository, mockDealOptionRepository, optionItemReader);
+        maker = new OrderMaker(mockOrderRepository, mockDealOptionRepository, optionItemReader);
     }
 
     @Test
     public void testShouldBeBuildOrder() {
-        OrderRequest request = new OrderRquest();
+        OrderRequest request = new OrderRequest();
         Order order = maker.make(request);
         assertThat(order.getTotalAmount(), is(10000));
     }
