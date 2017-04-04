@@ -23,6 +23,8 @@ import javax.persistence.*;
 public class OrderItem extends BaseDomain {
     @Column
     private Long clientId;
+    @Column
+    private Long customerId;
     @Column(length = 100)
     private String title;
     @Column(length = 10, nullable = false)
