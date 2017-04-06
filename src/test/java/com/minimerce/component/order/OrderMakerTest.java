@@ -1,5 +1,6 @@
 package com.minimerce.component.order;
 
+import com.minimerce.builder.OrderDetailBuilder;
 import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.object.order.OrderRequest;
@@ -38,6 +39,7 @@ public class OrderMakerTest {
     }
 
     private ArrayList<OrderDetail> details() {
-        return Lists.newArrayList(new OrderDetail(), new OrderDetail());
+        OrderDetailBuilder anOrderDetail = OrderDetailBuilder.anOrderDetail();
+        return Lists.newArrayList(anOrderDetail.build(), anOrderDetail.build());
     }
 }
