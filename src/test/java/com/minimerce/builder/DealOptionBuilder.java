@@ -13,7 +13,8 @@ import java.time.LocalDateTime;
  * Created by gemini on 04/04/2017.
  */
 public final class DealOptionBuilder {
-    private Deal deal = DealBuilder.aDeal().build();
+    private static final DealBuilder dealBuilder = DealBuilder.aDeal();
+    private Deal deal = dealBuilder.build();
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();

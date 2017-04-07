@@ -17,6 +17,7 @@ import java.util.List;
  * Created by gemini on 04/04/2017.
  */
 public final class OrderDetailBuilder {
+    private static final OrderItemBuilder orderItemBuilder = OrderItemBuilder.anOrderItem();
     private Order order = OrderBuilder.anOrder().build();
     private Deal deal = DealBuilder.aDeal().build();
     private DealOption dealOption = DealOptionBuilder.aDealOption().build();
@@ -34,7 +35,7 @@ public final class OrderDetailBuilder {
     private OrderStatus status = OrderStatus.NONE;
     private CancelStatus cancelStatus = CancelStatus.NONE;
     private DealType type = DealType.STOCK;
-    private List<OrderItem> items = Lists.newArrayList(OrderItemBuilder.anOrderItem().build());
+    private List<OrderItem> items = Lists.newArrayList(orderItemBuilder.build());
 
     private OrderDetailBuilder() {
     }

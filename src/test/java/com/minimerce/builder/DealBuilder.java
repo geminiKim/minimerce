@@ -14,6 +14,8 @@ import java.util.List;
  * Created by gemini on 04/04/2017.
  */
 public final class DealBuilder {
+    private static final DealOptionBuilder dealOptionBuilder = DealOptionBuilder.aDealOption();
+
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
@@ -31,7 +33,7 @@ public final class DealBuilder {
     private int salePrice = 10000;
     private int displayPrice = 15000;
     private String priceUnit = "원";
-    private List<DealOption> options = Lists.newArrayList(DealOptionBuilder.aDealOption().build());
+    private List<DealOption> options = Lists.newArrayList(dealOptionBuilder.build());
 
     private DealBuilder() {
     }

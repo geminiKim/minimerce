@@ -11,6 +11,7 @@ import java.util.List;
  * Created by gemini on 04/04/2017.
  */
 public final class OrderBuilder {
+    private static final OrderDetailBuilder detailBuilder = OrderDetailBuilder.anOrderDetail();
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
@@ -21,7 +22,7 @@ public final class OrderBuilder {
     private int price = 5000;
     private String dealIds = "1,2";
     private LocalDateTime orderedAt = LocalDateTime.now();
-    private List<OrderDetail> details = Lists.newArrayList(OrderDetailBuilder.anOrderDetail().build());
+    private List<OrderDetail> details = Lists.newArrayList(detailBuilder.build());
 
     private OrderBuilder() {
     }
