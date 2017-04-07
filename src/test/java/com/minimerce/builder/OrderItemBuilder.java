@@ -15,13 +15,13 @@ import java.time.LocalDateTime;
  * Created by gemini on 04/04/2017.
  */
 public final class OrderItemBuilder {
-    public Order order = OrderBuilder.anOrder().build();
-    public OrderDetail detail = OrderDetailBuilder.anOrderDetail().build();
-    public Deal deal = DealBuilder.aDeal().build();
-    public DealOption dealOption = DealOptionBuilder.aDealOption().build();
-    protected Long id = 1L;
-    protected LocalDateTime createdAt = LocalDateTime.now();
-    protected LocalDateTime updatedAt = LocalDateTime.now();
+    private Order order = OrderBuilder.anOrder().build();
+    private OrderDetail detail = OrderDetailBuilder.anOrderDetail().build();
+    private Deal deal = DealBuilder.aDeal().build();
+    private DealOption dealOption = DealOptionBuilder.aDealOption().build();
+    private Long id = 1L;
+    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime updatedAt = LocalDateTime.now();
     private Long clientId = 1L;
     private Long customerId = 1L;
     private String title = "Test Order Item";
