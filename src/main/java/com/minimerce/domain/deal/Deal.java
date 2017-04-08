@@ -70,11 +70,10 @@ public class Deal extends BaseDomain {
     public List<DealOption> options = Lists.newArrayList();
 
     public void addOption(DealOption option) {
-        option.setDeal(this);
+        option.setDealId(id);
         this.options.add(option);
     }
     public void addOptions(List<DealOption> options) {
-        options.forEach(e -> e.setDeal(this));
-        this.options.addAll(options);
+        options.forEach(e -> addOption(e));
     }
 }

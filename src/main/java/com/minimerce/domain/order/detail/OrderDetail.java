@@ -5,7 +5,6 @@ import com.google.common.collect.Lists;
 import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
@@ -28,9 +27,13 @@ public class OrderDetail extends BaseDomain {
     @Column
     private Long clientId;
     @Column
+    private Long customerId;
+
+    @Column
     private Long clientDetailId;
     @Column
-    private Long customerId;
+    private Long orderId;
+
     @Column(length = 100)
     private String title;
 
@@ -57,9 +60,6 @@ public class OrderDetail extends BaseDomain {
     @Enumerated(EnumType.STRING)
     private DealType type;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Order order;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -74,11 +74,10 @@ public class OrderDetail extends BaseDomain {
     public List<OrderItem> items = Lists.newArrayList();
 
     public void addItem(OrderItem item) {
-        item.setDetail(this);
+        item.setDetailId(id);
         this.items.add(item);
     }
     public void addItems(List<OrderItem> items) {
-        items.forEach(e -> e.setDetail(this));
-        this.items.addAll(items);
+        items.forEach(e -> addItem(e));
     }
 }

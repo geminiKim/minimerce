@@ -31,7 +31,7 @@ public class UsableOrderItem extends BaseDomain {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public UsableItem stockItem;
+    public UsableItem item;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
