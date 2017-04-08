@@ -70,7 +70,8 @@ public class OrderDetail extends BaseDomain {
     public DealOption dealOption;
 
     @Setter(AccessLevel.NONE)
-    @OneToMany(mappedBy = "detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "detailId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<OrderItem> items = Lists.newArrayList();
 
     public void addItem(OrderItem item) {

@@ -1,27 +1,27 @@
 package com.minimerce.builder;
 
-import com.minimerce.domain.deal.Deal;
+import com.google.common.collect.Lists;
 import com.minimerce.domain.deal.DealStatus;
 import com.minimerce.domain.deal.option.DealOption;
+import com.minimerce.domain.deal.option.item.DealOptionItem;
 import com.minimerce.domain.type.CancelType;
 import com.minimerce.domain.type.DealType;
 import com.minimerce.util.Yn;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by gemini on 04/04/2017.
  */
 public final class DealOptionBuilder {
-    private static final DealBuilder dealBuilder = DealBuilder.aDeal();
-    private Deal deal = dealBuilder.build();
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
     private Long clientId = 1L;
     private String name = "Test Deal Option";
     private String description = "Test Deal Option Description";
-    private DealType type = DealType.STOCK;
+    private DealType type = DealType.USABLE;
     private DealStatus status = DealStatus.SALE;
     private Yn display = Yn.Y;
     private int salePrice = 10000;
@@ -32,12 +32,20 @@ public final class DealOptionBuilder {
     private String imageJson = "{}";
     private String thumbnailJson = "{}";
     private int sort = 0;
+    private Long dealId = 1L;
+    private List<DealOptionItem> items = Lists.newArrayList();
+
 
     private DealOptionBuilder() {
     }
 
     public static DealOptionBuilder aDealOption() {
         return new DealOptionBuilder();
+    }
+
+    public DealOptionBuilder withDealId(Long dealId) {
+        this.dealId = dealId;
+        return this;
     }
 
     public DealOptionBuilder withId(Long id) {
@@ -125,8 +133,8 @@ public final class DealOptionBuilder {
         return this;
     }
 
-    public DealOptionBuilder withDeal(Deal deal) {
-        this.deal = deal;
+    public DealOptionBuilder withItems(List<DealOptionItem> items) {
+        this.items = items;
         return this;
     }
 
@@ -149,7 +157,8 @@ public final class DealOptionBuilder {
         dealOption.setImageJson(imageJson);
         dealOption.setThumbnailJson(thumbnailJson);
         dealOption.setSort(sort);
-        dealOption.setDeal(deal);
+        dealOption.setDealId(dealId);
+        dealOption.addItems(items);
         return dealOption;
     }
 }

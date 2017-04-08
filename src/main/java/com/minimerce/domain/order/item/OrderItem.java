@@ -30,8 +30,6 @@ public class OrderItem extends BaseDomain {
     @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private DealType type;
-    @Column
-    private Long itemId;
     @Column(nullable = false)
     private int salePrice;
     @Column(nullable = false)

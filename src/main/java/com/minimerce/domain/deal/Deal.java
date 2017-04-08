@@ -66,7 +66,8 @@ public class Deal extends BaseDomain {
     private String priceUnit;
 
     @Setter(AccessLevel.NONE)
-    @OneToMany(mappedBy = "deal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "dealId")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<DealOption> options = Lists.newArrayList();
 
     public void addOption(DealOption option) {

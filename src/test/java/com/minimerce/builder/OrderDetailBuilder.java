@@ -3,7 +3,6 @@ package com.minimerce.builder;
 import com.google.common.collect.Lists;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
@@ -17,15 +16,12 @@ import java.util.List;
  * Created by gemini on 04/04/2017.
  */
 public final class OrderDetailBuilder {
-    private static final OrderItemBuilder orderItemBuilder = OrderItemBuilder.anOrderItem();
-    private Order order = OrderBuilder.anOrder().build();
-    private Deal deal = DealBuilder.aDeal().build();
-    private DealOption dealOption = DealOptionBuilder.aDealOption().build();
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
     private Long clientId = 1L;
     private Long clientDetailId = 1L;
+    private Long orderId = 1L;
     private Long customerId = 1L;
     private String title = "Test Order Detail";
     private int price = 5000;
@@ -34,8 +30,10 @@ public final class OrderDetailBuilder {
     private int cancelableQuantity = 5;
     private OrderStatus status = OrderStatus.NONE;
     private CancelStatus cancelStatus = CancelStatus.NONE;
-    private DealType type = DealType.STOCK;
-    private List<OrderItem> items = Lists.newArrayList(orderItemBuilder.build());
+    private DealType type = DealType.USABLE;
+    private List<OrderItem> items = Lists.newArrayList();
+    private Deal deal = new Deal();
+    private DealOption dealOption = new DealOption();
 
     private OrderDetailBuilder() {
     }
@@ -61,6 +59,11 @@ public final class OrderDetailBuilder {
 
     public OrderDetailBuilder withClientId(Long clientId) {
         this.clientId = clientId;
+        return this;
+    }
+
+    public OrderDetailBuilder withOrderId(Long orderId) {
+        this.orderId = orderId;
         return this;
     }
 
@@ -114,11 +117,6 @@ public final class OrderDetailBuilder {
         return this;
     }
 
-    public OrderDetailBuilder withOrder(Order order) {
-        this.order = order;
-        return this;
-    }
-
     public OrderDetailBuilder withDeal(Deal deal) {
         this.deal = deal;
         return this;
@@ -150,9 +148,10 @@ public final class OrderDetailBuilder {
         orderDetail.setStatus(status);
         orderDetail.setCancelStatus(cancelStatus);
         orderDetail.setType(type);
-        orderDetail.setOrder(order);
         orderDetail.setDeal(deal);
         orderDetail.setDealOption(dealOption);
+        orderDetail.addItems(items);
+        orderDetail.setOrderId(orderId);
         return orderDetail;
     }
 }

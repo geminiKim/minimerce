@@ -1,9 +1,5 @@
 package com.minimerce.builder;
 
-import com.minimerce.domain.deal.Deal;
-import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.order.Order;
-import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
@@ -15,19 +11,14 @@ import java.time.LocalDateTime;
  * Created by gemini on 04/04/2017.
  */
 public final class OrderItemBuilder {
-    private static final OrderDetailBuilder detailBuilder = OrderDetailBuilder.anOrderDetail();
-    private static final DealOptionBuilder optionBuilder = DealOptionBuilder.aDealOption();
-    private Order order = OrderBuilder.anOrder().build();
-    private OrderDetail detail = detailBuilder.build();
-    private Deal deal = DealBuilder.aDeal().build();
-    private DealOption dealOption = optionBuilder.build();
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
+    private Long detailId = 1L;
     private Long clientId = 1L;
     private Long customerId = 1L;
     private String title = "Test Order Item";
-    private DealType type = DealType.STOCK;
+    private DealType type = DealType.USABLE;
     private int salePrice = 1000;
     private int costPrice = 500;
     private OrderStatus status = OrderStatus.NONE;
@@ -43,6 +34,10 @@ public final class OrderItemBuilder {
 
     public OrderItemBuilder withId(Long id) {
         this.id = id;
+        return this;
+    }
+    public OrderItemBuilder withDetailId(Long detailId) {
+        this.detailId = detailId;
         return this;
     }
 
@@ -101,26 +96,6 @@ public final class OrderItemBuilder {
         return this;
     }
 
-    public OrderItemBuilder withOrder(Order order) {
-        this.order = order;
-        return this;
-    }
-
-    public OrderItemBuilder withDetail(OrderDetail detail) {
-        this.detail = detail;
-        return this;
-    }
-
-    public OrderItemBuilder withDeal(Deal deal) {
-        this.deal = deal;
-        return this;
-    }
-
-    public OrderItemBuilder withDealOption(DealOption dealOption) {
-        this.dealOption = dealOption;
-        return this;
-    }
-
     public OrderItem build() {
         OrderItem orderItem = new OrderItem();
         orderItem.setId(id);
@@ -135,10 +110,7 @@ public final class OrderItemBuilder {
         orderItem.setStatus(status);
         orderItem.setCancelStatus(cancelStatus);
         orderItem.setGroupId(groupId);
-        orderItem.setOrder(order);
-        orderItem.setDetail(detail);
-        orderItem.setDeal(deal);
-        orderItem.setDealOption(dealOption);
+        orderItem.setDetailId(detailId);
         return orderItem;
     }
 }
