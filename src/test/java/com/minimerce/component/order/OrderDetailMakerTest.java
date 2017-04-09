@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 
 /**
@@ -40,8 +42,9 @@ public class OrderDetailMakerTest {
         List<OrderRequestDetail> requestDetails = Lists.newArrayList(detailRequestBuilder.build(), detailRequestBuilder.build());
 
         List<OrderDetail> details = maker.make(1L, 1L, requestDetails);
-//        assertThat(order.getPrice(), is(10000));
-//        assertThat(order.getDetails().size(), is(2));
+        assertThat(details.get(0).getPrice(), is(5000));
+        assertThat(details.size(), is(2));
+//        assertThat(details.get(0).getDetails().size(), is(2));
     }
 
 

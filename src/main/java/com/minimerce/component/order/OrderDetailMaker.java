@@ -1,11 +1,11 @@
 package com.minimerce.component.order;
 
 import com.google.common.collect.Lists;
+import com.minimerce.component.deal.DealOptionReader;
+import com.minimerce.component.deal.DealReader;
 import com.minimerce.domain.deal.Deal;
-import com.minimerce.domain.deal.DealRepository;
 import com.minimerce.domain.deal.DealStatus;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.deal.option.DealOptionRepository;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
@@ -20,13 +20,13 @@ import java.util.List;
  */
 @Component
 public class OrderDetailMaker {
-    private final DealRepository dealRepository;
-    private final DealOptionRepository dealOptionRepository;
+    private final DealReader dealReader;
+    private final DealOptionReader dealOptionReader;
     private final OrderItemMaker orderItemMaker;
 
-    public OrderDetailMaker(DealRepository dealRepository, DealOptionRepository dealOptionRepository, OrderItemMaker orderItemMaker) {
-        this.dealRepository = dealRepository;
-        this.dealOptionRepository = dealOptionRepository;
+    public OrderDetailMaker(DealReader dealReader, DealOptionReader dealOptionReader, OrderItemMaker orderItemMaker) {
+        this.dealReader = dealReader;
+        this.dealOptionReader = dealOptionReader;
         this.orderItemMaker = orderItemMaker;
     }
 
@@ -34,8 +34,8 @@ public class OrderDetailMaker {
     public List<OrderDetail> make(Long clientId, Long customerId, List<OrderRequestDetail> requestDetails) {
         List<OrderDetail> details = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
-            Deal deal = dealRepository.findByClientIdAndId(clientId, each.getOptionId());
-            DealOption option = dealOptionRepository.findByClientIdAndId(clientId, each.getOptionId());
+            Deal deal = dealReader.findByClientDeal(clientId, each.getDealId());
+            DealOption option = dealOptionReader.findByClientOption(clientId, each.getOptionId());
             if(null == option) continue;
             if(DealStatus.SALE != option.getStatus()) throw new RuntimeException("판매 금지 상품입니다.");
             if(Yn.N != option.getDisplay()) throw new RuntimeException("노출 안함 상품입니다.");
@@ -56,6 +56,7 @@ public class OrderDetailMaker {
             detail.setDeal(deal);
             detail.setDealOption(option);
             detail.addItems(orderItemMaker.make(option));
+            details.add(detail);
         }
         return details;
     }
