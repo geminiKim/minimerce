@@ -1,6 +1,8 @@
 package com.minimerce.component.order;
 
 import com.minimerce.builder.OrderDetailBuilder;
+import com.minimerce.builder.OrderRequestBuilder;
+import com.minimerce.builder.OrderRequestDetailBuilder;
 import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.object.order.OrderRequest;
@@ -22,6 +24,8 @@ import static org.mockito.Mockito.when;
  */
 public class OrderMakerTest {
     private OrderMaker maker;
+    private final OrderRequestBuilder orderRequestBuilder = OrderRequestBuilder.anOrderRequest();
+    private final OrderRequestDetailBuilder detailRequestBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
     public void setup() {
@@ -32,7 +36,10 @@ public class OrderMakerTest {
 
     @Test
     public void testShouldBeBuildOrder() {
-        OrderRequest request = new OrderRequest();
+        OrderRequest request = orderRequestBuilder.build();
+        request.addDetail(detailRequestBuilder.build());
+        request.addDetail(detailRequestBuilder.build());
+
         Order order = maker.make(1L, request);
         assertThat(order.getPrice(), is(10000));
         assertThat(order.getDetails().size(), is(2));

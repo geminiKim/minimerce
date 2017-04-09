@@ -1,6 +1,8 @@
 package com.minimerce.component.order;
 
 import com.google.common.collect.Lists;
+import com.minimerce.domain.deal.Deal;
+import com.minimerce.domain.deal.DealRepository;
 import com.minimerce.domain.deal.DealStatus;
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.deal.option.DealOptionRepository;
@@ -18,10 +20,12 @@ import java.util.List;
  */
 @Component
 public class OrderDetailMaker {
+    private final DealRepository dealRepository;
     private final DealOptionRepository dealOptionRepository;
     private final OrderItemMaker orderItemMaker;
 
-    public OrderDetailMaker(DealOptionRepository dealOptionRepository, OrderItemMaker orderItemMaker) {
+    public OrderDetailMaker(DealRepository dealRepository, DealOptionRepository dealOptionRepository, OrderItemMaker orderItemMaker) {
+        this.dealRepository = dealRepository;
         this.dealOptionRepository = dealOptionRepository;
         this.orderItemMaker = orderItemMaker;
     }
@@ -30,6 +34,7 @@ public class OrderDetailMaker {
     public List<OrderDetail> make(Long clientId, Long customerId, List<OrderRequestDetail> requestDetails) {
         List<OrderDetail> details = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
+            Deal deal = dealRepository.findByClientIdAndId(clientId, each.getOptionId());
             DealOption option = dealOptionRepository.findByClientIdAndId(clientId, each.getOptionId());
             if(null == option) continue;
             if(DealStatus.SALE != option.getStatus()) throw new RuntimeException("판매 금지 상품입니다.");
@@ -48,7 +53,7 @@ public class OrderDetailMaker {
             detail.setStatus(OrderStatus.NONE);
             detail.setCancelStatus(CancelStatus.NONE);
             detail.setType(option.getType());
-//            detail.setDeal(option.getDeal());
+            detail.setDeal(deal);
             detail.setDealOption(option);
             detail.addItems(orderItemMaker.make(option));
         }

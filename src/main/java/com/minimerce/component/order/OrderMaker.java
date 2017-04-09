@@ -21,17 +21,15 @@ public class OrderMaker {
     }
 
     public Order make(Long clientId, OrderRequest request) {
+        List<OrderDetail> details = orderDetailMaker.make(clientId, request.getCustomerId(), request.getDetails());
+        if(request.getPrice() != getPrice(details)) throw new RuntimeException("상품의 가격이 일치하지 않습니다.");
+
         Order order = new Order();
         order.setClientId(clientId);
         order.setClientOrderId(request.getClientOrderId());
         order.setCustomerId(request.getCustomerId());
         order.setOrderedAt(request.getOrderedAt());
-
-        List<OrderDetail> details = orderDetailMaker.make(clientId, request.getCustomerId(), request.getDetails());
-
-        if(request.getPrice() != getPrice(details)) throw new RuntimeException("판매 금지 상품입니다.");
         order.setPrice(request.getPrice());
-
         order.setDealIds(buildDealIds(details));
         order.setTitle(buildTitle(details));
         order.addDetails(details);
@@ -39,7 +37,7 @@ public class OrderMaker {
     }
 
     private int getPrice(List<OrderDetail> details) {
-        return 0;
+        return details.stream().mapToInt(e -> e.getPrice()).sum();
     }
 
     private String buildTitle(List<OrderDetail> details) {

@@ -17,4 +17,8 @@ public class OrderRequest {
     private int price;
     private LocalDateTime orderedAt;
     private List<OrderRequestDetail> details;
+
+    public void addDetail(OrderRequestDetail detail) {
+        this.details.add(detail);
+    }
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderRequestDetail {
+    private Long dealId;
     private Long optionId;
     private Long clientDetailId;
     private int price;
