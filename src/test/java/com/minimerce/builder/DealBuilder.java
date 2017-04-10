@@ -149,8 +149,7 @@ public final class DealBuilder {
         deal.setSalePrice(salePrice);
         deal.setDisplayPrice(displayPrice);
         deal.setPriceUnit(priceUnit);
-        if(options.isEmpty()) deal.addOption(DealOptionBuilder.aDealOption().build());
-        else deal.addOptions(options);
+        deal.addOptions(options);
         return deal;
     }
 }
