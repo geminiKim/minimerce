@@ -6,7 +6,7 @@ import com.minimerce.domain.deal.DealStatus;
 import com.minimerce.domain.deal.option.item.DealOptionItem;
 import com.minimerce.domain.type.CancelType;
 import com.minimerce.domain.type.DealType;
-import com.minimerce.util.Yn;
+import com.minimerce.support.util.Yn;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -83,5 +83,9 @@ public class DealOption extends BaseDomain {
     }
     public void addItems(List<DealOptionItem> items) {
         items.forEach(e -> addItem(e));
+    }
+
+    public boolean compareSalePrice(int salePrice) {
+        return this.salePrice == salePrice;
     }
 }

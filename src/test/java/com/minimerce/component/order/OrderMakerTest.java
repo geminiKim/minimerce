@@ -6,6 +6,7 @@ import com.minimerce.builder.OrderRequestDetailBuilder;
 import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.object.order.OrderRequest;
+import com.minimerce.support.exception.UnsaleableProductException;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,14 +29,14 @@ public class OrderMakerTest {
     private final OrderRequestDetailBuilder detailRequestBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
-    public void setup() {
+    public void setup() throws UnsaleableProductException {
         OrderDetailMaker orderDetailMaker = mock(OrderDetailMaker.class);
         when(orderDetailMaker.make(anyLong(), anyLong(), any())).thenReturn(details());
         maker = new OrderMaker(orderDetailMaker);
     }
 
     @Test
-    public void testShouldBeBuildOrder() {
+    public void testShouldBeBuildOrder() throws UnsaleableProductException {
         OrderRequest request = orderRequestBuilder.build();
         request.addDetail(detailRequestBuilder.build());
         request.addDetail(detailRequestBuilder.build());

@@ -3,10 +3,12 @@ package com.minimerce.component.order;
 import com.minimerce.builder.DealBuilder;
 import com.minimerce.builder.DealOptionBuilder;
 import com.minimerce.builder.OrderRequestDetailBuilder;
+import com.minimerce.component.deal.SaleDealReader;
 import com.minimerce.domain.deal.Deal;
-import com.minimerce.domain.deal.DealRepository;
+import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.object.order.OrderRequestDetail;
+import com.minimerce.support.exception.UnsaleableProductException;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,23 +26,24 @@ import static org.mockito.Mockito.when;
  */
 public class OrderDetailMakerTest {
 
-    private DealRepository dealRepository;
+    private SaleDealReader saleDealReader;
     private OrderItemMaker orderItemMaker;
     private OrderDetailMaker maker;
     private final OrderRequestDetailBuilder detailRequestBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
-    public void setup() {
-        dealRepository = mock(DealRepository.class);
+    public void setup() throws UnsaleableProductException {
+        saleDealReader = mock(SaleDealReader.class);
         orderItemMaker = mock(OrderItemMaker.class);
 
-        when(dealRepository.findByClientIdAndId(anyLong(), anyLong())).thenReturn(getCommonDeal());
+        when(saleDealReader.findBySaleDeal(anyLong(), anyLong())).thenReturn(buildCommonDeal());
+        when(saleDealReader.findBySaleDealOption(anyLong(), anyLong())).thenReturn(buildOptionPrice5000());
 
-        maker = new OrderDetailMaker(dealRepository, orderItemMaker);
+        maker = new OrderDetailMaker(saleDealReader, orderItemMaker);
     }
 
     @Test
-    public void testShouldBeBuildDetail() {
+    public void testShouldBeBuildDetail() throws UnsaleableProductException {
         List<OrderRequestDetail> requestDetails = Lists.newArrayList(detailRequestBuilder.build(), detailRequestBuilder.build());
 
         List<OrderDetail> details = maker.make(1L, 1L, requestDetails);
@@ -48,9 +51,11 @@ public class OrderDetailMakerTest {
         assertThat(details.size(), is(2));
     }
 
-    private Deal getCommonDeal() {
-        Deal deal = DealBuilder.aDeal().build();
-        deal.addOption(DealOptionBuilder.aDealOption().withSalePrice(5000).build());
-        return deal;
+    private Deal buildCommonDeal() {
+        return DealBuilder.aDeal().build();
+    }
+
+    private DealOption buildOptionPrice5000() {
+        return DealOptionBuilder.aDealOption().withSalePrice(5000).build();
     }
 }

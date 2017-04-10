@@ -1,4 +1,4 @@
-package com.minimerce.util;
+package com.minimerce.support.util;
 
 /**
  * Created by gemini on 27/03/2017.

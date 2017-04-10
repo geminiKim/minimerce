@@ -3,6 +3,7 @@ package com.minimerce.component.order;
 import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.object.order.OrderRequest;
+import com.minimerce.support.exception.UnsaleableProductException;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class OrderMaker {
         this.orderDetailMaker = orderDetailMaker;
     }
 
-    public Order make(Long clientId, OrderRequest request) {
+    public Order make(Long clientId, OrderRequest request) throws UnsaleableProductException {
         List<OrderDetail> details = orderDetailMaker.make(clientId, request.getCustomerId(), request.getDetails());
         if(request.getPrice() != getPrice(details)) throw new RuntimeException("상품의 가격이 일치하지 않습니다.");
 
