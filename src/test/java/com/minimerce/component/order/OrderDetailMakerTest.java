@@ -1,8 +1,8 @@
 package com.minimerce.component.order;
 
 import com.minimerce.builder.OrderRequestDetailBuilder;
-import com.minimerce.domain.deal.DealRepository;
-import com.minimerce.domain.deal.option.DealOptionRepository;
+import com.minimerce.component.deal.DealOptionReader;
+import com.minimerce.component.deal.DealReader;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.object.order.OrderRequestDetail;
 import org.assertj.core.util.Lists;
@@ -20,8 +20,8 @@ import static org.mockito.Mockito.mock;
  */
 public class OrderDetailMakerTest {
 
-    private DealRepository dealRepository;
-    private DealOptionRepository dealOptionRepository;
+    private DealReader dealReader;
+    private DealOptionReader dealOptionReader;
     private OrderItemMaker orderItemMaker;
     private OrderDetailMaker maker;
     private final OrderRequestDetailBuilder detailRequestBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
@@ -29,11 +29,11 @@ public class OrderDetailMakerTest {
 
     @Before
     public void setup() {
-        dealRepository = mock(DealRepository.class);
-        dealOptionRepository = mock(DealOptionRepository.class);
+        dealReader = mock(DealReader.class);
+        dealOptionReader = mock(DealOptionReader.class);
         orderItemMaker = mock(OrderItemMaker.class);
 
-        maker = new OrderDetailMaker(dealRepository, dealOptionRepository, orderItemMaker);
+        maker = new OrderDetailMaker(dealReader, dealOptionReader, orderItemMaker);
     }
 
     @Test
