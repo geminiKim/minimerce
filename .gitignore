@@ -25,4 +25,4 @@ nbdist/
 .nb-gradle/
 
 ### QueryDsl ###
-src/main/query-dsl
+src/main/generated
