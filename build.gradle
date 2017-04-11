@@ -1,8 +1,8 @@
 buildscript {
 	ext {
 		springBootVersion = '1.5.2.RELEASE'
-		gradleDependencyManagementPluginVersion = '1.0.0.RELEASE'
 		springIOPlatformVersion = 'Brussels-SR1'
+		gradleDependencyManagementPluginVersion = '1.0.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
