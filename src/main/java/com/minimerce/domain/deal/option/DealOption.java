@@ -63,8 +63,7 @@ public class DealOption extends BaseDomain {
     public Deal deal;
 
     @Setter(AccessLevel.NONE)
-    @JoinColumn(name = "optionId")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "option")
     public List<DealOptionItem> items = Lists.newArrayList();
 
 

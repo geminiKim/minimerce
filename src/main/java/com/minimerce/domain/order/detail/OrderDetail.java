@@ -51,8 +51,7 @@ public class OrderDetail extends BaseDomain {
     public Order order;
 
     @Setter(AccessLevel.NONE)
-    @JoinColumn(name = "detailId")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "detail")
     public List<OrderItem> items = Lists.newArrayList();
 
     public void addItem(OrderItem item) {

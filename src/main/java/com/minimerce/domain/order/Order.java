@@ -35,8 +35,7 @@ public class Order extends BaseDomain {
     private LocalDateTime orderedAt;
 
     @Setter(AccessLevel.NONE)
-    @JoinColumn(name = "orderId")
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
     public List<OrderDetail> details = Lists.newArrayList();
 
     public void addDetail(OrderDetail detail) {
