@@ -40,7 +40,7 @@ public class Order extends BaseDomain {
     public List<OrderDetail> details = Lists.newArrayList();
 
     public void addDetail(OrderDetail detail) {
-        detail.setOrderId(id);
+        detail.setOrder(this);
         this.details.add(detail);
     }
     public void addDetails(List<OrderDetail> details) {

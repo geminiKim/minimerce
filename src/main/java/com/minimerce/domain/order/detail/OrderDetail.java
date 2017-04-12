@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
+import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
@@ -22,21 +23,14 @@ import java.util.List;
 @Getter
 @Entity
 public class OrderDetail extends BaseDomain {
-
     @Column
     private Long clientId;
     @Column
     private Long customerId;
-
     @Column
     private Long clientDetailId;
-    @Column
-    private Long orderId;
-
     @Column(length = 100)
     private String title;
-
-
     @Column(nullable = false)
     private int price;
     @Column(nullable = false)
@@ -45,9 +39,6 @@ public class OrderDetail extends BaseDomain {
     private int quantity;
     @Column(nullable = false)
     private int cancelableQuantity;
-
-
-
     @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
@@ -57,11 +48,7 @@ public class OrderDetail extends BaseDomain {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public Deal deal;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    public DealOption dealOption;
+    public Order order;
 
     @Setter(AccessLevel.NONE)
     @JoinColumn(name = "detailId")
@@ -69,10 +56,18 @@ public class OrderDetail extends BaseDomain {
     public List<OrderItem> items = Lists.newArrayList();
 
     public void addItem(OrderItem item) {
-        item.setDetailId(id);
+        item.setDetail(this);
         this.items.add(item);
     }
     public void addItems(List<OrderItem> items) {
         items.forEach(e -> addItem(e));
     }
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Deal deal;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    public DealOption dealOption;
 }

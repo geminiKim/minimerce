@@ -1,5 +1,6 @@
 package com.minimerce.builder;
 
+import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
@@ -14,7 +15,6 @@ public final class OrderItemBuilder {
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
-    private Long detailId = 1L;
     private Long clientId = 1L;
     private Long customerId = 1L;
     private String title = "Test Order Item";
@@ -23,7 +23,9 @@ public final class OrderItemBuilder {
     private int costPrice = 500;
     private OrderStatus status = OrderStatus.NONE;
     private CancelStatus cancelStatus = CancelStatus.NONE;
-    private int groupId = 1;
+    private int bundleId = 1;
+    private OrderDetail detail = new OrderDetail();
+
 
     private OrderItemBuilder() {
     }
@@ -36,8 +38,8 @@ public final class OrderItemBuilder {
         this.id = id;
         return this;
     }
-    public OrderItemBuilder withDetailId(Long detailId) {
-        this.detailId = detailId;
+    public OrderItemBuilder withDetail(OrderDetail detail) {
+        this.detail = detail;
         return this;
     }
 
@@ -91,8 +93,8 @@ public final class OrderItemBuilder {
         return this;
     }
 
-    public OrderItemBuilder withGroupId(int groupId) {
-        this.groupId = groupId;
+    public OrderItemBuilder withBundleId(int bundleId) {
+        this.bundleId = bundleId;
         return this;
     }
 
@@ -109,8 +111,8 @@ public final class OrderItemBuilder {
         orderItem.setCostPrice(costPrice);
         orderItem.setStatus(status);
         orderItem.setCancelStatus(cancelStatus);
-        orderItem.setGroupId(groupId);
-        orderItem.setDetailId(detailId);
+        orderItem.setBundleId(bundleId);
+        orderItem.setDetail(detail);
         return orderItem;
     }
 }

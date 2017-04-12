@@ -3,6 +3,7 @@ package com.minimerce.builder;
 import com.google.common.collect.Lists;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
+import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
@@ -20,7 +21,6 @@ public final class OrderDetailBuilder {
     private LocalDateTime updatedAt = LocalDateTime.now();
     private Long clientId = 1L;
     private Long clientDetailId = 1L;
-    private Long orderId = 1L;
     private Long customerId = 1L;
     private String title = "Test Order Detail";
     private int price = 5000;
@@ -30,6 +30,7 @@ public final class OrderDetailBuilder {
     private OrderStatus status = OrderStatus.NONE;
     private CancelStatus cancelStatus = CancelStatus.NONE;
     private List<OrderItem> items = Lists.newArrayList();
+    private Order order = new Order();
     private Deal deal = new Deal();
     private DealOption dealOption = new DealOption();
 
@@ -60,8 +61,8 @@ public final class OrderDetailBuilder {
         return this;
     }
 
-    public OrderDetailBuilder withOrderId(Long orderId) {
-        this.orderId = orderId;
+    public OrderDetailBuilder withOrder(Order order) {
+        this.order = order;
         return this;
     }
 
@@ -143,7 +144,7 @@ public final class OrderDetailBuilder {
         orderDetail.setDeal(deal);
         orderDetail.setDealOption(dealOption);
         orderDetail.addItems(items);
-        orderDetail.setOrderId(orderId);
+        orderDetail.setOrder(order);
         return orderDetail;
     }
 }
