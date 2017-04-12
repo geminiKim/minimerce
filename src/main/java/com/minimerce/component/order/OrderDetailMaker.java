@@ -45,7 +45,6 @@ public class OrderDetailMaker {
             detail.setCancelableQuantity(each.getQuantity());
             detail.setStatus(OrderStatus.NONE);
             detail.setCancelStatus(CancelStatus.NONE);
-            detail.setType(option.getType());
             detail.setDeal(deal);
             detail.setDealOption(option);
             detail.addItems(orderItemMaker.make(option));

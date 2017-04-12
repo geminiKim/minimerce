@@ -7,7 +7,6 @@ import com.minimerce.domain.order.detail.OrderDetail;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
-import com.minimerce.domain.type.DealType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,7 +29,6 @@ public final class OrderDetailBuilder {
     private int cancelableQuantity = 5;
     private OrderStatus status = OrderStatus.NONE;
     private CancelStatus cancelStatus = CancelStatus.NONE;
-    private DealType type = DealType.USABLE;
     private List<OrderItem> items = Lists.newArrayList();
     private Deal deal = new Deal();
     private DealOption dealOption = new DealOption();
@@ -112,11 +110,6 @@ public final class OrderDetailBuilder {
         return this;
     }
 
-    public OrderDetailBuilder withType(DealType type) {
-        this.type = type;
-        return this;
-    }
-
     public OrderDetailBuilder withDeal(Deal deal) {
         this.deal = deal;
         return this;
@@ -147,7 +140,6 @@ public final class OrderDetailBuilder {
         orderDetail.setCancelableQuantity(cancelableQuantity);
         orderDetail.setStatus(status);
         orderDetail.setCancelStatus(cancelStatus);
-        orderDetail.setType(type);
         orderDetail.setDeal(deal);
         orderDetail.setDealOption(dealOption);
         orderDetail.addItems(items);
