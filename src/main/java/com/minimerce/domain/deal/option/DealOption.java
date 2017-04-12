@@ -25,8 +25,6 @@ import java.util.List;
 public class DealOption extends BaseDomain {
     @Column
     private Long clientId;
-    @Column
-    private Long dealId;
     @Column(length = 200)
     private String name;
     @Column(columnDefinition = "TEXT NOT NULL")

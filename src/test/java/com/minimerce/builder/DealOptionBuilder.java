@@ -1,6 +1,7 @@
 package com.minimerce.builder;
 
 import com.google.common.collect.Lists;
+import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.DealStatus;
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.deal.option.item.DealOptionItem;
@@ -32,7 +33,7 @@ public final class DealOptionBuilder {
     private String imageJson = "{}";
     private String thumbnailJson = "{}";
     private int sort = 0;
-    private Long dealId = 1L;
+    private Deal deal = new Deal();
     private List<DealOptionItem> items = Lists.newArrayList();
 
 
@@ -43,8 +44,8 @@ public final class DealOptionBuilder {
         return new DealOptionBuilder();
     }
 
-    public DealOptionBuilder withDealId(Long dealId) {
-        this.dealId = dealId;
+    public DealOptionBuilder withDeal(Deal deal) {
+        this.deal = deal;
         return this;
     }
 
@@ -157,7 +158,7 @@ public final class DealOptionBuilder {
         dealOption.setImageJson(imageJson);
         dealOption.setThumbnailJson(thumbnailJson);
         dealOption.setSort(sort);
-        dealOption.setDealId(dealId);
+        dealOption.setDeal(deal);
         dealOption.addItems(items);
         return dealOption;
     }
