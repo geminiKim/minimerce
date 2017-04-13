@@ -33,12 +33,6 @@ public class OrderDetail extends BaseDomain {
     private String title;
     @Column(nullable = false)
     private int price;
-    @Column(nullable = false)
-    private int unitPrice;
-    @Column(nullable = false)
-    private int quantity;
-    @Column(nullable = false)
-    private int cancelableQuantity;
     @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private OrderStatus status;

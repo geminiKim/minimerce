@@ -72,8 +72,4 @@ public class DealOption extends BaseDomain {
     public void addItems(List<DealOptionItem> items) {
         items.forEach(e -> addItem(e));
     }
-
-    public boolean compareSalePrice(int salePrice) {
-        return this.salePrice == salePrice;
-    }
 }

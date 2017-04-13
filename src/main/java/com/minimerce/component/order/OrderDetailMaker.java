@@ -30,25 +30,25 @@ public class OrderDetailMaker {
     public List<OrderDetail> make(Long clientId, Long customerId, List<OrderRequestDetail> requestDetails) throws UnsaleableProductException {
         List<OrderDetail> details = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
-            Deal deal = saleDealReader.findBySaleDeal(clientId, each.getDealId());
-            DealOption option = saleDealReader.findBySaleDealOption(clientId, each.getOptionId());
-            if(false == option.compareSalePrice(each.getPrice())) throw new UnsaleableProductException("가격 불일치");
+            for (int i = 0; i < each.getQuantity(); i++) {
+                Deal deal = saleDealReader.findBySaleDeal(clientId, each.getDealId());
+                DealOption option = saleDealReader.findBySaleDealOption(clientId, each.getOptionId());
+                if(option.getSalePrice() == each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
+                if(option.getSalePrice() * each.getQuantity() == each.getPrice()) throw new UnsaleableProductException("가격 불일치");
 
-            OrderDetail detail = new OrderDetail();
-            detail.setClientId(clientId);
-            detail.setCustomerId(customerId);
-            detail.setClientDetailId(each.getClientDetailId());
-            detail.setTitle(option.getName());
-            detail.setUnitPrice(option.getSalePrice());
-            detail.setQuantity(each.getQuantity());
-            detail.setPrice(detail.getUnitPrice() * detail.getQuantity());
-            detail.setCancelableQuantity(each.getQuantity());
-            detail.setStatus(OrderStatus.NONE);
-            detail.setCancelStatus(CancelStatus.NONE);
-            detail.setDeal(deal);
-            detail.setDealOption(option);
-            detail.addItems(orderItemMaker.make(option));
-            details.add(detail);
+                OrderDetail detail = new OrderDetail();
+                detail.setClientId(clientId);
+                detail.setCustomerId(customerId);
+                detail.setClientDetailId(each.getClientDetailId());
+                detail.setTitle(option.getName());
+                detail.setPrice(option.getSalePrice());
+                detail.setStatus(OrderStatus.NONE);
+                detail.setCancelStatus(CancelStatus.NONE);
+                detail.setDeal(deal);
+                detail.setDealOption(option);
+                detail.addItems(orderItemMaker.make(option));
+                details.add(detail);
+            }
         }
         return details;
     }

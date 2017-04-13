@@ -24,9 +24,6 @@ public final class OrderDetailBuilder {
     private Long customerId = 1L;
     private String title = "Test Order Detail";
     private int price = 5000;
-    private int unitPrice = 1000;
-    private int quantity = 5;
-    private int cancelableQuantity = 5;
     private OrderStatus status = OrderStatus.NONE;
     private CancelStatus cancelStatus = CancelStatus.NONE;
     private List<OrderItem> items = Lists.newArrayList();
@@ -86,21 +83,6 @@ public final class OrderDetailBuilder {
         return this;
     }
 
-    public OrderDetailBuilder withUnitPrice(int unitPrice) {
-        this.unitPrice = unitPrice;
-        return this;
-    }
-
-    public OrderDetailBuilder withQuantity(int quantity) {
-        this.quantity = quantity;
-        return this;
-    }
-
-    public OrderDetailBuilder withCancelableQuantity(int cancelableQuantity) {
-        this.cancelableQuantity = cancelableQuantity;
-        return this;
-    }
-
     public OrderDetailBuilder withStatus(OrderStatus status) {
         this.status = status;
         return this;
@@ -136,9 +118,6 @@ public final class OrderDetailBuilder {
         orderDetail.setCustomerId(customerId);
         orderDetail.setTitle(title);
         orderDetail.setPrice(price);
-        orderDetail.setUnitPrice(unitPrice);
-        orderDetail.setQuantity(quantity);
-        orderDetail.setCancelableQuantity(cancelableQuantity);
         orderDetail.setStatus(status);
         orderDetail.setCancelStatus(cancelStatus);
         orderDetail.setDeal(deal);
