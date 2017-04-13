@@ -33,7 +33,7 @@ public class OrderDetailMaker {
             for (int i = 0; i < each.getQuantity(); i++) {
                 Deal deal = saleDealReader.findBySaleDeal(clientId, each.getDealId());
                 DealOption option = saleDealReader.findBySaleDealOption(clientId, each.getOptionId());
-                if(option.getSalePrice() == each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
+                if(option.getSalePrice() != each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
                 if(option.getSalePrice() * each.getQuantity() == each.getPrice()) throw new UnsaleableProductException("가격 불일치");
 
                 OrderDetail detail = new OrderDetail();
