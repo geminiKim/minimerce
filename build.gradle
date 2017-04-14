@@ -48,12 +48,19 @@ dependencies {
 
 
 /**** QueryDSL Class Generate Script ****/
-sourceSets { generated.java.srcDirs = ['src/main/generated'] }
+def queryDslOutput = file("src/main/generated")
+sourceSets {
+	main {
+		java {
+			srcDir queryDslOutput
+		}
+	}
+}
 
 task generateQueryDSL(type: JavaCompile, group: 'build') {
 	source = sourceSets.main.java
 	classpath = configurations.compile
-	destinationDir = sourceSets.generated.java.srcDirs.iterator()[0]
+	destinationDir = queryDslOutput
 	options.compilerArgs = [
 			"-proc:only",
 			"-processor", 'com.querydsl.apt.jpa.JPAAnnotationProcessor,lombok.launch.AnnotationProcessorHider$AnnotationProcessor'
@@ -62,5 +69,5 @@ task generateQueryDSL(type: JavaCompile, group: 'build') {
 compileJava.dependsOn(generateQueryDSL)
 
 clean {
-	delete sourceSets.generated.java.srcDirs.iterator()[0]
+	delete queryDslOutput
 }
