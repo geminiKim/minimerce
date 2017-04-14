@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.minimerce.component.deal.SaleDealReader;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.order.detail.OrderDetail;
+import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
 import com.minimerce.object.order.OrderRequestDetail;
@@ -17,18 +17,18 @@ import java.util.List;
  * Created by gemini on 01/04/2017.
  */
 @Component
-public class OrderDetailMaker {
+public class OrderOptionMaker {
     private final SaleDealReader saleDealReader;
     private final OrderItemMaker orderItemMaker;
 
-    public OrderDetailMaker(SaleDealReader saleDealReader, OrderItemMaker orderItemMaker) {
+    public OrderOptionMaker(SaleDealReader saleDealReader, OrderItemMaker orderItemMaker) {
         this.saleDealReader = saleDealReader;
         this.orderItemMaker = orderItemMaker;
     }
 
 
-    public List<OrderDetail> make(Long clientId, Long customerId, List<OrderRequestDetail> requestDetails) throws UnsaleableProductException {
-        List<OrderDetail> details = Lists.newArrayList();
+    public List<OrderOption> make(Long clientId, Long customerId, List<OrderRequestDetail> requestDetails) throws UnsaleableProductException {
+        List<OrderOption> details = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
             for (int i = 0; i < each.getQuantity(); i++) {
                 Deal deal = saleDealReader.findBySaleDeal(clientId, each.getDealId());
@@ -36,7 +36,7 @@ public class OrderDetailMaker {
                 if(option.getSalePrice() != each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
                 if(option.getSalePrice() * each.getQuantity() == each.getPrice()) throw new UnsaleableProductException("가격 불일치");
 
-                OrderDetail detail = new OrderDetail();
+                OrderOption detail = new OrderOption();
                 detail.setClientId(clientId);
                 detail.setCustomerId(customerId);
                 detail.setClientDetailId(each.getClientDetailId());

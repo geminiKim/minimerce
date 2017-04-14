@@ -22,7 +22,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-public class OrderDetail extends BaseDomain {
+public class OrderOption extends BaseDomain {
     @Column
     private Long clientId;
     @Column
@@ -49,7 +49,7 @@ public class OrderDetail extends BaseDomain {
     public List<OrderItem> items = Lists.newArrayList();
 
     public void addItem(OrderItem item) {
-        item.setDetail(this);
+        item.setOption(this);
         this.items.add(item);
     }
     public void addItems(List<OrderItem> items) {

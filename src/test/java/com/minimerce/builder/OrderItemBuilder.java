@@ -1,6 +1,6 @@
 package com.minimerce.builder;
 
-import com.minimerce.domain.order.detail.OrderDetail;
+import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
@@ -24,7 +24,7 @@ public final class OrderItemBuilder {
     private OrderStatus status = OrderStatus.NONE;
     private CancelStatus cancelStatus = CancelStatus.NONE;
     private int bundleId = 1;
-    private OrderDetail detail = new OrderDetail();
+    private OrderOption option = new OrderOption();
 
 
     private OrderItemBuilder() {
@@ -38,8 +38,8 @@ public final class OrderItemBuilder {
         this.id = id;
         return this;
     }
-    public OrderItemBuilder withDetail(OrderDetail detail) {
-        this.detail = detail;
+    public OrderItemBuilder withOption(OrderOption option) {
+        this.option = option;
         return this;
     }
 
@@ -112,7 +112,7 @@ public final class OrderItemBuilder {
         orderItem.setStatus(status);
         orderItem.setCancelStatus(cancelStatus);
         orderItem.setBundleId(bundleId);
-        orderItem.setDetail(detail);
+        orderItem.setOption(option);
         return orderItem;
     }
 }

@@ -2,7 +2,7 @@ package com.minimerce.domain.order;
 
 import com.google.common.collect.Lists;
 import com.minimerce.domain.BaseDomain;
-import com.minimerce.domain.order.detail.OrderDetail;
+import com.minimerce.domain.order.detail.OrderOption;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,13 +36,13 @@ public class Order extends BaseDomain {
 
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
-    public List<OrderDetail> details = Lists.newArrayList();
+    public List<OrderOption> options = Lists.newArrayList();
 
-    public void addDetail(OrderDetail detail) {
+    public void addOption(OrderOption detail) {
         detail.setOrder(this);
-        this.details.add(detail);
+        this.options.add(detail);
     }
-    public void addDetails(List<OrderDetail> details) {
-        details.forEach(e -> addDetail(e));
+    public void addOptions(List<OrderOption> details) {
+        details.forEach(e -> addOption(e));
     }
 }

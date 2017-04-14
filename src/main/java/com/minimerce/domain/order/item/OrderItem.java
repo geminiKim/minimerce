@@ -1,7 +1,7 @@
 package com.minimerce.domain.order.item;
 
 import com.minimerce.domain.BaseDomain;
-import com.minimerce.domain.order.detail.OrderDetail;
+import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
 import com.minimerce.domain.type.DealType;
@@ -40,5 +40,5 @@ public class OrderItem extends BaseDomain {
     private int bundleId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    public OrderDetail detail;
+    public OrderOption option;
 }

@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.order.Order;
-import com.minimerce.domain.order.detail.OrderDetail;
+import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by gemini on 04/04/2017.
  */
-public final class OrderDetailBuilder {
+public final class OrderOptionBuilder {
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
@@ -31,85 +31,85 @@ public final class OrderDetailBuilder {
     private Deal deal = new Deal();
     private DealOption dealOption = new DealOption();
 
-    private OrderDetailBuilder() {
+    private OrderOptionBuilder() {
     }
 
-    public static OrderDetailBuilder anOrderDetail() {
-        return new OrderDetailBuilder();
+    public static OrderOptionBuilder anOrderOption() {
+        return new OrderOptionBuilder();
     }
 
-    public OrderDetailBuilder withId(Long id) {
+    public OrderOptionBuilder withId(Long id) {
         this.id = id;
         return this;
     }
 
-    public OrderDetailBuilder withCreatedAt(LocalDateTime createdAt) {
+    public OrderOptionBuilder withCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
         return this;
     }
 
-    public OrderDetailBuilder withUpdatedAt(LocalDateTime updatedAt) {
+    public OrderOptionBuilder withUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
         return this;
     }
 
-    public OrderDetailBuilder withClientId(Long clientId) {
+    public OrderOptionBuilder withClientId(Long clientId) {
         this.clientId = clientId;
         return this;
     }
 
-    public OrderDetailBuilder withOrder(Order order) {
+    public OrderOptionBuilder withOrder(Order order) {
         this.order = order;
         return this;
     }
 
-    public OrderDetailBuilder withClientDetailId(Long clientDetailId) {
+    public OrderOptionBuilder withClientDetailId(Long clientDetailId) {
         this.clientDetailId = clientDetailId;
         return this;
     }
 
-    public OrderDetailBuilder withCustomerId(Long customerId) {
+    public OrderOptionBuilder withCustomerId(Long customerId) {
         this.customerId = customerId;
         return this;
     }
 
-    public OrderDetailBuilder withTitle(String title) {
+    public OrderOptionBuilder withTitle(String title) {
         this.title = title;
         return this;
     }
 
-    public OrderDetailBuilder withPrice(int price) {
+    public OrderOptionBuilder withPrice(int price) {
         this.price = price;
         return this;
     }
 
-    public OrderDetailBuilder withStatus(OrderStatus status) {
+    public OrderOptionBuilder withStatus(OrderStatus status) {
         this.status = status;
         return this;
     }
 
-    public OrderDetailBuilder withCancelStatus(CancelStatus cancelStatus) {
+    public OrderOptionBuilder withCancelStatus(CancelStatus cancelStatus) {
         this.cancelStatus = cancelStatus;
         return this;
     }
 
-    public OrderDetailBuilder withDeal(Deal deal) {
+    public OrderOptionBuilder withDeal(Deal deal) {
         this.deal = deal;
         return this;
     }
 
-    public OrderDetailBuilder withDealOption(DealOption dealOption) {
+    public OrderOptionBuilder withDealOption(DealOption dealOption) {
         this.dealOption = dealOption;
         return this;
     }
 
-    public OrderDetailBuilder withItems(List<OrderItem> items) {
+    public OrderOptionBuilder withItems(List<OrderItem> items) {
         this.items = items;
         return this;
     }
 
-    public OrderDetail build() {
-        OrderDetail orderDetail = new OrderDetail();
+    public OrderOption build() {
+        OrderOption orderDetail = new OrderOption();
         orderDetail.setId(id);
         orderDetail.setCreatedAt(createdAt);
         orderDetail.setUpdatedAt(updatedAt);

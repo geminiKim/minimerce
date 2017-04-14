@@ -25,9 +25,9 @@ public class OrderController {
     }
     @RequestMapping(method = RequestMethod.POST)
     public String saveOrder(@RequestBody Order order) {
-        order.getDetails().forEach(e -> {
+        order.getOptions().forEach(e -> {
             e.setOrder(order);
-            e.getItems().forEach(i -> i.setDetail(e));
+            e.getItems().forEach(i -> i.setOption(e));
         });
         orderRepository.save(order);
         return "OK";

@@ -2,7 +2,7 @@ package com.minimerce.builder;
 
 import com.google.common.collect.Lists;
 import com.minimerce.domain.order.Order;
-import com.minimerce.domain.order.detail.OrderDetail;
+import com.minimerce.domain.order.detail.OrderOption;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +21,7 @@ public final class OrderBuilder {
     private int price = 5000;
     private String dealIds = "1,2";
     private LocalDateTime orderedAt = LocalDateTime.now();
-    private List<OrderDetail> details = Lists.newArrayList();
+    private List<OrderOption> options = Lists.newArrayList();
 
     private OrderBuilder() {
     }
@@ -80,8 +80,8 @@ public final class OrderBuilder {
         return this;
     }
 
-    public OrderBuilder withDetails(List<OrderDetail> details) {
-        this.details = details;
+    public OrderBuilder withOptions(List<OrderOption> details) {
+        this.options = details;
         return this;
     }
 
@@ -97,7 +97,7 @@ public final class OrderBuilder {
         order.setPrice(price);
         order.setDealIds(dealIds);
         order.setOrderedAt(orderedAt);
-        order.addDetails(details);
+        order.addOptions(options);
         return order;
     }
 }

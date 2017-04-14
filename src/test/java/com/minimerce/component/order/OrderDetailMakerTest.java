@@ -6,7 +6,7 @@ import com.minimerce.builder.OrderRequestDetailBuilder;
 import com.minimerce.component.deal.SaleDealReader;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.order.detail.OrderDetail;
+import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.object.order.OrderRequestDetail;
 import com.minimerce.support.exception.UnsaleableProductException;
 import org.assertj.core.util.Lists;
@@ -28,7 +28,7 @@ public class OrderDetailMakerTest {
 
     private SaleDealReader saleDealReader;
     private OrderItemMaker orderItemMaker;
-    private OrderDetailMaker maker;
+    private OrderOptionMaker maker;
     private final OrderRequestDetailBuilder detailRequestBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
@@ -39,14 +39,14 @@ public class OrderDetailMakerTest {
         when(saleDealReader.findBySaleDeal(anyLong(), anyLong())).thenReturn(buildCommonDeal());
         when(saleDealReader.findBySaleDealOption(anyLong(), anyLong())).thenReturn(buildOptionPrice5000());
 
-        maker = new OrderDetailMaker(saleDealReader, orderItemMaker);
+        maker = new OrderOptionMaker(saleDealReader, orderItemMaker);
     }
 
     @Test
     public void testShouldBeBuildDetail() throws UnsaleableProductException {
         List<OrderRequestDetail> requestDetails = Lists.newArrayList(detailRequestBuilder.build(), detailRequestBuilder.build());
 
-        List<OrderDetail> details = maker.make(1L, 1L, requestDetails);
+        List<OrderOption> details = maker.make(1L, 1L, requestDetails);
         assertThat(details.get(0).getPrice(), is(5000));
         assertThat(details.size(), is(2));
     }

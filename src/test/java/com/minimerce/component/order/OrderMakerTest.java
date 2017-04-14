@@ -1,10 +1,10 @@
 package com.minimerce.component.order;
 
-import com.minimerce.builder.OrderDetailBuilder;
+import com.minimerce.builder.OrderOptionBuilder;
 import com.minimerce.builder.OrderRequestBuilder;
 import com.minimerce.builder.OrderRequestDetailBuilder;
 import com.minimerce.domain.order.Order;
-import com.minimerce.domain.order.detail.OrderDetail;
+import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.object.order.OrderRequest;
 import com.minimerce.support.exception.UnsaleableProductException;
 import org.assertj.core.util.Lists;
@@ -26,11 +26,11 @@ import static org.mockito.Mockito.when;
 public class OrderMakerTest {
     private OrderMaker maker;
     private final OrderRequestBuilder orderRequestBuilder = OrderRequestBuilder.anOrderRequest();
-    private final OrderRequestDetailBuilder detailRequestBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
+    private final OrderRequestDetailBuilder orderRequestDetailBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
     public void setup() throws UnsaleableProductException {
-        OrderDetailMaker orderDetailMaker = mock(OrderDetailMaker.class);
+        OrderOptionMaker orderDetailMaker = mock(OrderOptionMaker.class);
         when(orderDetailMaker.make(anyLong(), anyLong(), any())).thenReturn(details());
         maker = new OrderMaker(orderDetailMaker);
     }
@@ -38,16 +38,16 @@ public class OrderMakerTest {
     @Test
     public void testShouldBeBuildOrder() throws UnsaleableProductException {
         OrderRequest request = orderRequestBuilder.build();
-        request.addDetail(detailRequestBuilder.build());
-        request.addDetail(detailRequestBuilder.build());
+        request.addDetail(orderRequestDetailBuilder.build());
+        request.addDetail(orderRequestDetailBuilder.build());
 
         Order order = maker.make(1L, request);
         assertThat(order.getPrice(), is(10000));
-        assertThat(order.getDetails().size(), is(2));
+        assertThat(order.getOptions().size(), is(2));
     }
 
-    private ArrayList<OrderDetail> details() {
-        OrderDetailBuilder anOrderDetail = OrderDetailBuilder.anOrderDetail();
-        return Lists.newArrayList(anOrderDetail.build(), anOrderDetail.build());
+    private ArrayList<OrderOption> details() {
+        OrderOptionBuilder anOrderOption = OrderOptionBuilder.anOrderOption();
+        return Lists.newArrayList(anOrderOption.build(), anOrderOption.build());
     }
 }

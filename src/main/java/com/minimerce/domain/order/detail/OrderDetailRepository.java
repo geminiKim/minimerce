@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * Created by gemini on 25/03/2017.
  */
 @Repository
-public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
+public interface OrderDetailRepository extends JpaRepository<OrderOption, Long> {
 }
