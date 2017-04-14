@@ -30,12 +30,12 @@ public class OrderOptionMaker {
     public List<OrderOption> make(Long clientId, Long customerId, List<OrderRequestDetail> requestDetails) throws UnsaleableProductException {
         List<OrderOption> details = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
-            for (int i = 0; i < each.getQuantity(); i++) {
-                Deal deal = saleDealReader.findBySaleDeal(clientId, each.getDealId());
-                DealOption option = saleDealReader.findBySaleDealOption(clientId, each.getOptionId());
-                if(option.getSalePrice() != each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
-                if(option.getSalePrice() * each.getQuantity() == each.getPrice()) throw new UnsaleableProductException("가격 불일치");
+            Deal deal = saleDealReader.findBySaleDeal(clientId, each.getDealId());
+            DealOption option = saleDealReader.findBySaleDealOption(clientId, each.getOptionId());
+            if(option.getSalePrice() != each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
+            if(option.getSalePrice() * each.getQuantity() == each.getPrice()) throw new UnsaleableProductException("가격 불일치");
 
+            for (int i = 0; i < each.getQuantity(); i++) {
                 OrderOption detail = new OrderOption();
                 detail.setClientId(clientId);
                 detail.setCustomerId(customerId);
