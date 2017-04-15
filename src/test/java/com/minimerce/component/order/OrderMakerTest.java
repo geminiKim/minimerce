@@ -7,6 +7,7 @@ import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.object.order.OrderRequest;
 import com.minimerce.support.exception.UnsaleableProductException;
+import com.minimerce.support.exception.UnsupportedItemTypeException;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,14 +30,14 @@ public class OrderMakerTest {
     private final OrderRequestDetailBuilder orderRequestDetailBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
-    public void setup() throws UnsaleableProductException {
+    public void setup() throws UnsaleableProductException, UnsupportedItemTypeException {
         OrderOptionMaker orderDetailMaker = mock(OrderOptionMaker.class);
-        when(orderDetailMaker.make(anyLong(), anyLong(), any())).thenReturn(details());
+        when(orderDetailMaker.make(anyLong(), any())).thenReturn(details());
         maker = new OrderMaker(orderDetailMaker);
     }
 
     @Test
-    public void testShouldBeBuildOrder() throws UnsaleableProductException {
+    public void testShouldBeBuildOrder() throws UnsaleableProductException, UnsupportedItemTypeException {
         OrderRequest request = orderRequestBuilder.build();
         request.addDetail(orderRequestDetailBuilder.build());
         request.addDetail(orderRequestDetailBuilder.build());

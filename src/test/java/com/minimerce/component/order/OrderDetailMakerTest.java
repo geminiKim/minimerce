@@ -9,6 +9,7 @@ import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.object.order.OrderRequestDetail;
 import com.minimerce.support.exception.UnsaleableProductException;
+import com.minimerce.support.exception.UnsupportedItemTypeException;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,10 +44,10 @@ public class OrderDetailMakerTest {
     }
 
     @Test
-    public void testShouldBeBuildDetail() throws UnsaleableProductException {
+    public void testShouldBeBuildDetail() throws UnsaleableProductException, UnsupportedItemTypeException {
         List<OrderRequestDetail> requestDetails = Lists.newArrayList(detailRequestBuilder.build(), detailRequestBuilder.build());
 
-        List<OrderOption> details = maker.make(1L, 1L, requestDetails);
+        List<OrderOption> details = maker.make(1L, requestDetails);
         assertThat(details.get(0).getPrice(), is(5000));
         assertThat(details.size(), is(2));
     }

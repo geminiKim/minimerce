@@ -2,7 +2,6 @@ package com.minimerce.builder;
 
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.deal.option.item.DealOptionItem;
-import com.minimerce.domain.type.DealType;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +14,6 @@ public final class DealOptionItemBuilder {
     protected LocalDateTime createdAt;
     protected LocalDateTime updatedAt;
     private Long clientId;
-    private DealType type;
     private Long itemId;
 
     private DealOptionItemBuilder() {
@@ -50,11 +48,6 @@ public final class DealOptionItemBuilder {
         return this;
     }
 
-    public DealOptionItemBuilder withType(DealType type) {
-        this.type = type;
-        return this;
-    }
-
     public DealOptionItemBuilder withItemId(Long itemId) {
         this.itemId = itemId;
         return this;
@@ -67,7 +60,6 @@ public final class DealOptionItemBuilder {
         dealOptionItem.setOption(option);
         dealOptionItem.setCreatedAt(createdAt);
         dealOptionItem.setUpdatedAt(updatedAt);
-        dealOptionItem.setType(type);
         dealOptionItem.setItemId(itemId);
         return dealOptionItem;
     }

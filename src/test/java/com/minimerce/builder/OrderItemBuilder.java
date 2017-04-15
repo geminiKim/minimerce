@@ -15,15 +15,12 @@ public final class OrderItemBuilder {
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
-    private Long clientId = 1L;
-    private Long customerId = 1L;
     private String title = "Test Order Item";
     private DealType type = DealType.USABLE;
     private int salePrice = 1000;
     private int costPrice = 500;
-    private OrderStatus status = OrderStatus.NONE;
-    private CancelStatus cancelStatus = CancelStatus.NONE;
-    private int bundleId = 1;
+    private OrderStatus status = OrderStatus.ORDERED;
+    private CancelStatus cancelStatus = CancelStatus.NOT_CANCEL;
     private OrderOption option = new OrderOption();
 
 
@@ -50,16 +47,6 @@ public final class OrderItemBuilder {
 
     public OrderItemBuilder withUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-        return this;
-    }
-
-    public OrderItemBuilder withClientId(Long clientId) {
-        this.clientId = clientId;
-        return this;
-    }
-
-    public OrderItemBuilder withCustomerId(Long customerId) {
-        this.customerId = customerId;
         return this;
     }
 
@@ -93,25 +80,17 @@ public final class OrderItemBuilder {
         return this;
     }
 
-    public OrderItemBuilder withBundleId(int bundleId) {
-        this.bundleId = bundleId;
-        return this;
-    }
-
     public OrderItem build() {
         OrderItem orderItem = new OrderItem();
         orderItem.setId(id);
         orderItem.setCreatedAt(createdAt);
         orderItem.setUpdatedAt(updatedAt);
-        orderItem.setClientId(clientId);
-        orderItem.setCustomerId(customerId);
         orderItem.setTitle(title);
         orderItem.setType(type);
         orderItem.setSalePrice(salePrice);
         orderItem.setCostPrice(costPrice);
         orderItem.setStatus(status);
         orderItem.setCancelStatus(cancelStatus);
-        orderItem.setBundleId(bundleId);
         orderItem.setOption(option);
         return orderItem;
     }

@@ -9,6 +9,7 @@ import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
 import com.minimerce.object.order.OrderRequestDetail;
 import com.minimerce.support.exception.UnsaleableProductException;
+import com.minimerce.support.exception.UnsupportedItemTypeException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class OrderOptionMaker {
     }
 
 
-    public List<OrderOption> make(Long clientId, Long customerId, List<OrderRequestDetail> requestDetails) throws UnsaleableProductException {
+    public List<OrderOption> make(Long clientId, List<OrderRequestDetail> requestDetails) throws UnsaleableProductException, UnsupportedItemTypeException {
         List<OrderOption> details = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
             Deal deal = saleDealReader.findBySaleDeal(clientId, each.getDealId());
@@ -38,12 +39,11 @@ public class OrderOptionMaker {
             for (int i = 0; i < each.getQuantity(); i++) {
                 OrderOption detail = new OrderOption();
                 detail.setClientId(clientId);
-                detail.setCustomerId(customerId);
                 detail.setClientDetailId(each.getClientDetailId());
                 detail.setTitle(option.getName());
                 detail.setPrice(option.getSalePrice());
-                detail.setStatus(OrderStatus.NONE);
-                detail.setCancelStatus(CancelStatus.NONE);
+                detail.setStatus(OrderStatus.ORDERED);
+                detail.setCancelStatus(CancelStatus.NOT_CANCEL);
                 detail.setDeal(deal);
                 detail.setDealOption(option);
                 detail.addItems(orderItemMaker.make(option));

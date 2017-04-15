@@ -16,6 +16,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * Created by gemini on 23/03/2017.
  */
@@ -64,6 +66,9 @@ public class DealOption extends BaseDomain {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "option")
     public List<DealOptionItem> items = Lists.newArrayList();
 
+    public List<Long> getItemIds() {
+        return items.stream().map(e -> e.getItemId()).collect(toList());
+    }
 
     public void addItem(DealOptionItem item) {
         item.setOption(this);

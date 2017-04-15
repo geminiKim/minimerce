@@ -17,10 +17,6 @@ import javax.persistence.*;
 @Getter
 @Entity
 public class OrderItem extends BaseDomain {
-    @Column
-    private Long clientId;
-    @Column
-    private Long customerId;
     @Column(length = 100)
     private String title;
     @Column(length = 10, nullable = false)
@@ -36,8 +32,6 @@ public class OrderItem extends BaseDomain {
     @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private CancelStatus cancelStatus;
-    @Column(nullable = false)
-    private int bundleId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     public OrderOption option;

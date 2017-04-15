@@ -26,8 +26,6 @@ public class OrderOption extends BaseDomain {
     @Column
     private Long clientId;
     @Column
-    private Long customerId;
-    @Column
     private Long clientDetailId;
     @Column(length = 100)
     private String title;
