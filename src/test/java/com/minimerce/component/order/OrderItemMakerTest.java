@@ -3,15 +3,13 @@ package com.minimerce.component.order;
 import com.minimerce.builder.DealOptionBuilder;
 import com.minimerce.component.order.item.UsableOrderItemMaker;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.order.item.OrderItem;
+import com.minimerce.domain.type.DealType;
 import com.minimerce.support.exception.UnsupportedItemTypeException;
 import org.junit.Before;
+import org.junit.Test;
 
-import java.util.List;
-
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by gemini on 14/04/2017.
@@ -27,10 +25,11 @@ public class OrderItemMakerTest {
         maker = new OrderItemMaker(usableOrderItemMaker);
     }
 
+    @Test
     public void testShouldBeMakeOrderItem() throws UnsupportedItemTypeException {
-        DealOption option = DealOptionBuilder.aDealOption().build();
-        List<OrderItem> items = maker.make(option);
-        assertThat(items.size(), is(1));
+        DealOption option = DealOptionBuilder.aDealOption().withType(DealType.USABLE).build();
+        maker.make(option);
+        verify(usableOrderItemMaker, times(1)).make(any());
     }
 
 }
