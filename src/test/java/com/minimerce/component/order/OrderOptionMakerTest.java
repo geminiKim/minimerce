@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by gemini on 09/04/2017.
  */
-public class OrderDetailMakerTest {
+public class OrderOptionMakerTest {
 
     private SaleDealReader saleDealReader;
     private OrderItemMaker orderItemMaker;
