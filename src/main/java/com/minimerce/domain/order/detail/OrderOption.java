@@ -39,7 +39,7 @@ public class OrderOption extends BaseDomain {
     public Order order;
 
     @Setter(AccessLevel.NONE)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "detail")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "option")
     public List<OrderItem> items = Lists.newArrayList();
 
     public void addItem(OrderItem item) {
