@@ -23,8 +23,6 @@ import java.util.List;
 @Getter
 @Entity
 public class OrderOption extends BaseDomain {
-    @Column
-    private Long clientId;
     @Column(length = 100)
     private String title;
     @Column(nullable = false)

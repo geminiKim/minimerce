@@ -38,7 +38,6 @@ public class OrderOptionMaker {
 
             for (int i = 0; i < each.getQuantity(); i++) {
                 OrderOption detail = new OrderOption();
-                detail.setClientId(clientId);
                 detail.setTitle(option.getName());
                 detail.setPrice(option.getSalePrice());
                 detail.setStatus(OrderStatus.ORDERED);
