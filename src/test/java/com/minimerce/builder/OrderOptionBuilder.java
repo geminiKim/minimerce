@@ -20,7 +20,6 @@ public final class OrderOptionBuilder {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
     private Long clientId = 1L;
-    private Long clientDetailId = 1L;
     private String title = "Test Order Detail";
     private int price = 5000;
     private OrderStatus status = OrderStatus.ORDERED;
@@ -59,11 +58,6 @@ public final class OrderOptionBuilder {
 
     public OrderOptionBuilder withOrder(Order order) {
         this.order = order;
-        return this;
-    }
-
-    public OrderOptionBuilder withClientDetailId(Long clientDetailId) {
-        this.clientDetailId = clientDetailId;
         return this;
     }
 
@@ -108,7 +102,6 @@ public final class OrderOptionBuilder {
         orderDetail.setCreatedAt(createdAt);
         orderDetail.setUpdatedAt(updatedAt);
         orderDetail.setClientId(clientId);
-        orderDetail.setClientDetailId(clientDetailId);
         orderDetail.setTitle(title);
         orderDetail.setPrice(price);
         orderDetail.setStatus(status);

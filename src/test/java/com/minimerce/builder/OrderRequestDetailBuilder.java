@@ -8,7 +8,6 @@ import com.minimerce.object.order.OrderRequestDetail;
 public final class OrderRequestDetailBuilder {
     private Long dealId = 1L;
     private Long optionId = 1L;
-    private Long clientDetailId = 1L;
     private int price = 5000;
     private int unitPrice = 5000;
     private int quantity = 1;
@@ -27,11 +26,6 @@ public final class OrderRequestDetailBuilder {
 
     public OrderRequestDetailBuilder withOptionId(Long optionId) {
         this.optionId = optionId;
-        return this;
-    }
-
-    public OrderRequestDetailBuilder withClientDetailId(Long clientDetailId) {
-        this.clientDetailId = clientDetailId;
         return this;
     }
 
@@ -54,7 +48,6 @@ public final class OrderRequestDetailBuilder {
         OrderRequestDetail orderRequestDetail = new OrderRequestDetail();
         orderRequestDetail.setDealId(dealId);
         orderRequestDetail.setOptionId(optionId);
-        orderRequestDetail.setClientDetailId(clientDetailId);
         orderRequestDetail.setPrice(price);
         orderRequestDetail.setUnitPrice(unitPrice);
         orderRequestDetail.setQuantity(quantity);

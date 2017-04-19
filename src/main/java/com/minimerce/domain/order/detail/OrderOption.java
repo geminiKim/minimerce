@@ -25,8 +25,6 @@ import java.util.List;
 public class OrderOption extends BaseDomain {
     @Column
     private Long clientId;
-    @Column
-    private Long clientDetailId;
     @Column(length = 100)
     private String title;
     @Column(nullable = false)
