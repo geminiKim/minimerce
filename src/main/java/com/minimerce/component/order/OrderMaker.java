@@ -24,7 +24,7 @@ public class OrderMaker {
 
     public Order make(Long clientId, OrderRequest request) throws UnsaleableProductException, UnsupportedItemTypeException {
         List<OrderOption> options = orderDetailMaker.make(clientId, request.getDetails());
-        if(request.getPrice() != getPrice(options)) throw new RuntimeException("상품의 가격이 일치하지 않습니다.");
+        if(request.getPrice() != getPrice(options)) throw new UnsaleableProductException("상품의 가격이 일치하지 않습니다.");
 
         Order order = new Order();
         order.setClientId(clientId);

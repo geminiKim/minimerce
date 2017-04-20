@@ -42,7 +42,7 @@ public class UsableOrderItemMakerTest {
         maker = new UsableOrderItemMaker(mockUsableItemRepository, mockUsableOrderItemRepository);
     }
     @Test
-    public void testShouldBeMakeUsableOrderItem() throws Exception {
+    public void testShouldBeMakeUsableOrderItem() {
         DealOption option = DealOptionBuilder.aDealOption().withType(DealType.USABLE).build();
         List<OrderItem> items = maker.make(option);
 
@@ -52,7 +52,7 @@ public class UsableOrderItemMakerTest {
     }
 
     @Test
-    public void testShouldBeFillOrderItemField() throws Exception {
+    public void testShouldBeFillOrderItemField() {
         DealOption option = DealOptionBuilder.aDealOption().withType(DealType.USABLE).build();
         List<OrderItem> items = maker.make(option);
 
