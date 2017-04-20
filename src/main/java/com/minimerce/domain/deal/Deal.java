@@ -76,8 +76,4 @@ public class Deal extends BaseDomain {
     public void addOptions(List<DealOption> options) {
         options.forEach(e -> addOption(e));
     }
-
-    public DealOption findOption(Long optionId) {
-        return options.stream().filter(e -> e.getId().equals(optionId)).findFirst().orElse(null);
-    }
 }

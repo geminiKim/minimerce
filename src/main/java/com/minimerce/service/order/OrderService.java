@@ -1,4 +1,4 @@
-package com.minimerce.service;
+package com.minimerce.service.order;
 
 import com.minimerce.component.order.OrderFinder;
 import com.minimerce.component.order.OrderMaker;
