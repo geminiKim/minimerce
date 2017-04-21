@@ -2,6 +2,7 @@ package com.minimerce.service.deal;
 
 import com.minimerce.builder.DealBuilder;
 import com.minimerce.domain.deal.Deal;
+import com.minimerce.domain.deal.DealRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,18 +13,25 @@ import static org.mockito.Mockito.*;
  */
 public class DealServiceTest {
     private DealService dealService;
-    private DealInserter mockDealInserter;
+    private DealRepository mockDealRepository;
 
     @Before
     public void setUp() {
-        mockDealInserter = mock(DealInserter.class);
-        dealService = new DealService(mockDealInserter);
+        mockDealRepository = mock(DealRepository.class);
+        dealService = new DealService(mockDealRepository);
     }
 
     @Test
-    public void testShouldBeInsertDeal() {
-        Deal deal = DealBuilder.aDeal().build();
+    public void testShouldBeSaveNewDeal() {
+        Deal deal = DealBuilder.aDeal().withId(null).build();
         dealService.newDeal(1L, deal);
-        verify(mockDealInserter, times(1)).insert(deal);
+        verify(mockDealRepository, times(1)).save(deal);
+    }
+
+    @Test
+    public void testShouldBeUpdateDeal() {
+        Deal deal = DealBuilder.aDeal().build();
+        dealService.updateDeal(1L, deal);
+        verify(mockDealRepository, times(1)).save(deal);
     }
 }
