@@ -12,26 +12,26 @@ import static org.mockito.Mockito.*;
  * Created by gemini on 23/04/2017.
  */
 public class DealOptionServiceTest {
-    private DealOptionService mockOptionService;
+    private DealOptionService optionService;
     private DealOptionRepository mockOptionRepository;
 
     @Before
     public void setUp() {
         mockOptionRepository = mock(DealOptionRepository.class);
-        mockOptionService = new DealOptionService(mockOptionRepository);
+        optionService = new DealOptionService(mockOptionRepository);
     }
 
     @Test
     public void testShouldBeSaveNewOption() {
         DealOption option = DealOptionBuilder.aDealOption().withId(null).build();
-        mockOptionService.newDeal(1L, option);
+        optionService.newDeal(1L, option);
         verify(mockOptionRepository, times(1)).save(option);
     }
 
     @Test
     public void testShouldBeUpdateOption() {
         DealOption option = DealOptionBuilder.aDealOption().withId(1L).build();
-        mockOptionService.updateDeal(1L, option);
+        optionService.updateDeal(1L, option);
         verify(mockOptionRepository, times(1)).save(option);
     }
 }

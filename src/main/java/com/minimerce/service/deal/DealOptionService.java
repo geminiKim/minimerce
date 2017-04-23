@@ -11,7 +11,7 @@ import javax.inject.Inject;
  */
 @Service
 public class DealOptionService {
-    private DealOptionRepository optionRepository;
+    private final DealOptionRepository optionRepository;
 
     @Inject
     public DealOptionService(DealOptionRepository optionRepository) {

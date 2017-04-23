@@ -11,7 +11,7 @@ import javax.inject.Inject;
  */
 @Service
 public class DealService {
-    private DealRepository dealRepository;
+    private final DealRepository dealRepository;
 
     @Inject
     public DealService(DealRepository dealRepository) {
