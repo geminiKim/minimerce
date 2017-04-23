@@ -30,7 +30,7 @@ public class DealServiceTest {
 
     @Test
     public void testShouldBeUpdateDeal() {
-        Deal deal = DealBuilder.aDeal().build();
+        Deal deal = DealBuilder.aDeal().withId(1L).build();
         dealService.updateDeal(1L, deal);
         verify(mockDealRepository, times(1)).save(deal);
     }
