@@ -25,8 +25,6 @@ import static java.util.stream.Collectors.toList;
 @Getter
 @Entity
 public class DealOption extends BaseDomain {
-    @Column
-    private Long clientId;
     @Column(length = 200)
     private String name;
     @Column(columnDefinition = "TEXT NOT NULL")
@@ -79,5 +77,9 @@ public class DealOption extends BaseDomain {
     }
     public void addItems(List<DealOptionItem> items) {
         items.forEach(e -> addItem(e));
+    }
+
+    public void delete() {
+        deleted = Yn.Y;
     }
 }

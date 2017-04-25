@@ -2,6 +2,7 @@ package com.minimerce.builder;
 
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.deal.option.item.DealOptionItem;
+import com.minimerce.support.util.Yn;
 
 import java.time.LocalDateTime;
 
@@ -13,19 +14,14 @@ public final class DealOptionItemBuilder {
     protected Long id;
     protected LocalDateTime createdAt;
     protected LocalDateTime updatedAt;
-    private Long clientId;
     private Long itemId;
+    private Yn deleted = Yn.N;
 
     private DealOptionItemBuilder() {
     }
 
     public static DealOptionItemBuilder aDealOptionItem() {
         return new DealOptionItemBuilder();
-    }
-
-    public DealOptionItemBuilder withClientId(Long clientId) {
-        this.clientId = clientId;
-        return this;
     }
 
     public DealOptionItemBuilder withId(Long id) {
@@ -53,14 +49,19 @@ public final class DealOptionItemBuilder {
         return this;
     }
 
+    public DealOptionItemBuilder withDeleted(Yn deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
     public DealOptionItem build() {
         DealOptionItem dealOptionItem = new DealOptionItem();
-        dealOptionItem.setClientId(clientId);
         dealOptionItem.setId(id);
         dealOptionItem.setOption(option);
         dealOptionItem.setCreatedAt(createdAt);
         dealOptionItem.setUpdatedAt(updatedAt);
         dealOptionItem.setItemId(itemId);
+        dealOptionItem.setDeleted(deleted);
         return dealOptionItem;
     }
 }

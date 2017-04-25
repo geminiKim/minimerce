@@ -18,8 +18,6 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 public class UsableItem extends BaseDomain {
-    @Column
-    private Long clientId;
     @Column(length = 200)
     private String name;
     @Column(nullable = false)
@@ -37,4 +35,8 @@ public class UsableItem extends BaseDomain {
     @Column(length = 1, nullable = false)
     @Enumerated(EnumType.STRING)
     private Yn deleted;
+
+    public void delete() {
+        deleted = Yn.Y;
+    }
 }

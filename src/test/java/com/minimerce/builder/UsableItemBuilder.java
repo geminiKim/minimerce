@@ -1,6 +1,7 @@
 package com.minimerce.builder;
 
 import com.minimerce.domain.item.UsableItem;
+import com.minimerce.support.util.Yn;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,6 @@ public final class UsableItemBuilder {
     protected Long id = 1L;
     protected LocalDateTime createdAt = LocalDateTime.now();
     protected LocalDateTime updatedAt = LocalDateTime.now();
-    private Long clientId = 1L;
     private String name = "test-usable-item";
     private int salePrice = 1000;
     private int costPrice = 500;
@@ -19,17 +19,13 @@ public final class UsableItemBuilder {
     private int usableCount = 1;
     private LocalDateTime availableStartAt = LocalDateTime.now();
     private LocalDateTime availableEndAt = LocalDateTime.now();
+    private Yn deleted = Yn.N;
 
     private UsableItemBuilder() {
     }
 
     public static UsableItemBuilder anUsableItem() {
         return new UsableItemBuilder();
-    }
-
-    public UsableItemBuilder withClientId(Long clientId) {
-        this.clientId = clientId;
-        return this;
     }
 
     public UsableItemBuilder withName(String name) {
@@ -82,9 +78,13 @@ public final class UsableItemBuilder {
         return this;
     }
 
+    public UsableItemBuilder withDeleted(Yn deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
     public UsableItem build() {
         UsableItem usableItem = new UsableItem();
-        usableItem.setClientId(clientId);
         usableItem.setName(name);
         usableItem.setSalePrice(salePrice);
         usableItem.setId(id);
@@ -95,6 +95,7 @@ public final class UsableItemBuilder {
         usableItem.setUsableCount(usableCount);
         usableItem.setAvailableStartAt(availableStartAt);
         usableItem.setAvailableEndAt(availableEndAt);
+        usableItem.setDeleted(deleted);
         return usableItem;
     }
 }

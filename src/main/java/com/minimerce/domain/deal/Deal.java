@@ -20,9 +20,6 @@ import java.util.List;
 @Getter
 @Entity
 public class Deal extends BaseDomain {
-    @Column
-    private Long clientId;
-
     @Column(length = 200)
     private String name;
 
@@ -79,5 +76,9 @@ public class Deal extends BaseDomain {
     }
     public void addOptions(List<DealOption> options) {
         options.forEach(e -> addOption(e));
+    }
+
+    public void delete() {
+        deleted = Yn.Y;
     }
 }

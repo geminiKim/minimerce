@@ -3,6 +3,7 @@ package com.minimerce.service.deal;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.DealRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
@@ -18,15 +19,21 @@ public class DealService {
         this.dealRepository = dealRepository;
     }
 
-    public void newDeal(Long clientId, Deal deal) {
+    @Transactional
+    public void save(Deal deal) {
         if(deal.getId() != null) return;
-        deal.setClientId(clientId);
         dealRepository.save(deal);
     }
 
-    public void updateDeal(Long clientId, Deal deal) {
+    @Transactional
+    public void update(Deal deal) {
         if(deal.getId() == null) return;
-        deal.setClientId(clientId);
         dealRepository.save(deal);
+    }
+
+    @Transactional
+    public void delete(long id) {
+        Deal deal = dealRepository.findOne(id);
+        deal.delete();
     }
 }

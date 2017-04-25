@@ -3,6 +3,7 @@ package com.minimerce.service.deal;
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.deal.option.DealOptionRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
@@ -18,15 +19,21 @@ public class DealOptionService {
         this.optionRepository = optionRepository;
     }
 
-    public void newDeal(Long clientId, DealOption option) {
+    @Transactional
+    public void save(DealOption option) {
         if(option.getId() != null) return;
-        option.setClientId(clientId);
         optionRepository.save(option);
     }
 
-    public void updateDeal(Long clientId, DealOption option) {
+    @Transactional
+    public void update(DealOption option) {
         if(option.getId() == null) return;
-        option.setClientId(clientId);
         optionRepository.save(option);
+    }
+
+    @Transactional
+    public void delete(long id) {
+        DealOption option = optionRepository.findOne(id);
+        option.delete();
     }
 }

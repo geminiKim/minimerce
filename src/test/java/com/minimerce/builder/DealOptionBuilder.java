@@ -19,7 +19,6 @@ public final class DealOptionBuilder {
     private Long id = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
-    private Long clientId = 1L;
     private String name = "Test Deal Option";
     private String description = "Test Deal Option Description";
     private DealType type = DealType.USABLE;
@@ -35,7 +34,7 @@ public final class DealOptionBuilder {
     private int sort = 0;
     private Deal deal = new Deal();
     private List<DealOptionItem> items = Lists.newArrayList();
-
+    private Yn deleted = Yn.N;
 
     private DealOptionBuilder() {
     }
@@ -51,11 +50,6 @@ public final class DealOptionBuilder {
 
     public DealOptionBuilder withId(Long id) {
         this.id = id;
-        return this;
-    }
-
-    public DealOptionBuilder withClientId(Long clientId) {
-        this.clientId = clientId;
         return this;
     }
 
@@ -139,10 +133,14 @@ public final class DealOptionBuilder {
         return this;
     }
 
+    public DealOptionBuilder withDeleted(Yn deleted) {
+        this.deleted = deleted;
+        return this;
+    }
+
     public DealOption build() {
         DealOption dealOption = new DealOption();
         dealOption.setId(id);
-        dealOption.setClientId(clientId);
         dealOption.setCreatedAt(createdAt);
         dealOption.setName(name);
         dealOption.setUpdatedAt(updatedAt);
@@ -160,6 +158,7 @@ public final class DealOptionBuilder {
         dealOption.setSort(sort);
         dealOption.setDeal(deal);
         dealOption.addItems(items);
+        dealOption.setDeleted(deleted);
         return dealOption;
     }
 }
