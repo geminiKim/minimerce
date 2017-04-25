@@ -57,6 +57,9 @@ public class DealOption extends BaseDomain {
     private String thumbnailJson;
     @Column(nullable = false)
     private int sort;
+    @Column(length = 1, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Yn deleted;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

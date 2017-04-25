@@ -65,6 +65,10 @@ public class Deal extends BaseDomain {
     @Column(length = 5, nullable = false)
     private String priceUnit;
 
+    @Column(length = 1, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Yn deleted;
+
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "deal")
     public List<DealOption> options = Lists.newArrayList();

@@ -1,11 +1,14 @@
 package com.minimerce.domain.item;
 
 import com.minimerce.domain.BaseDomain;
+import com.minimerce.support.util.Yn;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 
 /**
@@ -31,4 +34,7 @@ public class UsableItem extends BaseDomain {
     private LocalDateTime availableStartAt;
     @Column
     private LocalDateTime availableEndAt;
+    @Column(length = 1, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Yn deleted;
 }
