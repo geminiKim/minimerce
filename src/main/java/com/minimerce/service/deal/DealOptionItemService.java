@@ -1,5 +1,7 @@
 package com.minimerce.service.deal;
 
+import com.minimerce.domain.deal.option.DealOption;
+import com.minimerce.domain.deal.option.DealOptionRepository;
 import com.minimerce.domain.deal.option.item.DealOptionItem;
 import com.minimerce.domain.deal.option.item.DealOptionItemRepository;
 import org.springframework.stereotype.Service;
@@ -12,17 +14,20 @@ import javax.inject.Inject;
  */
 @Service
 public class DealOptionItemService {
+    private final DealOptionRepository optionRepository;
     private final DealOptionItemRepository optionItemRepository;
 
     @Inject
-    public DealOptionItemService(DealOptionItemRepository optionItemRepository) {
+    public DealOptionItemService(DealOptionRepository optionRepository, DealOptionItemRepository optionItemRepository) {
+        this.optionRepository = optionRepository;
         this.optionItemRepository = optionItemRepository;
     }
 
     @Transactional
-    public void save(DealOptionItem optionItem) {
+    public void save(long optionId, DealOptionItem optionItem) {
         if(optionItem.getId() != null) return;
-        optionItemRepository.save(optionItem);
+        DealOption option = optionRepository.findOne(optionId);
+        option.addItem(optionItem);
     }
 
     @Transactional

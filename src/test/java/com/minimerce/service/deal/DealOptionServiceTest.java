@@ -1,6 +1,9 @@
 package com.minimerce.service.deal;
 
+import com.minimerce.builder.DealBuilder;
 import com.minimerce.builder.DealOptionBuilder;
+import com.minimerce.domain.deal.Deal;
+import com.minimerce.domain.deal.DealRepository;
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.deal.option.DealOptionRepository;
 import com.minimerce.support.util.Yn;
@@ -16,19 +19,24 @@ import static org.mockito.Mockito.*;
  */
 public class DealOptionServiceTest {
     private DealOptionService optionService;
+    private DealRepository mockDealRepository;
     private DealOptionRepository mockOptionRepository;
 
     @Before
     public void setUp() {
+        mockDealRepository = mock(DealRepository.class);
         mockOptionRepository = mock(DealOptionRepository.class);
-        optionService = new DealOptionService(mockOptionRepository);
+        optionService = new DealOptionService(mockDealRepository, mockOptionRepository);
     }
 
     @Test
     public void testShouldBeSaveNewOption() {
+        Deal deal = DealBuilder.aDeal().build();
+        when(mockDealRepository.findOne(1L)).thenReturn(deal);
+
         DealOption option = DealOptionBuilder.aDealOption().withId(null).build();
-        optionService.save(option);
-        verify(mockOptionRepository, times(1)).save(option);
+        optionService.save(1L, option);
+        assertThat(deal.getOptions().size(), is(1));
     }
 
     @Test
