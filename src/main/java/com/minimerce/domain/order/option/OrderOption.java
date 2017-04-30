@@ -9,6 +9,7 @@ import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
+import com.minimerce.domain.type.DealType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,6 +36,10 @@ public class OrderOption extends BaseDomain {
     @Column(length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private CancelStatus cancelStatus;
+
+    @Column(length = 10, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private DealType type;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

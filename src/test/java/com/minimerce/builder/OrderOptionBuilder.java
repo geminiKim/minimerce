@@ -8,6 +8,7 @@ import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.option.OrderOption;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
+import com.minimerce.domain.type.DealType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,6 +29,7 @@ public final class OrderOptionBuilder {
     private Order order = new Order();
     private Deal deal = new Deal();
     private DealOption dealOption = new DealOption();
+    private DealType type = DealType.USABLE;
 
     private OrderOptionBuilder() {
     }
@@ -96,6 +98,11 @@ public final class OrderOptionBuilder {
         return this;
     }
 
+    public OrderOptionBuilder withType(DealType type) {
+        this.type = type;
+        return this;
+    }
+
     public OrderOption build() {
         OrderOption orderDetail = new OrderOption();
         orderDetail.setId(id);
@@ -110,6 +117,7 @@ public final class OrderOptionBuilder {
         orderDetail.setDealOption(dealOption);
         orderDetail.addItems(items);
         orderDetail.setOrder(order);
+        orderDetail.setType(type);
         return orderDetail;
     }
 }
