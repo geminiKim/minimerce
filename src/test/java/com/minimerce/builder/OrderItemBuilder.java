@@ -1,7 +1,7 @@
 package com.minimerce.builder;
 
-import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.domain.order.item.OrderItem;
+import com.minimerce.domain.order.option.OrderOption;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
 import com.minimerce.domain.type.DealType;
@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
  */
 public final class OrderItemBuilder {
     private Long id = 1L;
+    private Long clientId = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
     private String title = "Test Order Item";
@@ -35,6 +36,12 @@ public final class OrderItemBuilder {
         this.id = id;
         return this;
     }
+
+    public OrderItemBuilder withClientId(Long clientId) {
+        this.clientId = clientId;
+        return this;
+    }
+
     public OrderItemBuilder withOption(OrderOption option) {
         this.option = option;
         return this;
@@ -83,6 +90,7 @@ public final class OrderItemBuilder {
     public OrderItem build() {
         OrderItem orderItem = new OrderItem();
         orderItem.setId(id);
+        orderItem.setClientId(clientId);
         orderItem.setCreatedAt(createdAt);
         orderItem.setUpdatedAt(updatedAt);
         orderItem.setTitle(title);

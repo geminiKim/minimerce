@@ -6,7 +6,7 @@ import com.minimerce.builder.OrderRequestDetailBuilder;
 import com.minimerce.component.deal.SaleDealReader;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.order.detail.OrderOption;
+import com.minimerce.domain.order.option.OrderOption;
 import com.minimerce.object.order.OrderRequestDetail;
 import com.minimerce.support.exception.UnsaleableProductException;
 import com.minimerce.support.exception.UnsupportedItemTypeException;

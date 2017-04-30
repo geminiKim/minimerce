@@ -1,4 +1,4 @@
-package com.minimerce.domain.order.detail;
+package com.minimerce.domain.order.option;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
@@ -23,6 +23,8 @@ import java.util.List;
 @Getter
 @Entity
 public class OrderOption extends BaseDomain {
+    @Column
+    private Long clientId;
     @Column(length = 100)
     private String title;
     @Column(nullable = false)

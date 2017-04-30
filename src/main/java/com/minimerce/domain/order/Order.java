@@ -2,7 +2,7 @@ package com.minimerce.domain.order;
 
 import com.google.common.collect.Lists;
 import com.minimerce.domain.BaseDomain;
-import com.minimerce.domain.order.detail.OrderOption;
+import com.minimerce.domain.order.option.OrderOption;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;

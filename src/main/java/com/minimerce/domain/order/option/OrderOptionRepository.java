@@ -1,4 +1,4 @@
-package com.minimerce.domain.order.detail;
+package com.minimerce.domain.order.option;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * Created by gemini on 25/03/2017.
  */
 @Repository
-public interface OrderDetailRepository extends JpaRepository<OrderOption, Long> {
+public interface OrderOptionRepository extends JpaRepository<OrderOption, Long> {
 }

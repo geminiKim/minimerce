@@ -2,7 +2,7 @@ package com.minimerce.builder;
 
 import com.google.common.collect.Lists;
 import com.minimerce.domain.order.Order;
-import com.minimerce.domain.order.detail.OrderOption;
+import com.minimerce.domain.order.option.OrderOption;
 
 import java.time.LocalDateTime;
 import java.util.List;

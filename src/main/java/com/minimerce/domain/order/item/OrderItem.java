@@ -1,7 +1,7 @@
 package com.minimerce.domain.order.item;
 
 import com.minimerce.domain.BaseDomain;
-import com.minimerce.domain.order.detail.OrderOption;
+import com.minimerce.domain.order.option.OrderOption;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
 import com.minimerce.domain.type.DealType;
@@ -17,6 +17,8 @@ import javax.persistence.*;
 @Getter
 @Entity
 public class OrderItem extends BaseDomain {
+    @Column
+    private Long clientId;
     @Column(length = 100)
     private String title;
     @Column(length = 10, nullable = false)

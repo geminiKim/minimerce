@@ -1,7 +1,7 @@
 package com.minimerce.component.order;
 
 import com.minimerce.domain.order.Order;
-import com.minimerce.domain.order.detail.OrderOption;
+import com.minimerce.domain.order.option.OrderOption;
 import com.minimerce.object.order.OrderRequest;
 import com.minimerce.support.exception.UnsaleableProductException;
 import com.minimerce.support.exception.UnsupportedItemTypeException;

@@ -22,7 +22,7 @@ public class OrderItemMaker {
         this.usableOrderItemMaker = usableOrderItemMaker;
     }
 
-    public List<OrderItem> make(DealOption option) throws UnsupportedItemTypeException {
+    public List<OrderItem> make(Long clientId, DealOption option) throws UnsupportedItemTypeException {
         if(DealType.USABLE == option.getType()) return usableOrderItemMaker.make(option);
         throw new UnsupportedItemTypeException("지원하지 않는 상품 타입입니다.");
     }

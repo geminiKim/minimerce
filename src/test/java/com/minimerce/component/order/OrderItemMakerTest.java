@@ -28,7 +28,7 @@ public class OrderItemMakerTest {
     @Test
     public void testShouldBeMakeOrderItem() throws UnsupportedItemTypeException {
         DealOption option = DealOptionBuilder.aDealOption().withType(DealType.USABLE).build();
-        maker.make(option);
+        maker.make(1L, option);
         verify(usableOrderItemMaker, times(1)).make(any());
     }
 

@@ -4,8 +4,8 @@ import com.google.common.collect.Lists;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.order.Order;
-import com.minimerce.domain.order.detail.OrderOption;
 import com.minimerce.domain.order.item.OrderItem;
+import com.minimerce.domain.order.option.OrderOption;
 import com.minimerce.domain.order.status.CancelStatus;
 import com.minimerce.domain.order.status.OrderStatus;
 
@@ -17,6 +17,7 @@ import java.util.List;
  */
 public final class OrderOptionBuilder {
     private Long id = 1L;
+    private Long clientId = 1L;
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
     private String title = "Test Order Detail";
@@ -37,6 +38,11 @@ public final class OrderOptionBuilder {
 
     public OrderOptionBuilder withId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public OrderOptionBuilder withClientId(Long clientId) {
+        this.clientId = clientId;
         return this;
     }
 
@@ -93,6 +99,7 @@ public final class OrderOptionBuilder {
     public OrderOption build() {
         OrderOption orderDetail = new OrderOption();
         orderDetail.setId(id);
+        orderDetail.setClientId(clientId);
         orderDetail.setCreatedAt(createdAt);
         orderDetail.setUpdatedAt(updatedAt);
         orderDetail.setTitle(title);
