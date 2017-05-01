@@ -32,8 +32,8 @@ public class OrderOptionMaker {
     public List<OrderOption> make(Long clientId, List<OrderRequestDetail> requestDetails) throws UnsaleableProductException, UnsupportedItemTypeException {
         List<OrderOption> orders = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
-            Deal deal = saleDealReader.findBySaleDeal(clientId, each.getDealId());
-            DealOption option = saleDealReader.findBySaleDealOption(clientId, each.getOptionId());
+            Deal deal = saleDealReader.findBySaleDeal(each.getDealId());
+            DealOption option = saleDealReader.findBySaleDealOption(each.getOptionId());
             if(option.getSalePrice() != each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
             if(option.getSalePrice() * each.getQuantity() == each.getPrice()) throw new UnsaleableProductException("가격 불일치");
 

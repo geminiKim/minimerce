@@ -25,16 +25,16 @@ public class SaleDealReader {
         this.dealOptionRepository = dealOptionRepository;
     }
 
-    public Deal findBySaleDeal(Long clientId, Long dealId) throws UnsaleableProductException {
-        Deal deal = dealRepository.findByClientIdAndId(clientId, dealId);
+    public Deal findBySaleDeal(Long dealId) throws UnsaleableProductException {
+        Deal deal = dealRepository.findOne(dealId);
         if(null == deal) throw new UnsaleableProductException("상품이 없어요.");
         if(DealStatus.SALE != deal.getStatus()) throw new UnsaleableProductException("판매 금지 상품입니다.");
         if(Yn.N == deal.getDisplay()) throw new UnsaleableProductException("노출 안함 상품입니다.");
         return deal;
     }
 
-    public DealOption findBySaleDealOption(Long clientId, Long optionId) throws UnsaleableProductException {
-        DealOption option = dealOptionRepository.findByClientIdAndId(clientId, optionId);
+    public DealOption findBySaleDealOption(Long optionId) throws UnsaleableProductException {
+        DealOption option = dealOptionRepository.findOne(optionId);
         if(null == option) throw new UnsaleableProductException("상품이 없어요.");
         if(DealStatus.SALE != option.getStatus()) throw new UnsaleableProductException("판매 금지 상품입니다.");
         if(Yn.N == option.getDisplay()) throw new UnsaleableProductException("노출 안함 상품입니다.");

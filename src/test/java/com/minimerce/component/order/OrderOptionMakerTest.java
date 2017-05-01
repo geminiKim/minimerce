@@ -37,8 +37,8 @@ public class OrderOptionMakerTest {
         saleDealReader = mock(SaleDealReader.class);
         orderItemMaker = mock(OrderItemMaker.class);
 
-        when(saleDealReader.findBySaleDeal(anyLong(), anyLong())).thenReturn(buildCommonDeal());
-        when(saleDealReader.findBySaleDealOption(anyLong(), anyLong())).thenReturn(buildOptionPrice5000());
+        when(saleDealReader.findBySaleDeal(anyLong())).thenReturn(buildCommonDeal());
+        when(saleDealReader.findBySaleDealOption(anyLong())).thenReturn(buildOptionPrice5000());
 
         maker = new OrderOptionMaker(saleDealReader, orderItemMaker);
     }

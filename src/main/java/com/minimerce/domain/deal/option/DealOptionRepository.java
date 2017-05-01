@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DealOptionRepository extends JpaRepository<DealOption, Long> {
-    DealOption findByClientIdAndId(Long clientId, Long id);
 }

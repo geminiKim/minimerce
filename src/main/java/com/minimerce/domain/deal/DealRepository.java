@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DealRepository extends JpaRepository<Deal, Long> {
-    Deal findByClientIdAndId(Long clientId, Long id);
 }
