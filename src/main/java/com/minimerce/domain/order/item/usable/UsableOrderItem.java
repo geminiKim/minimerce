@@ -43,11 +43,13 @@ public class UsableOrderItem extends BaseDomain {
         if(usedCount + 1 > usableCount) throw new MinimerceException("already use complete order");
         usedCount++;
         orderItem.setStatus(OrderStatus.USED);
+//        orderItem.getOption().syncStatus();
     }
 
     public void restore() throws MinimerceException {
         if(usedCount - 1 < 0) throw new MinimerceException("already restore");
         usedCount--;
         orderItem.setStatus(OrderStatus.ORDERED);
+//        orderItem.getOption().syncStatus();
     }
 }
