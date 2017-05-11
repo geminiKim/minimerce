@@ -7,9 +7,9 @@ import com.minimerce.domain.item.UsableItemRepository;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.item.usable.UsableOrderItem;
 import com.minimerce.domain.order.item.usable.UsableOrderItemRepository;
-import com.minimerce.domain.order.status.CancelStatus;
-import com.minimerce.domain.order.status.OrderStatus;
-import com.minimerce.domain.type.DealType;
+import com.minimerce.object.order.CancelStatus;
+import com.minimerce.object.order.OrderStatus;
+import com.minimerce.object.type.DealType;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;

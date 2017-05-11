@@ -3,7 +3,7 @@ package com.minimerce.domain.deal;
 import com.google.common.collect.Lists;
 import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.type.DealType;
+import com.minimerce.object.type.DealType;
 import com.minimerce.support.util.Yn;
 import lombok.AccessLevel;
 import lombok.Getter;

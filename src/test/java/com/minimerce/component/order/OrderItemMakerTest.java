@@ -3,7 +3,7 @@ package com.minimerce.component.order;
 import com.minimerce.builder.DealOptionBuilder;
 import com.minimerce.component.order.item.UsableOrderItemMaker;
 import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.type.DealType;
+import com.minimerce.object.type.DealType;
 import com.minimerce.support.exception.UnsupportedItemTypeException;
 import org.junit.Before;
 import org.junit.Test;

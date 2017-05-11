@@ -1,4 +1,4 @@
-package com.minimerce.domain.order.status;
+package com.minimerce.object.order;
 
 /**
  * Created by gemini on 26/03/2017.

@@ -6,9 +6,9 @@ import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.order.Order;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.option.OrderOption;
-import com.minimerce.domain.order.status.CancelStatus;
-import com.minimerce.domain.order.status.OrderStatus;
-import com.minimerce.domain.type.DealType;
+import com.minimerce.object.order.CancelStatus;
+import com.minimerce.object.order.OrderStatus;
+import com.minimerce.object.type.DealType;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -2,9 +2,9 @@ package com.minimerce.domain.order.item;
 
 import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.order.option.OrderOption;
-import com.minimerce.domain.order.status.CancelStatus;
-import com.minimerce.domain.order.status.OrderStatus;
-import com.minimerce.domain.type.DealType;
+import com.minimerce.object.order.CancelStatus;
+import com.minimerce.object.order.OrderStatus;
+import com.minimerce.object.type.DealType;
 import lombok.Getter;
 import lombok.Setter;
 

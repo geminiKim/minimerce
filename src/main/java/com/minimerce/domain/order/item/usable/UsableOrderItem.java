@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.item.UsableItem;
 import com.minimerce.domain.order.item.OrderItem;
-import com.minimerce.domain.order.status.OrderStatus;
+import com.minimerce.object.order.OrderStatus;
 import com.minimerce.support.exception.MinimerceException;
 import lombok.Getter;
 import lombok.Setter;

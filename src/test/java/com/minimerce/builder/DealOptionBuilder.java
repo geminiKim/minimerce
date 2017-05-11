@@ -5,8 +5,8 @@ import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.DealStatus;
 import com.minimerce.domain.deal.option.DealOption;
 import com.minimerce.domain.deal.option.item.DealOptionItem;
-import com.minimerce.domain.type.CancelType;
-import com.minimerce.domain.type.DealType;
+import com.minimerce.object.type.CancelType;
+import com.minimerce.object.type.DealType;
 import com.minimerce.support.util.Yn;
 
 import java.time.LocalDateTime;
