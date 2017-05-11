@@ -19,10 +19,10 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class BaseDomain implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     protected Long id;
 
-    @Column(updatable = false)
+    @Column
     protected LocalDateTime createdAt;
 
     @Column
