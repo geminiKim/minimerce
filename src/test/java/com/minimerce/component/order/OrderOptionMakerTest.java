@@ -2,10 +2,10 @@ package com.minimerce.component.order;
 
 import com.minimerce.builder.DealBuilder;
 import com.minimerce.builder.DealOptionBuilder;
+import com.minimerce.builder.OrderItemBuilder;
 import com.minimerce.builder.OrderRequestDetailBuilder;
 import com.minimerce.component.deal.SaleDealReader;
-import com.minimerce.domain.deal.Deal;
-import com.minimerce.domain.deal.option.DealOption;
+import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.domain.order.option.OrderOption;
 import com.minimerce.object.order.OrderRequestDetail;
 import com.minimerce.support.exception.UnsaleableProductException;
@@ -18,6 +18,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -33,12 +34,14 @@ public class OrderOptionMakerTest {
     private final OrderRequestDetailBuilder detailRequestBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
-    public void setup() throws UnsaleableProductException {
+    public void setup() throws UnsaleableProductException, UnsupportedItemTypeException {
         saleDealReader = mock(SaleDealReader.class);
         orderItemMaker = mock(OrderItemMaker.class);
 
-        when(saleDealReader.findBySaleDeal(anyLong())).thenReturn(buildCommonDeal());
-        when(saleDealReader.findBySaleDealOption(anyLong())).thenReturn(buildOptionPrice5000());
+        when(saleDealReader.findBySaleDeal(anyLong())).thenReturn(DealBuilder.aDeal().build());
+        when(saleDealReader.findBySaleDealOption(anyLong())).thenReturn(DealOptionBuilder.aDealOption().build());
+
+        when(orderItemMaker.make(any())).thenReturn(buildOrderItemsPrice5000());
 
         maker = new OrderOptionMaker(saleDealReader, orderItemMaker);
     }
@@ -52,11 +55,8 @@ public class OrderOptionMakerTest {
         assertThat(details.size(), is(2));
     }
 
-    private Deal buildCommonDeal() {
-        return DealBuilder.aDeal().build();
-    }
-
-    private DealOption buildOptionPrice5000() {
-        return DealOptionBuilder.aDealOption().withPrice(5000).build();
+    private List<OrderItem> buildOrderItemsPrice5000() {
+        OrderItemBuilder itemBuilder = OrderItemBuilder.anOrderItem();
+        return Lists.newArrayList(itemBuilder.withSalePrice(5000).build());
     }
 }

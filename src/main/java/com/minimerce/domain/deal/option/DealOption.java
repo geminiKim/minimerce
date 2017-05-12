@@ -42,8 +42,6 @@ public class DealOption extends BaseDomain {
     @Enumerated(EnumType.STRING)
     private CancelType cancelType;
     @Column
-    private int price;
-    @Column
     private int displayPrice;
     @Column
     private String priceUnit;

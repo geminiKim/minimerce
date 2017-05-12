@@ -58,7 +58,8 @@ public class UsableOrderItemMakerTest {
 
         assertThat(items.get(0).getTitle(), is("test-usable-item"));
         assertThat(items.get(0).getType(), is(DealType.USABLE));
-        assertThat(items.get(0).getPrice(), is(500));
+        assertThat(items.get(0).getSalePrice(), is(1000));
+        assertThat(items.get(0).getCostPrice(), is(500));
         assertThat(items.get(0).getStatus(), is(OrderStatus.ORDERED));
         assertThat(items.get(0).getCancelStatus(), is(CancelStatus.NOT_CANCEL));
     }

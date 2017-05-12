@@ -13,7 +13,8 @@ public final class UsableItemBuilder {
     protected LocalDateTime createdAt = LocalDateTime.now();
     protected LocalDateTime updatedAt = LocalDateTime.now();
     private String name = "test-usable-item";
-    private int price = 500;
+    private int salePrice = 1000;
+    private int costPrice = 500;
     private int stock = 50;
     private int usableCount = 1;
     private LocalDateTime availableStartAt = LocalDateTime.now();
@@ -32,8 +33,13 @@ public final class UsableItemBuilder {
         return this;
     }
 
-    public UsableItemBuilder withPrice(int price) {
-        this.price = price;
+    public UsableItemBuilder withSalePrice(int salePrice) {
+        this.salePrice = salePrice;
+        return this;
+    }
+
+    public UsableItemBuilder withCostPrice(int costPrice) {
+        this.costPrice = costPrice;
         return this;
     }
 
@@ -81,7 +87,8 @@ public final class UsableItemBuilder {
         UsableItem usableItem = new UsableItem();
         usableItem.setName(name);
         usableItem.setId(id);
-        usableItem.setPrice(price);
+        usableItem.setSalePrice(salePrice);
+        usableItem.setCostPrice(costPrice);
         usableItem.setCreatedAt(createdAt);
         usableItem.setStock(stock);
         usableItem.setUpdatedAt(updatedAt);

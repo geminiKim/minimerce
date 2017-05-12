@@ -21,7 +21,9 @@ public class UsableItem extends BaseDomain {
     @Column
     private String name;
     @Column
-    private int price;
+    private int salePrice;
+    @Column
+    private int costPrice;
     @Column
     private int stock;
     @Column

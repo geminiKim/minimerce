@@ -33,5 +33,7 @@ public class OrderItem extends BaseDomain {
     @Enumerated(EnumType.STRING)
     private CancelStatus cancelStatus;
     @Column
-    private int price;
+    private int salePrice;
+    @Column
+    private int costPrice;
 }
