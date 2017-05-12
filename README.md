@@ -1,6 +1,6 @@
 # Minimerce
 
-Minimerce is an E-Commerce Platform API Engine.
+Minimerce is an E-Commerce API Platform.
 
 Provides product registration and ordering, state management, and external API creation.
 
