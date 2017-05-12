@@ -6,6 +6,7 @@ import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.deal.Deal;
 import com.minimerce.domain.deal.DealStatus;
 import com.minimerce.domain.deal.option.item.DealOptionItem;
+import com.minimerce.domain.item.Item;
 import com.minimerce.object.type.CancelType;
 import com.minimerce.object.type.DealType;
 import com.minimerce.support.util.Yn;
@@ -64,8 +65,9 @@ public class DealOption extends BaseDomain {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "option")
     public List<DealOptionItem> items = Lists.newArrayList();
 
-    public List<Long> getItemIds() {
-        return items.stream().map(e -> e.getItemId()).collect(toList());
+    @JsonIgnore
+    public List<Item> getOptionItems() {
+        return items.stream().map(e -> e.getItem()).collect(toList());
     }
 
     public void addItem(DealOptionItem item) {

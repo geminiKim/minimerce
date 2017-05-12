@@ -1,6 +1,7 @@
 package com.minimerce.builder;
 
 import com.minimerce.domain.item.UsableItem;
+import com.minimerce.object.type.DealType;
 import com.minimerce.support.util.Yn;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ public final class UsableItemBuilder {
     protected LocalDateTime createdAt = LocalDateTime.now();
     protected LocalDateTime updatedAt = LocalDateTime.now();
     private String name = "test-usable-item";
+    private DealType type = DealType.USABLE;
     private int salePrice = 1000;
     private int costPrice = 500;
     private int stock = 50;
@@ -83,10 +85,16 @@ public final class UsableItemBuilder {
         return this;
     }
 
+    public UsableItemBuilder withType(DealType type) {
+        this.type = type;
+        return this;
+    }
+
     public UsableItem build() {
         UsableItem usableItem = new UsableItem();
         usableItem.setName(name);
         usableItem.setId(id);
+        usableItem.setType(type);
         usableItem.setSalePrice(salePrice);
         usableItem.setCostPrice(costPrice);
         usableItem.setCreatedAt(createdAt);

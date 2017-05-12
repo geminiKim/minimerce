@@ -1,7 +1,6 @@
 package com.minimerce.domain.order.item.usable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.minimerce.domain.BaseDomain;
 import com.minimerce.domain.item.UsableItem;
 import com.minimerce.domain.order.item.OrderItem;
 import com.minimerce.object.order.OrderStatus;
@@ -9,10 +8,7 @@ import com.minimerce.support.exception.MinimerceException;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -21,10 +17,8 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Entity
-public class UsableOrderItem extends BaseDomain {
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    public OrderItem orderItem;
+@DiscriminatorValue("USABLE")
+public class UsableOrderItem extends OrderItem {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     public UsableItem item;
@@ -40,12 +34,12 @@ public class UsableOrderItem extends BaseDomain {
     public void use() throws MinimerceException {
         if(usedCount + 1 > usableCount) throw new MinimerceException("already use complete order");
         usedCount++;
-        orderItem.setStatus(OrderStatus.USED);
+        setStatus(OrderStatus.USED);
     }
 
     public void restore() throws MinimerceException {
         if(usedCount - 1 < 0) throw new MinimerceException("already restore");
         usedCount--;
-        orderItem.setStatus(OrderStatus.ORDERED);
+        setStatus(OrderStatus.ORDERED);
     }
 }

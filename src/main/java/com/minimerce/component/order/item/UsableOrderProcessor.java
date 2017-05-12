@@ -23,13 +23,13 @@ public class UsableOrderProcessor {
 
     @Transactional
     public void consume(Long clientId, Long orderItemId) throws MinimerceException {
-        UsableOrderItem usableOrder = usableOrderItemRepository.findByOrderItemClientIdAndOrderItemId(clientId, orderItemId);
+        UsableOrderItem usableOrder = usableOrderItemRepository.findByClientIdAndId(clientId, orderItemId);
         if(null == usableOrder) throw new NotFoundOrderException("Not Found Order");
         usableOrder.use();
     }
 
     public void restore(Long clientId, Long orderItemId) throws MinimerceException {
-        UsableOrderItem usableOrder = usableOrderItemRepository.findByOrderItemClientIdAndOrderItemId(clientId, orderItemId);
+        UsableOrderItem usableOrder = usableOrderItemRepository.findByClientIdAndId(clientId, orderItemId);
         if(null == usableOrder) throw new NotFoundOrderException("Not Found Order");
         usableOrder.restore();
     }

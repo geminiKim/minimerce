@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class Item extends BaseDomain {
     @Column
     private String name;
-    @Column
+    @Column(insertable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     private DealType type;
     @Column

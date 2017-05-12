@@ -16,6 +16,8 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
+@DiscriminatorColumn(name = "type")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class OrderItem extends BaseDomain {
     @Column
     private Long clientId;
@@ -23,7 +25,7 @@ public class OrderItem extends BaseDomain {
     public OrderOption option;
     @Column
     private String title;
-    @Column
+    @Column(insertable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     private DealType type;
     @Column

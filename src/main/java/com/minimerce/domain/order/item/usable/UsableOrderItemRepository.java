@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UsableOrderItemRepository extends JpaRepository<UsableOrderItem, Long> {
-    UsableOrderItem findByOrderItemClientIdAndOrderItemId(Long clientId, Long orderItemId);
+    UsableOrderItem findByClientIdAndId(Long clientId, Long id);
 }
