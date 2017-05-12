@@ -17,16 +17,13 @@ import javax.persistence.Enumerated;
 @Getter
 @Entity
 public class Client extends BaseDomain {
-    @Column(length = 20, nullable = false)
+    @Column
     private String name;
-
-    @Column(length = 20, nullable = false)
+    @Column
     private String corporation;
-
-    @Column(length = 512, nullable = false)
+    @Column
     private String apiKey;
-
-    @Column(length = 1, nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private Yn deleted;
 }

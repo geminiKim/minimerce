@@ -35,8 +35,7 @@ public class UsableOrderItemMaker {
             OrderItem item = new OrderItem();
             item.setTitle(usableItem.getName());
             item.setType(DealType.USABLE);
-            item.setSalePrice(usableItem.getSalePrice());
-            item.setCostPrice(usableItem.getCostPrice());
+            item.setPrice(usableItem.getPrice());
             item.setStatus(OrderStatus.ORDERED);
             item.setCancelStatus(CancelStatus.NOT_CANCEL);
             items.add(item);

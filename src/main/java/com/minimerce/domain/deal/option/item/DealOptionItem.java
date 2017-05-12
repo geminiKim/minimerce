@@ -16,15 +16,16 @@ import javax.persistence.*;
 @Getter
 @Entity
 public class DealOptionItem extends BaseDomain {
+    @Column
+    private Long itemId;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     public DealOption option;
     @Column
-    private Long itemId;
-    @Column(length = 1, nullable = false)
     @Enumerated(EnumType.STRING)
     private Yn deleted;
 
+    @JsonIgnore
     public void delete() {
         deleted = Yn.Y;
     }

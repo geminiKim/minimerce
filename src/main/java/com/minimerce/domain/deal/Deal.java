@@ -20,49 +20,36 @@ import java.util.List;
 @Getter
 @Entity
 public class Deal extends BaseDomain {
-    @Column(length = 200)
+    @Column
     private String name;
-
-    @Column(columnDefinition = "TEXT NOT NULL")
+    @Column
     private String description;
-
-    @Column(length = 10, nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private DealType type;
-
-    @Column(length = 1, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Yn display;
-
-    @Column(length = 10, nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private DealStatus status;
-
-    @Column(nullable = false)
-    private LocalDateTime saleStartAt;
-
-    @Column(nullable = false)
-    private LocalDateTime saleEndAt;
-
-    @Column(columnDefinition = "TEXT NOT NULL")
-    private String informationJson;
-
-    @Column(columnDefinition = "TEXT NOT NULL")
-    private String imageJson;
-
-    @Column(columnDefinition = "TEXT NOT NULL")
-    private String thumbnailJson;
-
-    @Column(nullable = false)
-    private int salePrice;
-
-    @Column(nullable = false)
+    @Column
     private int displayPrice;
-
-    @Column(length = 5, nullable = false)
+    @Column
+    private int price;
+    @Column
     private String priceUnit;
-
-    @Column(length = 1, nullable = false)
+    @Column
+    private LocalDateTime saleStartAt;
+    @Column
+    private LocalDateTime saleEndAt;
+    @Column
+    private String informationJson;
+    @Column
+    private String imageJson;
+    @Column
+    private String thumbnailJson;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Yn display;
+    @Column
     @Enumerated(EnumType.STRING)
     private Yn deleted;
 

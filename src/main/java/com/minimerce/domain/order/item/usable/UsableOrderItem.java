@@ -22,22 +22,20 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 public class UsableOrderItem extends BaseDomain {
-    @Column(nullable = false)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    public OrderItem orderItem;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    public UsableItem item;
+    @Column
     private int usableCount;
-    @Column(nullable = false)
+    @Column
     private int usedCount;
     @Column
     private LocalDateTime availableStartAt;
     @Column
     private LocalDateTime availableEndAt;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    public UsableItem item;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    public OrderItem orderItem;
 
     public void use() throws MinimerceException {
         if(usedCount + 1 > usableCount) throw new MinimerceException("already use complete order");

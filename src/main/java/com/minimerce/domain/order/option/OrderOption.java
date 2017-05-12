@@ -26,24 +26,28 @@ import java.util.List;
 public class OrderOption extends BaseDomain {
     @Column
     private Long clientId;
-    @Column(length = 100)
-    private String title;
-    @Column(nullable = false)
-    private int price;
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private CancelStatus cancelStatus;
-
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private DealType type;
-
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     public Order order;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    public Deal deal;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    public DealOption dealOption;
+    @Column
+    private String title;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DealType type;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private CancelStatus cancelStatus;
+    @Column
+    private int price;
 
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "option")
@@ -57,11 +61,4 @@ public class OrderOption extends BaseDomain {
         items.forEach(e -> addItem(e));
     }
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Deal deal;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    public DealOption dealOption;
 }

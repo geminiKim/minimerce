@@ -25,43 +25,42 @@ import static java.util.stream.Collectors.toList;
 @Getter
 @Entity
 public class DealOption extends BaseDomain {
-    @Column(length = 200)
-    private String name;
-    @Column(columnDefinition = "TEXT NOT NULL")
-    private String description;
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private DealType type;
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private DealStatus status;
-    @Column(length = 1, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Yn display;
-    @Column(nullable = false)
-    private int salePrice;
-    @Column(nullable = false)
-    private int displayPrice;
-    @Column(length = 5, nullable = false)
-    private String priceUnit;
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private CancelType cancelType;
-    @Column(columnDefinition = "TEXT NOT NULL")
-    private String informationJson;
-    @Column(columnDefinition = "TEXT NOT NULL")
-    private String imageJson;
-    @Column(columnDefinition = "TEXT NOT NULL")
-    private String thumbnailJson;
-    @Column(nullable = false)
-    private int sort;
-    @Column(length = 1, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Yn deleted;
-
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     public Deal deal;
+    @Column
+    private String name;
+    @Column
+    private String description;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DealType type;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DealStatus status;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private CancelType cancelType;
+    @Column
+    private int price;
+    @Column
+    private int displayPrice;
+    @Column
+    private String priceUnit;
+    @Column
+    private String informationJson;
+    @Column
+    private String imageJson;
+    @Column
+    private String thumbnailJson;
+    @Column
+    private int sort;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Yn display;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Yn deleted;
 
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "option")

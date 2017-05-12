@@ -25,11 +25,11 @@ public class Order extends BaseDomain {
     private Long clientOrderId;
     @Column
     private Long customerId;
-    @Column(length = 100)
+    @Column
     private String title;
-    @Column(nullable = false)
+    @Column
     private int price;
-    @Column(columnDefinition = "TEXT NOT NULL")
+    @Column
     private String dealIds;
     @Column
     private LocalDateTime orderedAt;

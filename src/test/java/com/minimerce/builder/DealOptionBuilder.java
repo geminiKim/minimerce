@@ -24,7 +24,7 @@ public final class DealOptionBuilder {
     private DealType type = DealType.USABLE;
     private DealStatus status = DealStatus.SALE;
     private Yn display = Yn.Y;
-    private int salePrice = 10000;
+    private int price = 10000;
     private int displayPrice = 15000;
     private String priceUnit = "원";
     private CancelType cancelType = CancelType.APPROVE;
@@ -88,8 +88,8 @@ public final class DealOptionBuilder {
         return this;
     }
 
-    public DealOptionBuilder withSalePrice(int salePrice) {
-        this.salePrice = salePrice;
+    public DealOptionBuilder withPrice(int salePrice) {
+        this.price = salePrice;
         return this;
     }
 
@@ -148,7 +148,7 @@ public final class DealOptionBuilder {
         dealOption.setType(type);
         dealOption.setStatus(status);
         dealOption.setDisplay(display);
-        dealOption.setSalePrice(salePrice);
+        dealOption.setPrice(price);
         dealOption.setDisplayPrice(displayPrice);
         dealOption.setPriceUnit(priceUnit);
         dealOption.setCancelType(cancelType);

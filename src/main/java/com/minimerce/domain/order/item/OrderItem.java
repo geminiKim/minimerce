@@ -19,22 +19,19 @@ import javax.persistence.*;
 public class OrderItem extends BaseDomain {
     @Column
     private Long clientId;
-    @Column(length = 100)
-    private String title;
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private DealType type;
-    @Column(nullable = false)
-    private int salePrice;
-    @Column(nullable = false)
-    private int costPrice;
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
-    @Column(length = 10, nullable = false)
-    @Enumerated(EnumType.STRING)
-    private CancelStatus cancelStatus;
-
     @ManyToOne(fetch = FetchType.LAZY)
     public OrderOption option;
+    @Column
+    private String title;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DealType type;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private CancelStatus cancelStatus;
+    @Column
+    private int price;
 }

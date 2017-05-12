@@ -18,21 +18,19 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 public class UsableItem extends BaseDomain {
-    @Column(length = 200)
+    @Column
     private String name;
-    @Column(nullable = false)
-    private int salePrice;
-    @Column(nullable = false)
-    private int costPrice;
-    @Column(nullable = false)
+    @Column
+    private int price;
+    @Column
     private int stock;
-    @Column(nullable = false)
+    @Column
     private int usableCount;
     @Column
     private LocalDateTime availableStartAt;
     @Column
     private LocalDateTime availableEndAt;
-    @Column(length = 1, nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     private Yn deleted;
 

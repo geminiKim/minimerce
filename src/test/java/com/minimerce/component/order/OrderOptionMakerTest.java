@@ -57,6 +57,6 @@ public class OrderOptionMakerTest {
     }
 
     private DealOption buildOptionPrice5000() {
-        return DealOptionBuilder.aDealOption().withSalePrice(5000).build();
+        return DealOptionBuilder.aDealOption().withPrice(5000).build();
     }
 }

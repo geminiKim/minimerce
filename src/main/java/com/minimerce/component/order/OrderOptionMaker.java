@@ -34,14 +34,14 @@ public class OrderOptionMaker {
         for(OrderRequestDetail each : requestDetails) {
             Deal deal = saleDealReader.findBySaleDeal(each.getDealId());
             DealOption option = saleDealReader.findBySaleDealOption(each.getOptionId());
-            if(option.getSalePrice() != each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
-            if(option.getSalePrice() * each.getQuantity() == each.getPrice()) throw new UnsaleableProductException("가격 불일치");
+            if(option.getPrice() != each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
+            if(option.getPrice() * each.getQuantity() == each.getPrice()) throw new UnsaleableProductException("가격 불일치");
 
             for (int i = 0; i < each.getQuantity(); i++) {
                 OrderOption order = new OrderOption();
                 order.setClientId(clientId);
                 order.setTitle(option.getName());
-                order.setPrice(option.getSalePrice());
+                order.setPrice(option.getPrice());
                 order.setStatus(OrderStatus.ORDERED);
                 order.setCancelStatus(CancelStatus.NOT_CANCEL);
                 order.setDeal(deal);

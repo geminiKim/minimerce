@@ -18,8 +18,7 @@ public final class OrderItemBuilder {
     private LocalDateTime updatedAt = LocalDateTime.now();
     private String title = "Test Order Item";
     private DealType type = DealType.USABLE;
-    private int salePrice = 1000;
-    private int costPrice = 500;
+    private int price = 1000;
     private OrderStatus status = OrderStatus.ORDERED;
     private CancelStatus cancelStatus = CancelStatus.NOT_CANCEL;
     private OrderOption option = new OrderOption();
@@ -67,13 +66,8 @@ public final class OrderItemBuilder {
         return this;
     }
 
-    public OrderItemBuilder withSalePrice(int salePrice) {
-        this.salePrice = salePrice;
-        return this;
-    }
-
-    public OrderItemBuilder withCostPrice(int costPrice) {
-        this.costPrice = costPrice;
+    public OrderItemBuilder withPrice(int salePrice) {
+        this.price = salePrice;
         return this;
     }
 
@@ -95,8 +89,7 @@ public final class OrderItemBuilder {
         orderItem.setUpdatedAt(updatedAt);
         orderItem.setTitle(title);
         orderItem.setType(type);
-        orderItem.setSalePrice(salePrice);
-        orderItem.setCostPrice(costPrice);
+        orderItem.setPrice(price);
         orderItem.setStatus(status);
         orderItem.setCancelStatus(cancelStatus);
         orderItem.setOption(option);
