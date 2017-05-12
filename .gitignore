@@ -19,6 +19,7 @@
 ### NetBeans ###
 nbproject/private/
 build/
+classes/
 nbbuild/
 dist/
 nbdist/
