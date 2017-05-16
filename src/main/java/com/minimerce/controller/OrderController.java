@@ -2,15 +2,15 @@ package com.minimerce.controller;
 
 import com.minimerce.domain.client.Client;
 import com.minimerce.domain.order.Order;
+import com.minimerce.object.order.FindOrderRequest;
 import com.minimerce.object.order.OrderRequest;
 import com.minimerce.service.order.OrderService;
 import com.minimerce.support.exception.MinimerceException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by gemini on 28/04/2017.
@@ -28,5 +28,13 @@ public class OrderController {
     @PostMapping
     public Order order(@AuthenticationPrincipal Client client, OrderRequest request) throws MinimerceException {
         return orderService.order(client.getId(), request);
+    }
+    @GetMapping
+    public Order findOrder(@AuthenticationPrincipal Client client, @RequestParam(required = false) long orderId, @RequestParam(required = false) long clientOrderId) throws MinimerceException {
+        return orderService.findOrder(client.getId(), new FindOrderRequest(orderId, clientOrderId));
+    }
+    @GetMapping
+    public List<Order> findOrders(@AuthenticationPrincipal Client client, @RequestParam long customerId) throws MinimerceException {
+        return orderService.findOrders(client.getId(), customerId);
     }
 }

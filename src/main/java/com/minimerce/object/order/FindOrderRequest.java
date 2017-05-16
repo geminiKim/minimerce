@@ -12,6 +12,11 @@ public class FindOrderRequest {
     private Long orderId;
     private Long clientOrderId;
 
+    public FindOrderRequest(long orderId, long clientOrderId) {
+        this.orderId = orderId;
+        this.clientOrderId = clientOrderId;
+    }
+
     public boolean isFindByOrderId() {
         return orderId != null && clientOrderId == null;
     }

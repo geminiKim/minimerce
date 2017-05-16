@@ -27,9 +27,7 @@ public final class FindOrderRequestBuilder {
     }
 
     public FindOrderRequest build() {
-        FindOrderRequest findOrderRequest = new FindOrderRequest();
-        findOrderRequest.setOrderId(orderId);
-        findOrderRequest.setClientOrderId(clientOrderId);
+        FindOrderRequest findOrderRequest = new FindOrderRequest(orderId, clientOrderId);
         return findOrderRequest;
     }
 }
