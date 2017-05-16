@@ -12,7 +12,7 @@ public class FindOrderRequest {
     private Long orderId;
     private Long clientOrderId;
 
-    public FindOrderRequest(long orderId, long clientOrderId) {
+    public FindOrderRequest(Long orderId, Long clientOrderId) {
         this.orderId = orderId;
         this.clientOrderId = clientOrderId;
     }

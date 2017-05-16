@@ -27,7 +27,6 @@ public final class FindOrderRequestBuilder {
     }
 
     public FindOrderRequest build() {
-        FindOrderRequest findOrderRequest = new FindOrderRequest(orderId, clientOrderId);
-        return findOrderRequest;
+        return new FindOrderRequest(orderId, clientOrderId);
     }
 }
