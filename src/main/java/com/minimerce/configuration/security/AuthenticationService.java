@@ -2,6 +2,8 @@ package com.minimerce.configuration.security;
 
 import com.minimerce.domain.client.Client;
 import com.minimerce.domain.client.ClientRepository;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,8 +30,10 @@ public class AuthenticationService {
     }
 
     public void authentication(HttpServletRequest request) {
-        Long clientId = Long.valueOf(request.getHeader("mini-client-id"));
-        String apiKey = request.getHeader("mini-api-key");
+        Long clientId = NumberUtils.toLong(request.getHeader("mini-client-id"), -1L);
+        String apiKey = StringUtils.defaultString(request.getHeader("mini-api-key"), "");
+        if(clientId == -1L) throw new BadCredentialsException("Bad Request");
+        if(StringUtils.isEmpty(apiKey)) throw new BadCredentialsException("Bad Request");
 
         Client client = clientRepository.findOne(clientId);
         if(null == client) throw new BadCredentialsException("Invalid Client");
