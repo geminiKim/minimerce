@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `name` varchar(20) NOT NULL,
   `corporation` varchar(20) NOT NULL,
   `api_key` varchar(512) NOT NULL,
+  `role` varchar(10) NOT NULL DEFAULT 'USER',
   `deleted` varchar(1) NOT NULL DEFAULT 'N',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

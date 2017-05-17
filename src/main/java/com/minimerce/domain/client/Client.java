@@ -25,5 +25,8 @@ public class Client extends BaseDomain {
     private String apiKey;
     @Column
     @Enumerated(EnumType.STRING)
+    private ClientRole role;
+    @Column
+    @Enumerated(EnumType.STRING)
     private Yn deleted;
 }

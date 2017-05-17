@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .csrf().disable()
                 .addFilterBefore(new AuthenticationFilter(authenticationService), BasicAuthenticationFilter.class);
     }
 

@@ -10,7 +10,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.util.List;
 
 /**
  * Created by gemini on 28/04/2017.
@@ -32,9 +31,5 @@ public class OrderController {
     @GetMapping
     public Order findOrder(@AuthenticationPrincipal Client client, @RequestParam(required = false) long orderId, @RequestParam(required = false) long clientOrderId) throws MinimerceException {
         return orderService.findOrder(client.getId(), new FindOrderRequest(orderId, clientOrderId));
-    }
-    @GetMapping
-    public List<Order> findOrders(@AuthenticationPrincipal Client client, @RequestParam long customerId) throws MinimerceException {
-        return orderService.findOrders(client.getId(), customerId);
     }
 }
