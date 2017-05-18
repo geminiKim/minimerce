@@ -1,11 +1,11 @@
 package com.minimerce.controller;
 
-import com.minimerce.domain.client.Client;
-import com.minimerce.domain.order.Order;
-import com.minimerce.object.order.FindOrderRequest;
-import com.minimerce.object.order.OrderRequest;
-import com.minimerce.service.order.OrderService;
-import com.minimerce.support.exception.MinimerceException;
+import com.minimerce.core.domain.client.Client;
+import com.minimerce.core.domain.order.Order;
+import com.minimerce.core.object.order.FindOrderRequest;
+import com.minimerce.core.object.order.OrderRequest;
+import com.minimerce.core.service.order.OrderService;
+import com.minimerce.core.support.exception.MinimerceException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,14 +1,14 @@
 package com.minimerce.builder;
 
 import com.google.common.collect.Lists;
-import com.minimerce.domain.deal.Deal;
-import com.minimerce.domain.deal.option.DealOption;
-import com.minimerce.domain.order.Order;
-import com.minimerce.domain.order.item.OrderItem;
-import com.minimerce.domain.order.option.OrderOption;
-import com.minimerce.object.order.CancelStatus;
-import com.minimerce.object.order.OrderStatus;
-import com.minimerce.object.type.DealType;
+import com.minimerce.core.domain.deal.Deal;
+import com.minimerce.core.domain.deal.option.DealOption;
+import com.minimerce.core.domain.order.Order;
+import com.minimerce.core.domain.order.item.OrderItem;
+import com.minimerce.core.domain.order.option.OrderOption;
+import com.minimerce.core.object.order.CancelStatus;
+import com.minimerce.core.object.order.OrderStatus;
+import com.minimerce.core.object.type.DealType;
 
 import java.time.LocalDateTime;
 import java.util.List;

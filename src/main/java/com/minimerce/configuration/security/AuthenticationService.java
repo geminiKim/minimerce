@@ -1,7 +1,7 @@
 package com.minimerce.configuration.security;
 
-import com.minimerce.domain.client.Client;
-import com.minimerce.domain.client.ClientRepository;
+import com.minimerce.core.domain.client.Client;
+import com.minimerce.core.domain.client.ClientRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.security.authentication.BadCredentialsException;
