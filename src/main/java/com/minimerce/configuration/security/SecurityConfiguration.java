@@ -23,12 +23,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
+                .rememberMe().disable()
+                .formLogin().disable()
+                .httpBasic().disable()
                 .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().disable()
-                .httpBasic().disable()
-                .csrf().disable()
                 .addFilterBefore(new AuthenticationFilter(authenticationService), BasicAuthenticationFilter.class);
     }
 
