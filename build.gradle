@@ -48,6 +48,18 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
+/**** Test Tasks ****/
+test {
+	useJUnit {
+		excludeCategories 'com.minimerce.IntegrationTest'
+	}
+}
+task integrationTest(type: Test) {
+	useJUnit {
+		includeCategories 'com.minimerce.IntegrationTest'
+	}
+}
+task wholeTest(type: Test) { useJUnit { } }
 
 /**** QueryDSL Class Generate Script ****/
 def queryDslOutput = file("src/main/generated")
