@@ -1,4 +1,4 @@
-package com.minimerce.core.service.deal;
+package com.minimerce.admin.service.deal;
 
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.DealRepository;
@@ -17,6 +17,11 @@ public class DealService {
     @Inject
     public DealService(DealRepository dealRepository) {
         this.dealRepository = dealRepository;
+    }
+
+    @Transactional
+    public Deal findById(long dealId) {
+        return dealRepository.findOne(dealId);
     }
 
     @Transactional

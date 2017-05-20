@@ -29,7 +29,7 @@ public class OrderController {
         return orderService.order(client.getId(), request);
     }
     @GetMapping
-    public Order findOrder(@AuthenticationPrincipal Client client, @RequestParam(required = false) long orderId, @RequestParam(required = false) long clientOrderId) throws MinimerceException {
+    public Order findOrder(@AuthenticationPrincipal Client client, @RequestParam(required = false) Long orderId, @RequestParam(required = false) Long clientOrderId) throws MinimerceException {
         return orderService.findOrder(client.getId(), new FindOrderRequest(orderId, clientOrderId));
     }
 }

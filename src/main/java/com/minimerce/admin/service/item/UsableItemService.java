@@ -1,4 +1,4 @@
-package com.minimerce.core.service.item;
+package com.minimerce.admin.service.item;
 
 import com.minimerce.core.domain.item.UsableItem;
 import com.minimerce.core.domain.item.UsableItemRepository;

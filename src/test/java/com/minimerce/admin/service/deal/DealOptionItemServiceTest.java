@@ -1,4 +1,4 @@
-package com.minimerce.core.service.deal;
+package com.minimerce.admin.service.deal;
 
 import com.minimerce.builder.DealOptionBuilder;
 import com.minimerce.builder.DealOptionItemBuilder;
