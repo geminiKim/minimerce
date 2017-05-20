@@ -11,27 +11,27 @@ import static org.mockito.Mockito.*;
 /**
  * Created by gemini on 20/04/2017.
  */
-public class DealServiceTest {
-    private DealService dealService;
+public class DealAdminServiceTest {
+    private DealAdminService dealAdminService;
     private DealRepository mockDealRepository;
 
     @Before
     public void setUp() {
         mockDealRepository = mock(DealRepository.class);
-        dealService = new DealService(mockDealRepository);
+        dealAdminService = new DealAdminService(mockDealRepository);
     }
 
     @Test
     public void testShouldBeSaveNewDeal() {
         Deal deal = DealBuilder.aDeal().withId(null).build();
-        dealService.save(deal);
+        dealAdminService.save(deal);
         verify(mockDealRepository, times(1)).save(deal);
     }
 
     @Test
     public void testShouldBeUpdateDeal() {
         Deal deal = DealBuilder.aDeal().withId(1L).build();
-        dealService.update(deal);
+        dealAdminService.update(deal);
         verify(mockDealRepository, times(1)).save(deal);
     }
 }

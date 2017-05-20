@@ -17,8 +17,8 @@ import static org.mockito.Mockito.*;
 /**
  * Created by gemini on 23/04/2017.
  */
-public class DealOptionServiceTest {
-    private DealOptionService optionService;
+public class DealOptionAdminServiceTest {
+    private DealOptionAdminService optionService;
     private DealRepository mockDealRepository;
     private DealOptionRepository mockOptionRepository;
 
@@ -26,7 +26,7 @@ public class DealOptionServiceTest {
     public void setUp() {
         mockDealRepository = mock(DealRepository.class);
         mockOptionRepository = mock(DealOptionRepository.class);
-        optionService = new DealOptionService(mockDealRepository, mockOptionRepository);
+        optionService = new DealOptionAdminService(mockDealRepository, mockOptionRepository);
     }
 
     @Test

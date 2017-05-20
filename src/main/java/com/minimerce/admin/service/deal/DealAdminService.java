@@ -11,11 +11,11 @@ import javax.inject.Inject;
  * Created by gemini on 20/04/2017.
  */
 @Service
-public class DealService {
+public class DealAdminService {
     private final DealRepository dealRepository;
 
     @Inject
-    public DealService(DealRepository dealRepository) {
+    public DealAdminService(DealRepository dealRepository) {
         this.dealRepository = dealRepository;
     }
 

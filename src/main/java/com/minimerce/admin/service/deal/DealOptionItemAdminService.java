@@ -13,12 +13,12 @@ import javax.inject.Inject;
  * Created by gemini on 24/04/2017.
  */
 @Service
-public class DealOptionItemService {
+public class DealOptionItemAdminService {
     private final DealOptionRepository optionRepository;
     private final DealOptionItemRepository optionItemRepository;
 
     @Inject
-    public DealOptionItemService(DealOptionRepository optionRepository, DealOptionItemRepository optionItemRepository) {
+    public DealOptionItemAdminService(DealOptionRepository optionRepository, DealOptionItemRepository optionItemRepository) {
         this.optionRepository = optionRepository;
         this.optionItemRepository = optionItemRepository;
     }

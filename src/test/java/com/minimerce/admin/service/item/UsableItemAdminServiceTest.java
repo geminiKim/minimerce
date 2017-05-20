@@ -14,14 +14,14 @@ import static org.mockito.Mockito.*;
 /**
  * Created by gemini on 26/04/2017.
  */
-public class UsableItemServiceTest {
-    private UsableItemService itemService;
+public class UsableItemAdminServiceTest {
+    private UsableItemAdminService itemService;
     private UsableItemRepository mockItemRepository;
 
     @Before
     public void setUp() {
         mockItemRepository = mock(UsableItemRepository.class);
-        itemService = new UsableItemService(mockItemRepository);
+        itemService = new UsableItemAdminService(mockItemRepository);
     }
 
     @Test

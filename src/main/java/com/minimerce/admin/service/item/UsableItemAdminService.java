@@ -11,11 +11,11 @@ import javax.inject.Inject;
  * Created by gemini on 20/04/2017.
  */
 @Service
-public class UsableItemService {
+public class UsableItemAdminService {
     private final UsableItemRepository itemRepository;
 
     @Inject
-    public UsableItemService(UsableItemRepository itemRepository) {
+    public UsableItemAdminService(UsableItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 
