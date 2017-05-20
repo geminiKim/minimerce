@@ -1,4 +1,4 @@
-package com.minimerce.controller;
+package com.minimerce.controller.api;
 
 import org.springframework.web.bind.annotation.RestController;
 

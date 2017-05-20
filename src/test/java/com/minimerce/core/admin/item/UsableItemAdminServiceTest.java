@@ -1,4 +1,4 @@
-package com.minimerce.core.admin.service.item;
+package com.minimerce.core.admin.item;
 
 import com.minimerce.builder.UsableItemBuilder;
 import com.minimerce.core.api.domain.item.UsableItem;

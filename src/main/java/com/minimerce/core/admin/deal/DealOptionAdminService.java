@@ -1,4 +1,4 @@
-package com.minimerce.core.admin.service.deal;
+package com.minimerce.core.admin.deal;
 
 import com.minimerce.core.api.domain.deal.Deal;
 import com.minimerce.core.api.domain.deal.DealRepository;

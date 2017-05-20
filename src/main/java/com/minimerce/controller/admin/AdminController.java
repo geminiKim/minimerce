@@ -1,4 +1,4 @@
-package com.minimerce.core.admin.controller;
+package com.minimerce.controller.admin;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

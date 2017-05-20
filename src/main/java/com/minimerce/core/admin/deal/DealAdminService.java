@@ -1,7 +1,9 @@
-package com.minimerce.core.admin.service.deal;
+package com.minimerce.core.admin.deal;
 
 import com.minimerce.core.api.domain.deal.Deal;
 import com.minimerce.core.api.domain.deal.DealRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +22,13 @@ public class DealAdminService {
     }
 
     @Transactional
-    public Deal findById(long dealId) {
+    public Deal findDeal(long dealId) {
         return dealRepository.findOne(dealId);
+    }
+
+    @Transactional
+    public Page<Deal> findDeals(Pageable pageable) {
+        return dealRepository.findAll(pageable);
     }
 
     @Transactional

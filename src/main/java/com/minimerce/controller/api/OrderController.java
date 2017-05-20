@@ -1,4 +1,4 @@
-package com.minimerce.controller;
+package com.minimerce.controller.api;
 
 import com.minimerce.core.api.domain.client.Client;
 import com.minimerce.core.api.domain.order.Order;

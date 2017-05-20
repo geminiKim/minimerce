@@ -1,5 +1,6 @@
 package com.minimerce.core.api.domain.order.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.core.api.domain.BaseDomain;
 import com.minimerce.core.api.domain.order.option.OrderOption;
 import com.minimerce.core.api.object.order.CancelStatus;
@@ -21,6 +22,7 @@ import javax.persistence.*;
 public class OrderItem extends BaseDomain {
     @Column
     private Long clientId;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     public OrderOption option;
     @Column
