@@ -1,0 +1,11 @@
+package com.minimerce.core.api.domain.deal.option.item;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+/**
+ * Created by gemini on 23/03/2017.
+ */
+@Repository
+public interface DealOptionItemRepository extends JpaRepository<DealOptionItem, Long> {
+}

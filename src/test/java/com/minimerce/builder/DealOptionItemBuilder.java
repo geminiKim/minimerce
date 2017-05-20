@@ -1,9 +1,9 @@
 package com.minimerce.builder;
 
-import com.minimerce.core.domain.deal.option.DealOption;
-import com.minimerce.core.domain.deal.option.item.DealOptionItem;
-import com.minimerce.core.domain.item.Item;
-import com.minimerce.core.support.util.Yn;
+import com.minimerce.core.api.domain.deal.option.DealOption;
+import com.minimerce.core.api.domain.deal.option.item.DealOptionItem;
+import com.minimerce.core.api.domain.item.Item;
+import com.minimerce.core.api.support.util.Yn;
 
 import java.time.LocalDateTime;
 
