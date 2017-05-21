@@ -12,8 +12,15 @@ import static org.junit.Assert.assertThat;
 public class ApiResponseTest {
 
     @Test
-    public void testApiResponseOkJsonFormat() {
+    public void testApiResponseJsonFormat() {
         ApiResponse response = ApiResponse.of(ApiResult.ok(), new Object());
+        System.out.println(Json.toJson(response));
+        assertThat(Json.toJson(response), is("{\"result\":{\"status\":200,\"code\":200,\"message\":\"OK\",\"isError\":false},\"data\":{}}"));
+    }
+
+    @Test
+    public void testApiResponseOkJsonFormat() {
+        ApiResponse response = ApiResponse.ok(new Object());
         System.out.println(Json.toJson(response));
         assertThat(Json.toJson(response), is("{\"result\":{\"status\":200,\"code\":200,\"message\":\"OK\",\"isError\":false},\"data\":{}}"));
     }

@@ -16,6 +16,10 @@ public class ApiResponse {
         return new ApiResponse(result, data);
     }
 
+    public static ApiResponse ok(Object data) {
+        return new ApiResponse(ApiResult.ok(), data);
+    }
+
     public ApiResult getResult() {
         return result;
     }
