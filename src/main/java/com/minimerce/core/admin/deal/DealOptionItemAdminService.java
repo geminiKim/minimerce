@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by gemini on 24/04/2017.
@@ -26,8 +27,8 @@ public class DealOptionItemAdminService {
     }
 
     @Transactional
-    public DealOptionItem find(long id) {
-        return optionItemRepository.findOne(id);
+    public DealOptionItem find(long optionItemId) {
+        return optionItemRepository.findOne(optionItemId);
     }
 
     @Transactional
@@ -43,8 +44,15 @@ public class DealOptionItemAdminService {
     }
 
     @Transactional
-    public void delete(long id) {
-        DealOptionItem optionItem = optionItemRepository.findOne(id);
+    public void save(long optionId, List<DealOptionItem> optionItems) {
+        DealOption option = optionRepository.findOne(optionId);
+        optionItems.forEach(e -> e.setOption(option));
+        optionItemRepository.save(optionItems);
+    }
+
+    @Transactional
+    public void delete(long optionItemId) {
+        DealOptionItem optionItem = optionItemRepository.findOne(optionItemId);
         optionItem.delete();
     }
 }

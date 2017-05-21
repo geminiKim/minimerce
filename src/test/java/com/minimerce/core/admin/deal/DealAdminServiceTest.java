@@ -22,16 +22,9 @@ public class DealAdminServiceTest {
     }
 
     @Test
-    public void testShouldBeSaveNewDeal() {
-        Deal deal = DealBuilder.aDeal().withId(null).build();
+    public void testShouldBeSave() {
+        Deal deal = DealBuilder.aDeal().build();
         dealAdminService.save(deal);
-        verify(mockDealRepository, times(1)).save(deal);
-    }
-
-    @Test
-    public void testShouldBeUpdateDeal() {
-        Deal deal = DealBuilder.aDeal().withId(1L).build();
-        dealAdminService.update(deal);
         verify(mockDealRepository, times(1)).save(deal);
     }
 }

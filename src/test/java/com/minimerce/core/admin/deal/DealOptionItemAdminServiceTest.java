@@ -30,20 +30,14 @@ public class DealOptionItemAdminServiceTest {
     }
 
     @Test
-    public void testShouldBeSaveNewOptionItem() {
+    public void testShouldBeSave() {
         DealOption option = DealOptionBuilder.aDealOption().build();
         when(mockOptionRepository.findOne(1L)).thenReturn(option);
 
         DealOptionItem optionItem = DealOptionItemBuilder.aDealOptionItem().withId(null).build();
         optionItemService.save(1L, optionItem);
-        assertThat(option.getItems().size(), is(1));
-    }
-
-    @Test
-    public void testShouldBeUpdateOptionItem() {
-        DealOptionItem optionItem = DealOptionItemBuilder.aDealOptionItem().withId(1L).build();
-        optionItemService.update(optionItem);
-        verify(mockOptionItemRepository, times(1)).save(optionItem);
+        verify(mockOptionRepository, times(1)).findOne(anyLong());
+        verify(mockOptionItemRepository, times(1)).save(any(DealOptionItem.class));
     }
 
     @Test

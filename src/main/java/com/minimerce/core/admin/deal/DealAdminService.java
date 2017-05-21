@@ -8,37 +8,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by gemini on 20/04/2017.
  */
 @Service
 public class DealAdminService {
-    private final DealRepository repository;
+    private final DealRepository dealRepository;
 
     @Inject
-    public DealAdminService(DealRepository repository) {
-        this.repository = repository;
+    public DealAdminService(DealRepository dealRepository) {
+        this.dealRepository = dealRepository;
     }
 
     @Transactional
-    public Deal find(long id) {
-        return repository.findOne(id);
+    public Deal find(long dealId) {
+        return dealRepository.findOne(dealId);
     }
 
     @Transactional
     public Page<Deal> findAll(Pageable pageable) {
-        return repository.findAll(pageable);
+        return dealRepository.findAll(pageable);
     }
 
     @Transactional
     public void save(Deal deal) {
-        repository.save(deal);
+        dealRepository.save(deal);
     }
 
     @Transactional
-    public void delete(long id) {
-        Deal deal = repository.findOne(id);
+    public void save(List<Deal> deals) {
+        dealRepository.save(deals);
+    }
+
+    @Transactional
+    public void delete(long dealId) {
+        Deal deal = dealRepository.findOne(dealId);
         deal.delete();
     }
 }
