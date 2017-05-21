@@ -4,6 +4,8 @@ import com.minimerce.core.api.domain.deal.Deal;
 import com.minimerce.core.api.domain.deal.DealRepository;
 import com.minimerce.core.api.domain.deal.option.DealOption;
 import com.minimerce.core.api.domain.deal.option.DealOptionRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,15 +26,19 @@ public class DealOptionAdminService {
     }
 
     @Transactional
-    public void save(long dealId, DealOption option) {
-        if(option.getId() != null) return;
-        Deal deal = dealRepository.findOne(dealId);
-        deal.addOption(option);
+    public DealOption find(long id) {
+        return optionRepository.findOne(id);
     }
 
     @Transactional
-    public void update(DealOption option) {
-        if(option.getId() == null) return;
+    public Page<DealOption> findAll(Pageable pageable) {
+        return optionRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public void save(long dealId, DealOption option) {
+        Deal deal = dealRepository.findOne(dealId);
+        option.setDeal(deal);
         optionRepository.save(option);
     }
 

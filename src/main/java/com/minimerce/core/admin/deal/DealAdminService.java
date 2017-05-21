@@ -14,38 +14,31 @@ import javax.inject.Inject;
  */
 @Service
 public class DealAdminService {
-    private final DealRepository dealRepository;
+    private final DealRepository repository;
 
     @Inject
-    public DealAdminService(DealRepository dealRepository) {
-        this.dealRepository = dealRepository;
+    public DealAdminService(DealRepository repository) {
+        this.repository = repository;
     }
 
     @Transactional
-    public Deal findDeal(long dealId) {
-        return dealRepository.findOne(dealId);
+    public Deal find(long id) {
+        return repository.findOne(id);
     }
 
     @Transactional
-    public Page<Deal> findDeals(Pageable pageable) {
-        return dealRepository.findAll(pageable);
+    public Page<Deal> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Transactional
     public void save(Deal deal) {
-        if(deal.getId() != null) return;
-        dealRepository.save(deal);
-    }
-
-    @Transactional
-    public void update(Deal deal) {
-        if(deal.getId() == null) return;
-        dealRepository.save(deal);
+        repository.save(deal);
     }
 
     @Transactional
     public void delete(long id) {
-        Deal deal = dealRepository.findOne(id);
+        Deal deal = repository.findOne(id);
         deal.delete();
     }
 }
