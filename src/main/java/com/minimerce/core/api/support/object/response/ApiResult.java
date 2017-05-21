@@ -9,13 +9,17 @@ public class ApiResult {
     private HttpStatus status;
     private ApiCode code;
 
-    public ApiResult(HttpStatus status, ApiCode code) {
+    private ApiResult(HttpStatus status, ApiCode code) {
         this.status = status;
         this.code = code;
     }
 
+    public static ApiResult of(HttpStatus status, ApiCode code) {
+        return new ApiResult(status, code);
+    }
+
     public static ApiResult ok() {
-        return new ApiResult(HttpStatus.OK, ApiCode.OK);
+        return ApiResult.of(HttpStatus.OK, ApiCode.OK);
     }
 
     public int getStatus() {

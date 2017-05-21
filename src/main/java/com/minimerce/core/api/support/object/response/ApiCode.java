@@ -5,7 +5,7 @@ package com.minimerce.core.api.support.object.response;
  */
 public enum ApiCode {
     OK(200, "OK", false),
-    UNKNOWN(-1, "UNKNOWN ERROR", false);
+    UNKNOWN(-1, "UNKNOWN ERROR", true);
 
     private int code;
     private String message;
