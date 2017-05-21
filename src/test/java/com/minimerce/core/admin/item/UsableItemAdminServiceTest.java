@@ -1,8 +1,8 @@
 package com.minimerce.core.admin.item;
 
 import com.minimerce.builder.UsableItemBuilder;
-import com.minimerce.core.api.domain.item.UsableItem;
-import com.minimerce.core.api.domain.item.UsableItemRepository;
+import com.minimerce.core.api.domain.item.usable.UsableItem;
+import com.minimerce.core.api.domain.item.usable.UsableItemRepository;
 import com.minimerce.core.api.support.util.Yn;
 import org.junit.Before;
 import org.junit.Test;

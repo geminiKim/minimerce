@@ -1,5 +1,6 @@
-package com.minimerce.core.api.domain.item;
+package com.minimerce.core.api.domain.item.usable;
 
+import com.minimerce.core.api.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 

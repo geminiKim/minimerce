@@ -1,4 +1,4 @@
-package com.minimerce.core.api.domain.item;
+package com.minimerce.core.api.domain.item.usable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

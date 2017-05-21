@@ -1,7 +1,7 @@
 package com.minimerce.core.api.component.order.item;
 
 import com.minimerce.core.api.domain.deal.option.DealOption;
-import com.minimerce.core.api.domain.item.UsableItem;
+import com.minimerce.core.api.domain.item.usable.UsableItem;
 import com.minimerce.core.api.domain.order.item.OrderItem;
 import com.minimerce.core.api.domain.order.item.usable.UsableOrderItem;
 import com.minimerce.core.api.support.object.order.CancelStatus;

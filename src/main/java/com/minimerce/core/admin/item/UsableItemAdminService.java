@@ -1,7 +1,7 @@
 package com.minimerce.core.admin.item;
 
-import com.minimerce.core.api.domain.item.UsableItem;
-import com.minimerce.core.api.domain.item.UsableItemRepository;
+import com.minimerce.core.api.domain.item.usable.UsableItem;
+import com.minimerce.core.api.domain.item.usable.UsableItemRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

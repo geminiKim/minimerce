@@ -1,6 +1,6 @@
 package com.minimerce.builder;
 
-import com.minimerce.core.api.domain.item.UsableItem;
+import com.minimerce.core.api.domain.item.usable.UsableItem;
 import com.minimerce.core.api.support.object.type.DealType;
 import com.minimerce.core.api.support.util.Yn;
 
