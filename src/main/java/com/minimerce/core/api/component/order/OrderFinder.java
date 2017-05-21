@@ -2,8 +2,8 @@ package com.minimerce.core.api.component.order;
 
 import com.minimerce.core.api.domain.order.Order;
 import com.minimerce.core.api.domain.order.OrderRepository;
-import com.minimerce.core.api.object.order.FindOrderRequest;
 import com.minimerce.core.api.support.exception.NotExistOrderException;
+import com.minimerce.core.api.support.object.order.FindOrderRequest;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;

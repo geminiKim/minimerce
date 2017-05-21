@@ -4,8 +4,8 @@ import com.minimerce.core.api.domain.deal.option.DealOption;
 import com.minimerce.core.api.domain.item.UsableItem;
 import com.minimerce.core.api.domain.order.item.OrderItem;
 import com.minimerce.core.api.domain.order.item.usable.UsableOrderItem;
-import com.minimerce.core.api.object.order.CancelStatus;
-import com.minimerce.core.api.object.order.OrderStatus;
+import com.minimerce.core.api.support.object.order.CancelStatus;
+import com.minimerce.core.api.support.object.order.OrderStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

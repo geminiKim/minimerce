@@ -2,8 +2,8 @@ package com.minimerce.core.api.component.order;
 
 import com.minimerce.builder.FindOrderRequestBuilder;
 import com.minimerce.core.api.domain.order.OrderRepository;
-import com.minimerce.core.api.object.order.FindOrderRequest;
 import com.minimerce.core.api.support.exception.NotExistOrderException;
+import com.minimerce.core.api.support.object.order.FindOrderRequest;
 import org.junit.Before;
 import org.junit.Test;
 

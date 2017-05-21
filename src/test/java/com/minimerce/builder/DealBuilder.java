@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.minimerce.core.api.domain.deal.Deal;
 import com.minimerce.core.api.domain.deal.DealStatus;
 import com.minimerce.core.api.domain.deal.option.DealOption;
-import com.minimerce.core.api.object.type.DealType;
+import com.minimerce.core.api.support.object.type.DealType;
 import com.minimerce.core.api.support.util.Yn;
 
 import java.time.LocalDateTime;

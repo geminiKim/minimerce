@@ -3,8 +3,8 @@ package com.minimerce.core.api.component.order;
 import com.minimerce.core.api.component.order.item.UsableOrderItemMaker;
 import com.minimerce.core.api.domain.deal.option.DealOption;
 import com.minimerce.core.api.domain.order.item.OrderItem;
-import com.minimerce.core.api.object.type.DealType;
 import com.minimerce.core.api.support.exception.UnsupportedItemTypeException;
+import com.minimerce.core.api.support.object.type.DealType;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;

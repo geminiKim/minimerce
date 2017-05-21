@@ -3,8 +3,8 @@ package com.minimerce.core.api.domain.order.item.usable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.core.api.domain.item.UsableItem;
 import com.minimerce.core.api.domain.order.item.OrderItem;
-import com.minimerce.core.api.object.order.OrderStatus;
 import com.minimerce.core.api.support.exception.MinimerceException;
+import com.minimerce.core.api.support.object.order.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 

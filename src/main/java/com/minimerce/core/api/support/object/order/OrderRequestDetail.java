@@ -1,4 +1,4 @@
-package com.minimerce.core.api.object.order;
+package com.minimerce.core.api.support.object.order;
 
 import lombok.Getter;
 import lombok.Setter;

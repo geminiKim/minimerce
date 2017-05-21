@@ -1,7 +1,7 @@
 package com.minimerce.core.api.domain.item;
 
 import com.minimerce.core.api.domain.BaseDomain;
-import com.minimerce.core.api.object.type.DealType;
+import com.minimerce.core.api.support.object.type.DealType;
 import com.minimerce.core.api.support.util.Yn;
 import lombok.Getter;
 import lombok.Setter;

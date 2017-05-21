@@ -3,8 +3,8 @@ package com.minimerce.core.api.component.order;
 import com.minimerce.builder.DealOptionBuilder;
 import com.minimerce.core.api.component.order.item.UsableOrderItemMaker;
 import com.minimerce.core.api.domain.deal.option.DealOption;
-import com.minimerce.core.api.object.type.DealType;
 import com.minimerce.core.api.support.exception.UnsupportedItemTypeException;
+import com.minimerce.core.api.support.object.type.DealType;
 import org.junit.Before;
 import org.junit.Test;
 

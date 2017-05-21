@@ -2,9 +2,9 @@ package com.minimerce.core.api.component.order;
 
 import com.minimerce.core.api.domain.order.Order;
 import com.minimerce.core.api.domain.order.option.OrderOption;
-import com.minimerce.core.api.object.order.OrderRequest;
 import com.minimerce.core.api.support.exception.UnsaleableProductException;
 import com.minimerce.core.api.support.exception.UnsupportedItemTypeException;
+import com.minimerce.core.api.support.object.order.OrderRequest;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;

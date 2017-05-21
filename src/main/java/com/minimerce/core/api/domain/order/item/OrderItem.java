@@ -3,9 +3,9 @@ package com.minimerce.core.api.domain.order.item;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.core.api.domain.BaseDomain;
 import com.minimerce.core.api.domain.order.option.OrderOption;
-import com.minimerce.core.api.object.order.CancelStatus;
-import com.minimerce.core.api.object.order.OrderStatus;
-import com.minimerce.core.api.object.type.DealType;
+import com.minimerce.core.api.support.object.order.CancelStatus;
+import com.minimerce.core.api.support.object.order.OrderStatus;
+import com.minimerce.core.api.support.object.type.DealType;
 import lombok.Getter;
 import lombok.Setter;
 
