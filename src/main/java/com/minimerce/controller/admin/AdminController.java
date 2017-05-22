@@ -1,5 +1,6 @@
 package com.minimerce.controller.admin;
 
+import com.minimerce.controller.BaseController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,5 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "/admin")
-public class AdminController {
+public class AdminController extends BaseController {
 }

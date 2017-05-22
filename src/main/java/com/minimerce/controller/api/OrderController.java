@@ -1,5 +1,6 @@
 package com.minimerce.controller.api;
 
+import com.minimerce.controller.BaseController;
 import com.minimerce.core.api.domain.client.Client;
 import com.minimerce.core.api.domain.order.Order;
 import com.minimerce.core.api.service.order.OrderService;
@@ -16,7 +17,7 @@ import javax.inject.Inject;
  */
 @RestController
 @RequestMapping(value = "/v1/orders")
-public class OrderController {
+public class OrderController extends BaseController {
     private final OrderService orderService;
 
     @Inject
