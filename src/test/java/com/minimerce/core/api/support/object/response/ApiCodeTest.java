@@ -13,6 +13,7 @@ public class ApiCodeTest {
     @Test
     public void testFindApiCode200() {
         ApiCode code = ApiCode.of(200);
+
         assertThat(code.getCode(), is(200));
         assertThat(code.getMessage(), is("OK"));
         assertThat(code.isError(), is(false));
@@ -22,7 +23,7 @@ public class ApiCodeTest {
     public void testFindUnknownApiCode() {
         ApiCode code = ApiCode.of(-24140124);
         assertThat(code.getCode(), is(-1));
-        assertThat(code.getMessage(), is("UNKNOWN ERROR"));
+        assertThat(code.getMessage(), is("Unknown Error"));
         assertThat(code.isError(), is(true));
     }
 }

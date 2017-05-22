@@ -54,12 +54,12 @@ test {
 		excludeCategories 'com.minimerce.IntegrationTest'
 	}
 }
-task integrationTest(type: Test) {
+task integrationTest(type: Test, group: 'verification') {
 	useJUnit {
 		includeCategories 'com.minimerce.IntegrationTest'
 	}
 }
-task wholeTest(type: Test) { useJUnit { } }
+task wholeTest(type: Test, group: 'verification') { useJUnit { } }
 
 /**** QueryDSL Class Generate Script ****/
 def queryDslOutput = file("src/main/generated")
