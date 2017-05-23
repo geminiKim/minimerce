@@ -2,8 +2,9 @@ package com.minimerce.core.api.component.order;
 
 import com.minimerce.core.api.domain.order.Order;
 import com.minimerce.core.api.domain.order.OrderRepository;
-import com.minimerce.core.api.support.exception.NotExistOrderException;
+import com.minimerce.core.api.support.exception.MinimerceException;
 import com.minimerce.core.api.support.object.order.FindOrderRequest;
+import com.minimerce.core.api.support.object.response.ErrorCode;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -21,10 +22,10 @@ public class OrderFinder {
         this.orderRepository = orderRepository;
     }
 
-    public Order findOrder(Long clientId, FindOrderRequest request) throws NotExistOrderException {
+    public Order findOrder(Long clientId, FindOrderRequest request) {
         if(request.isFindByOrderId()) return orderRepository.findByClientIdAndId(clientId, request.getOrderId());
         if(request.isFindByClientOrderId()) return orderRepository.findByClientIdAndClientOrderId(clientId, request.getClientOrderId());
-        throw new NotExistOrderException("Not Found Order");
+        throw new MinimerceException(ErrorCode.NOT_FOUND_ORDER);
     }
 
     public List<Order> findOrders(Long clientId, Long customerId) {

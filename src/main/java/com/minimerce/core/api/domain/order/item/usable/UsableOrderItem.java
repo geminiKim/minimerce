@@ -5,6 +5,7 @@ import com.minimerce.core.api.domain.item.usable.UsableItem;
 import com.minimerce.core.api.domain.order.item.OrderItem;
 import com.minimerce.core.api.support.exception.MinimerceException;
 import com.minimerce.core.api.support.object.order.OrderStatus;
+import com.minimerce.core.api.support.object.response.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,14 +32,14 @@ public class UsableOrderItem extends OrderItem {
     @Column
     private LocalDateTime availableEndAt;
 
-    public void use() throws MinimerceException {
-        if(usedCount + 1 > usableCount) throw new MinimerceException("already use complete order");
+    public void use() {
+        if(usedCount + 1 > usableCount) throw new MinimerceException(ErrorCode.ALREADY_USE_COMPLETED_ORDER);
         usedCount++;
         setStatus(OrderStatus.USED);
     }
 
-    public void restore() throws MinimerceException {
-        if(usedCount - 1 < 0) throw new MinimerceException("already restore");
+    public void restore() {
+        if(usedCount - 1 < 0) throw new MinimerceException(ErrorCode.ALREADY_RESTORED_ORDER);
         usedCount--;
         setStatus(OrderStatus.ORDERED);
     }

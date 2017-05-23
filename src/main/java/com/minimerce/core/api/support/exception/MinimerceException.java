@@ -1,26 +1,29 @@
 package com.minimerce.core.api.support.exception;
 
+import com.minimerce.core.api.support.object.response.ErrorCode;
+
 /**
  * Created by gemini on 11/04/2017.
  */
-public class MinimerceException extends Exception {
-    public MinimerceException() {
-        super();
+public class MinimerceException extends RuntimeException {
+    private final ErrorCode error;
+
+    @Override
+    public String getMessage() {
+        return error.getMessage();
     }
 
-    public MinimerceException(String message) {
-        super(message);
+    public MinimerceException(ErrorCode error) {
+        super(error.getMessage());
+        this.error = error;
     }
 
-    public MinimerceException(String message, Throwable cause) {
-        super(message, cause);
+    public MinimerceException(ErrorCode error, Throwable cause) {
+        super(error.getMessage(), cause);
+        this.error = error;
     }
 
-    public MinimerceException(Throwable cause) {
-        super(cause);
-    }
-
-    protected MinimerceException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public ErrorCode getError() {
+        return error;
     }
 }

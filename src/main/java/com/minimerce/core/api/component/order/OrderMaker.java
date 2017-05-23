@@ -2,9 +2,9 @@ package com.minimerce.core.api.component.order;
 
 import com.minimerce.core.api.domain.order.Order;
 import com.minimerce.core.api.domain.order.option.OrderOption;
-import com.minimerce.core.api.support.exception.UnsaleableProductException;
-import com.minimerce.core.api.support.exception.UnsupportedItemTypeException;
+import com.minimerce.core.api.support.exception.MinimerceException;
 import com.minimerce.core.api.support.object.order.OrderRequest;
+import com.minimerce.core.api.support.object.response.ErrorCode;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -22,9 +22,9 @@ public class OrderMaker {
         this.orderDetailMaker = orderDetailMaker;
     }
 
-    public Order make(Long clientId, OrderRequest request) throws UnsaleableProductException, UnsupportedItemTypeException {
+    public Order make(Long clientId, OrderRequest request) {
         List<OrderOption> options = orderDetailMaker.make(clientId, request.getDetails());
-        if(request.getPrice() != getPrice(options)) throw new UnsaleableProductException("상품의 가격이 일치하지 않습니다.");
+        if(request.getPrice() != getPrice(options)) throw new MinimerceException(ErrorCode.NOT_EQUAL_ORDER_PRICE);
 
         Order order = new Order();
         order.setClientId(clientId);

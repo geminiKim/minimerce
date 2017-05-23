@@ -4,7 +4,6 @@ import com.minimerce.controller.BaseController;
 import com.minimerce.core.api.domain.client.Client;
 import com.minimerce.core.api.domain.order.Order;
 import com.minimerce.core.api.service.order.OrderService;
-import com.minimerce.core.api.support.exception.MinimerceException;
 import com.minimerce.core.api.support.object.order.FindOrderRequest;
 import com.minimerce.core.api.support.object.order.OrderRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,11 +25,11 @@ public class OrderController extends BaseController {
     }
 
     @PostMapping
-    public Order order(@AuthenticationPrincipal Client client, OrderRequest request) throws MinimerceException {
+    public Order order(@AuthenticationPrincipal Client client, OrderRequest request) {
         return orderService.order(client.getId(), request);
     }
     @GetMapping
-    public Order findOrder(@AuthenticationPrincipal Client client, @RequestParam(required = false) Long orderId, @RequestParam(required = false) Long clientOrderId) throws MinimerceException {
+    public Order findOrder(@AuthenticationPrincipal Client client, @RequestParam(required = false) Long orderId, @RequestParam(required = false) Long clientOrderId)  {
         return orderService.findOrder(client.getId(), new FindOrderRequest(orderId, clientOrderId));
     }
 }

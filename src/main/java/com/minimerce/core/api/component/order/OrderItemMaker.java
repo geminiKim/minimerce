@@ -3,7 +3,8 @@ package com.minimerce.core.api.component.order;
 import com.minimerce.core.api.component.order.item.UsableOrderItemMaker;
 import com.minimerce.core.api.domain.deal.option.DealOption;
 import com.minimerce.core.api.domain.order.item.OrderItem;
-import com.minimerce.core.api.support.exception.UnsupportedItemTypeException;
+import com.minimerce.core.api.support.exception.MinimerceException;
+import com.minimerce.core.api.support.object.response.ErrorCode;
 import com.minimerce.core.api.support.object.type.DealType;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +23,8 @@ public class OrderItemMaker {
         this.usableOrderItemMaker = usableOrderItemMaker;
     }
 
-    public List<OrderItem> make(DealOption option) throws UnsupportedItemTypeException {
+    public List<OrderItem> make(DealOption option) {
         if(DealType.USABLE == option.getType()) return usableOrderItemMaker.make(option);
-        throw new UnsupportedItemTypeException("지원하지 않는 상품 타입입니다.");
+        throw new MinimerceException(ErrorCode.NOT_SUPPORTED_PRODUCT_TYPE);
     }
 }

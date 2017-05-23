@@ -3,7 +3,6 @@ package com.minimerce.core.api.component.order;
 import com.minimerce.builder.DealOptionBuilder;
 import com.minimerce.core.api.component.order.item.UsableOrderItemMaker;
 import com.minimerce.core.api.domain.deal.option.DealOption;
-import com.minimerce.core.api.support.exception.UnsupportedItemTypeException;
 import com.minimerce.core.api.support.object.type.DealType;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +25,7 @@ public class OrderItemMakerTest {
     }
 
     @Test
-    public void testShouldBeMakeOrderItem() throws UnsupportedItemTypeException {
+    public void testShouldBeMakeOrderItem() {
         DealOption option = DealOptionBuilder.aDealOption().withType(DealType.USABLE).build();
         maker.make(option);
         verify(usableOrderItemMaker, times(1)).make(any());

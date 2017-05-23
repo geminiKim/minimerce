@@ -7,11 +7,11 @@ import com.minimerce.core.api.domain.deal.Deal;
 import com.minimerce.core.api.domain.deal.option.DealOption;
 import com.minimerce.core.api.domain.order.item.OrderItem;
 import com.minimerce.core.api.domain.order.option.OrderOption;
-import com.minimerce.core.api.support.exception.UnsaleableProductException;
-import com.minimerce.core.api.support.exception.UnsupportedItemTypeException;
+import com.minimerce.core.api.support.exception.MinimerceException;
 import com.minimerce.core.api.support.object.order.CancelStatus;
 import com.minimerce.core.api.support.object.order.OrderRequestDetail;
 import com.minimerce.core.api.support.object.order.OrderStatus;
+import com.minimerce.core.api.support.object.response.ErrorCode;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -31,7 +31,7 @@ public class OrderOptionMaker {
         this.orderItemMaker = orderItemMaker;
     }
 
-    public List<OrderOption> make(Long clientId, List<OrderRequestDetail> requestDetails) throws UnsaleableProductException, UnsupportedItemTypeException {
+    public List<OrderOption> make(Long clientId, List<OrderRequestDetail> requestDetails) {
         List<OrderOption> orders = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
             Deal deal = saleDealReader.findBySaleDeal(each.getDealId());
@@ -39,8 +39,8 @@ public class OrderOptionMaker {
 
             List<OrderItem> items = orderItemMaker.make(option);
             int unitPrice = buildUnitPrice(items);
-            if(unitPrice != each.getUnitPrice()) throw new UnsaleableProductException("단가 불일치");
-            if(unitPrice * each.getQuantity() != each.getPrice()) throw new UnsaleableProductException("가격 불일치");
+            if(unitPrice != each.getUnitPrice()) throw new MinimerceException(ErrorCode.NOT_EQUAL_UNIT_PRICE);
+            if(unitPrice * each.getQuantity() != each.getPrice()) throw new MinimerceException(ErrorCode.NOT_EQUAL_ORDER_PRICE);
 
             for (int i = 0; i < each.getQuantity(); i++) {
                 OrderOption order = new OrderOption();

@@ -1,9 +1,8 @@
 package com.minimerce.controller;
 
 import com.minimerce.core.api.support.exception.MinimerceException;
-import com.minimerce.core.api.support.object.response.ApiCode;
 import com.minimerce.core.api.support.object.response.ApiResponse;
-import com.minimerce.core.api.support.object.response.ApiResult;
+import com.minimerce.core.api.support.object.response.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
@@ -21,41 +20,41 @@ public class BaseController {
     @ExceptionHandler(TypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handleBadRequestException(TypeMismatchException e) {
-        return ApiResponse.error(ApiResult.of(HttpStatus.BAD_REQUEST, ApiCode.BAD_REQUEST));
+        return ApiResponse.httpError(HttpResult.BAD_REQUEST);
     }
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse handleRequestParameterException(MissingServletRequestParameterException e) {
-        return ApiResponse.error(ApiResult.of(HttpStatus.BAD_REQUEST, ApiCode.BAD_REQUEST));
+        return ApiResponse.httpError(HttpResult.BAD_REQUEST);
     }
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ApiResponse handleUnauthorized() {
-        return ApiResponse.error(ApiResult.of(HttpStatus.UNAUTHORIZED, ApiCode.UNAUTHORIZED));
+        return ApiResponse.httpError(HttpResult.UNAUTHORIZED);
     }
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ApiResponse handleForbidden() {
-        return ApiResponse.error(ApiResult.of(HttpStatus.FORBIDDEN, ApiCode.FORBIDDEN));
+        return ApiResponse.httpError(HttpResult.FORBIDDEN);
     }
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiResponse handleNotFoundException() {
-        return ApiResponse.error(ApiResult.of(HttpStatus.NOT_FOUND, ApiCode.NOT_FOUND));
+        return ApiResponse.httpError(HttpResult.NOT_FOUND);
     }
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     public ApiResponse handleNotSupportes(Exception e) {
-        return ApiResponse.error(ApiResult.of(HttpStatus.METHOD_NOT_ALLOWED, ApiCode.METHOD_NOT_ALLOWED));
+        return ApiResponse.httpError(HttpResult.METHOD_NOT_ALLOWED);
     }
     @ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
     public ApiResponse handleRequestTimeout() {
-        return ApiResponse.error(ApiResult.of(HttpStatus.REQUEST_TIMEOUT, ApiCode.REQUEST_TIMEOUT));
-    }
-    @ExceptionHandler(MinimerceException.class)
-    public ApiResponse handleMinimerceException(MinimerceException apiException) {
-        log.error(apiException.getMessage(), apiException);
-        return ApiResponse.error(ApiResult.of(HttpStatus.INTERNAL_SERVER_ERROR, apiException.getCode()));
+        return ApiResponse.httpError(HttpResult.REQUEST_TIMEOUT);
     }
     @ExceptionHandler(Throwable.class)
     public ApiResponse handleException(Throwable throwable) {
         log.error(throwable.getMessage(), throwable);
-        return ApiResponse.error(ApiResult.of(HttpStatus.INTERNAL_SERVER_ERROR, ApiCode.UNKNOWN));
+        return ApiResponse.httpError(HttpResult.INTERNAL_SERVER_ERROR);
+    }
+    @ExceptionHandler(MinimerceException.class)
+    public ApiResponse handleMinimerceException(MinimerceException exception) {
+        log.error(exception.getMessage(), exception);
+        return ApiResponse.error(exception.getError());
     }
 }
