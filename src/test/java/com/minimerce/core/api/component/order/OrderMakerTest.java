@@ -24,14 +24,15 @@ import static org.mockito.Mockito.when;
  */
 public class OrderMakerTest {
     private OrderMaker maker;
+    private OrderOptionMaker mockOrderDetailMaker;
     private final OrderRequestBuilder orderRequestBuilder = OrderRequestBuilder.anOrderRequest();
     private final OrderRequestDetailBuilder orderRequestDetailBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
     public void setup() {
-        OrderOptionMaker orderDetailMaker = mock(OrderOptionMaker.class);
-        when(orderDetailMaker.make(anyLong(), any())).thenReturn(details());
-        maker = new OrderMaker(orderDetailMaker);
+        mockOrderDetailMaker = mock(OrderOptionMaker.class);
+        when(mockOrderDetailMaker.make(anyLong(), any())).thenReturn(details());
+        maker = new OrderMaker(mockOrderDetailMaker);
     }
 
     @Test

@@ -14,21 +14,20 @@ import static org.mockito.Mockito.*;
  * Created by gemini on 14/04/2017.
  */
 public class OrderItemMakerTest {
-
     private OrderItemMaker maker;
-    private UsableOrderItemMaker usableOrderItemMaker;
+    private UsableOrderItemMaker mockUsableOrderItemMaker;
 
     @Before
     public void setup() {
-        usableOrderItemMaker = mock(UsableOrderItemMaker.class);
-        maker = new OrderItemMaker(usableOrderItemMaker);
+        mockUsableOrderItemMaker = mock(UsableOrderItemMaker.class);
+        maker = new OrderItemMaker(mockUsableOrderItemMaker);
     }
 
     @Test
     public void testShouldBeMakeOrderItem() {
         DealOption option = DealOptionBuilder.aDealOption().withType(DealType.USABLE).build();
         maker.make(option);
-        verify(usableOrderItemMaker, times(1)).make(any());
+        verify(mockUsableOrderItemMaker, times(1)).make(any());
     }
 
 }

@@ -26,22 +26,22 @@ import static org.mockito.Mockito.when;
  */
 public class OrderOptionMakerTest {
 
-    private SaleDealReader saleDealReader;
-    private OrderItemMaker orderItemMaker;
+    private SaleDealReader mockSaleDealReader;
+    private OrderItemMaker mockOrderItemMaker;
     private OrderOptionMaker maker;
     private final OrderRequestDetailBuilder detailRequestBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
     public void setup() {
-        saleDealReader = mock(SaleDealReader.class);
-        orderItemMaker = mock(OrderItemMaker.class);
+        mockSaleDealReader = mock(SaleDealReader.class);
+        mockOrderItemMaker = mock(OrderItemMaker.class);
 
-        when(saleDealReader.findBySaleDeal(anyLong())).thenReturn(DealBuilder.aDeal().build());
-        when(saleDealReader.findBySaleDealOption(anyLong())).thenReturn(DealOptionBuilder.aDealOption().build());
+        when(mockSaleDealReader.findBySaleDeal(anyLong())).thenReturn(DealBuilder.aDeal().build());
+        when(mockSaleDealReader.findBySaleDealOption(anyLong())).thenReturn(DealOptionBuilder.aDealOption().build());
 
-        when(orderItemMaker.make(any())).thenReturn(buildOrderItemsPrice5000());
+        when(mockOrderItemMaker.make(any())).thenReturn(buildOrderItemsPrice5000());
 
-        maker = new OrderOptionMaker(saleDealReader, orderItemMaker);
+        maker = new OrderOptionMaker(mockSaleDealReader, mockOrderItemMaker);
     }
 
     @Test
