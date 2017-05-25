@@ -43,6 +43,7 @@ dependencies {
 	compile('org.apache.commons:commons-lang3')
 	compile('com.google.guava:guava')
 	compile('com.zaxxer:HikariCP')
+	compile('io.springfox:springfox-swagger-ui:2.6.1')
 	compileOnly('org.projectlombok:lombok')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
