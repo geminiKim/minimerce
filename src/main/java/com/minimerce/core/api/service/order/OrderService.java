@@ -32,11 +32,11 @@ public class OrderService {
         return orderInserter.insert(order);
     }
 
-    public List<Order> findOrders(Long clientId, Long customerId) {
-        return orderFinder.findOrders(clientId, customerId);
-    }
-
     public Order findOrder(Long clientId, FindOrderRequest request) {
         return orderFinder.findOrder(clientId, request);
+    }
+
+    public List<Order> findCustomerOrders(Long clientId, Long customerId) {
+        return orderFinder.findOrders(clientId, customerId);
     }
 }

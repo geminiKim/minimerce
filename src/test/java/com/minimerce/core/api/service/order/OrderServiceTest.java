@@ -46,7 +46,7 @@ public class OrderServiceTest {
 
     @Test
     public void testShouldBeCallFindOrder() {
-        orderService.findOrders(1L, 5L);
+        orderService.findCustomerOrders(1L, 5L);
         verify(mockOrderFinder, times(1)).findOrders(1L, 5L);
     }
 }
