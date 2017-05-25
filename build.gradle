@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.2.RELEASE'
-		springIOPlatformVersion = 'Brussels-SR1'
+		springBootVersion = '1.5.3.RELEASE'
+		springIOPlatformVersion = 'Brussels-SR2'
 		gradleDependencyManagementPluginVersion = '1.0.0.RELEASE'
 	}
 	repositories {
