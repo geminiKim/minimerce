@@ -7,6 +7,7 @@ import com.minimerce.core.api.service.order.OrderService;
 import com.minimerce.core.api.support.object.order.FindOrderRequest;
 import com.minimerce.core.api.support.object.order.OrderRequest;
 import com.minimerce.core.api.support.object.response.ApiResponse;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +26,15 @@ public class OrderController extends BaseController {
         this.orderService = orderService;
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ApiResponse order(@AuthenticationPrincipal Client client, OrderRequest request) {
         Order order = orderService.order(client.getId(), request);
         return ApiResponse.ok(order);
     }
-    @GetMapping
-    public ApiResponse findOrder(@AuthenticationPrincipal Client client, @RequestParam(required = false) Long orderId, @RequestParam(required = false) Long clientOrderId)  {
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ApiResponse findOrder(@AuthenticationPrincipal Client client,
+                                 @RequestParam(required = false) Long orderId,
+                                 @RequestParam(required = false) Long clientOrderId)  {
         Order order = orderService.findOrder(client.getId(), new FindOrderRequest(orderId, clientOrderId));
         return ApiResponse.ok(order);
     }
