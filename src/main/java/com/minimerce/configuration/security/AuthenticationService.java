@@ -2,16 +2,11 @@ package com.minimerce.configuration.security;
 
 import com.google.common.collect.Lists;
 import com.minimerce.core.api.domain.client.Client;
-import com.minimerce.core.api.domain.client.ClientRepository;
 import com.minimerce.core.api.domain.client.ClientRole;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -23,25 +18,10 @@ import java.util.List;
  */
 @Service
 public class AuthenticationService {
-    private final ClientRepository clientRepository;
-
-    @Inject
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Inject
-    public AuthenticationService(ClientRepository clientRepository) {
-        this.clientRepository = clientRepository;
-    }
+    @Inject private ClientAuthService clientAuthService;
 
     public void authentication(HttpServletRequest request) {
-        Long clientId = NumberUtils.toLong(request.getHeader("mini-client-id"), -1L);
-        String apiKey = StringUtils.defaultString(request.getHeader("mini-api-key"), "");
-        if(clientId == -1L) throw new BadCredentialsException("Bad Request");
-        if(StringUtils.isEmpty(apiKey)) throw new BadCredentialsException("Bad Request");
-
-        Client client = clientRepository.findOne(clientId);
-        if(null == client) throw new BadCredentialsException("Invalid Client");
-        if(false == bCryptPasswordEncoder.matches(apiKey, client.getApiKey())) throw new BadCredentialsException("Invalid Client");
+        Client client = clientAuthService.auth(request.getHeader("minimerce-api-key"));
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(client, null, buildAuthorities(client.getRole()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
