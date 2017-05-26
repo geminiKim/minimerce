@@ -3,10 +3,12 @@ package com.minimerce.configuration.security;
 import com.google.common.collect.Lists;
 import com.minimerce.core.api.domain.client.Client;
 import com.minimerce.core.api.domain.client.ClientRole;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -19,10 +21,12 @@ import java.util.List;
 @Service
 public class AuthenticationService {
     @Inject private ClientAuthService clientAuthService;
+    @Inject private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public void authentication(HttpServletRequest request) {
-        Client client = clientAuthService.auth(request.getHeader("minimerce-api-key"));
-
+        MinimerceApiKey apiKey = new MinimerceApiKey(request.getHeader("minimerce-api-key"));
+        Client client = clientAuthService.auth(apiKey);
+        if(false == bCryptPasswordEncoder.matches(apiKey.getApiKey(), client.getApiKey())) throw new BadCredentialsException("Invalid Client");
         Authentication authentication = new UsernamePasswordAuthenticationToken(client, null, buildAuthorities(client.getRole()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }

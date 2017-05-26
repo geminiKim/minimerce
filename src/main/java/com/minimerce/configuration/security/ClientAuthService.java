@@ -2,7 +2,6 @@ package com.minimerce.configuration.security;
 
 import com.minimerce.core.api.domain.client.Client;
 import com.minimerce.core.api.domain.client.ClientRepository;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +19,8 @@ public class ClientAuthService {
         this.clientRepository = clientRepository;
     }
 
-    public Client auth(String apiKey) {
-        if(StringUtils.isEmpty(apiKey)) throw new AccessDeniedException("Invalid Api Key");
-        Client client = clientRepository.findByApiKey(apiKey);
+    public Client auth(MinimerceApiKey apiKey) {
+        Client client = clientRepository.findOne(apiKey.getClientId());
         if(null == client) throw new AccessDeniedException("Invalid Api Key");
         return client;
     }
