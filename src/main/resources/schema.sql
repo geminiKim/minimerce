@@ -7,8 +7,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `deleted` varchar(1) NOT NULL DEFAULT 'N',
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `UIDX_API_KEY` (`api_key`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS `deal` (
