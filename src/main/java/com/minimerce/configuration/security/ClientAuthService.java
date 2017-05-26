@@ -3,7 +3,7 @@ package com.minimerce.configuration.security;
 import com.minimerce.core.api.domain.client.Client;
 import com.minimerce.core.api.domain.client.ClientRepository;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -21,10 +21,9 @@ public class ClientAuthService {
     }
 
     public Client auth(String apiKey) {
-        if(StringUtils.isEmpty(apiKey)) throw new BadCredentialsException("Bad Request");
+        if(StringUtils.isEmpty(apiKey)) throw new AccessDeniedException("Invalid Api Key");
         Client client = clientRepository.findByApiKey(apiKey);
-        if(null == client) throw new BadCredentialsException("Invalid Client");
+        if(null == client) throw new AccessDeniedException("Invalid Api Key");
         return client;
-
     }
 }
