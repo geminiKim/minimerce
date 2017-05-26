@@ -23,6 +23,7 @@ public class SwaggerConfiguration {
     @Bean
     public Docket swagger() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("minimerce-v1")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.minimerce.controller.api"))
                 .paths(PathSelectors.ant("/v1/**"))
