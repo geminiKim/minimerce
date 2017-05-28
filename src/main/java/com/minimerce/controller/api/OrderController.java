@@ -27,7 +27,7 @@ public class OrderController extends BaseController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ApiResponse order(@AuthenticationPrincipal Client client, OrderRequest request) {
+    public ApiResponse order(@AuthenticationPrincipal Client client, @RequestBody OrderRequest request) {
         Order order = orderService.order(client.getId(), request);
         return ApiResponse.ok(order);
     }
