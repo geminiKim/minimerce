@@ -3,6 +3,7 @@ package com.minimerce.configuration.security;
 import com.minimerce.core.api.support.object.response.ApiResponse;
 import com.minimerce.core.api.support.object.response.HttpResult;
 import com.minimerce.core.api.support.util.Json;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -29,8 +30,10 @@ public class AuthenticationFilter extends GenericFilterBean {
             authenticationService.authentication((HttpServletRequest) request);
             chain.doFilter(request, response);
         } catch (AccessDeniedException e) {
+            response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.getWriter().write(Json.toJson(ApiResponse.httpError(HttpResult.UNAUTHORIZED)));
         } catch (Exception e) {
+            response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
             response.getWriter().write(Json.toJson(ApiResponse.httpError(HttpResult.BAD_REQUEST)));
         }
     }
