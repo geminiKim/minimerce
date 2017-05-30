@@ -22,7 +22,7 @@ public class DealAdminServiceIntegrationTest extends IntegrationTest {
     @Test
     public void testSholudBeFindDealsResultSizeGreaterThen1() {
         Pageable pageable = PageableBuilder.aPageable().withPageNumber(0).withPageSize(25).build();
-        Page<Deal> result = dealService.findAll(pageable);
+        Page<Deal> result = dealService.find(pageable);
         assertThat(result.getContent().size(), is(greaterThan(0)));
     }
 }

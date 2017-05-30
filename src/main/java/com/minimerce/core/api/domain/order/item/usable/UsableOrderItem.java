@@ -36,11 +36,13 @@ public class UsableOrderItem extends OrderItem {
         if(usedCount + 1 > usableCount) throw new MinimerceException(ErrorCode.ALREADY_USE_COMPLETED_ORDER);
         usedCount++;
         setStatus(OrderStatus.USED);
+        option.updateStatus();
     }
 
     public void restore() {
         if(usedCount - 1 < 0) throw new MinimerceException(ErrorCode.ALREADY_RESTORED_ORDER);
         usedCount--;
         setStatus(OrderStatus.ORDERED);
+        option.updateStatus();
     }
 }

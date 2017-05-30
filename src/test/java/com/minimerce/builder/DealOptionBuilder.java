@@ -149,9 +149,9 @@ public final class DealOptionBuilder {
         dealOption.setImageJson(imageJson);
         dealOption.setThumbnailJson(thumbnailJson);
         dealOption.setSort(sort);
-        dealOption.setDeal(deal);
         dealOption.addItems(items);
         dealOption.setDeleted(deleted);
+        deal.addOption(dealOption);
         return dealOption;
     }
 }

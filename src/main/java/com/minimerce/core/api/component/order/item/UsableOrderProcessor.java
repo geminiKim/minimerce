@@ -22,14 +22,14 @@ public class UsableOrderProcessor {
     }
 
     @Transactional
-    public void consume(Long clientId, Long orderItemId) {
-        UsableOrderItem usableOrder = usableOrderItemRepository.findByClientIdAndId(clientId, orderItemId);
+    public void consume(Long orderItemId) {
+        UsableOrderItem usableOrder = usableOrderItemRepository.findOne(orderItemId);
         if(null == usableOrder) throw new MinimerceException(ErrorCode.NOT_FOUND_ORDER);
         usableOrder.use();
     }
 
-    public void restore(Long clientId, Long orderItemId) {
-        UsableOrderItem usableOrder = usableOrderItemRepository.findByClientIdAndId(clientId, orderItemId);
+    public void restore(Long orderItemId) {
+        UsableOrderItem usableOrder = usableOrderItemRepository.findOne(orderItemId);
         if(null == usableOrder) throw new MinimerceException(ErrorCode.NOT_FOUND_ORDER);
         usableOrder.restore();
     }

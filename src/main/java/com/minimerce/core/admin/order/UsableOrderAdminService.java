@@ -9,19 +9,19 @@ import javax.inject.Inject;
  * Created by gemini on 30/05/2017.
  */
 @Service
-public class UsableOrderItemAdminService {
+public class UsableOrderAdminService {
     private final UsableOrderProcessor processor;
 
     @Inject
-    public UsableOrderItemAdminService(UsableOrderProcessor processor) {
+    public UsableOrderAdminService(UsableOrderProcessor processor) {
         this.processor = processor;
     }
 
-    public void consume(Long clientId, Long orderItemId) {
-        processor.consume(clientId, orderItemId);
+    public void consume(Long orderItemId) {
+        processor.consume(orderItemId);
     }
 
-    public void restore(Long clientId, Long orderItemId) {
-        processor.restore(clientId, orderItemId);
+    public void restore(Long orderItemId) {
+        processor.restore(orderItemId);
     }
 }

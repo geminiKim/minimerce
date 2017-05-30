@@ -22,6 +22,10 @@ public class ApiResponse {
         return of(HttpResult.OK, data);
     }
 
+    public static ApiResponse ok() {
+        return of(HttpResult.OK, EMPTY_DATA);
+    }
+
     public static ApiResponse httpError(HttpResult httpResult) {
         return of(httpResult, EMPTY_DATA);
     }

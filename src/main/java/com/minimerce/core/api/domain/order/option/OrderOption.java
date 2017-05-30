@@ -61,4 +61,7 @@ public class OrderOption extends BaseDomain {
         items.forEach(e -> addItem(e));
     }
 
+    public void updateStatus() {
+        if(type == DealType.USABLE) status = items.stream().filter(e -> e.getStatus() == OrderStatus.USED).count() > 0 ? OrderStatus.USED : OrderStatus.ORDERED;
+    }
 }

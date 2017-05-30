@@ -58,11 +58,11 @@ public final class DealOptionItemBuilder {
     public DealOptionItem build() {
         DealOptionItem dealOptionItem = new DealOptionItem();
         dealOptionItem.setId(id);
-        dealOptionItem.setOption(option);
         dealOptionItem.setCreatedAt(createdAt);
         dealOptionItem.setUpdatedAt(updatedAt);
         dealOptionItem.setItem(item);
         dealOptionItem.setDeleted(deleted);
+        option.addItem(dealOptionItem);
         return dealOptionItem;
     }
 }

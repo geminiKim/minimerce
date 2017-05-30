@@ -115,9 +115,9 @@ public final class OrderOptionBuilder {
         orderDetail.setCancelStatus(cancelStatus);
         orderDetail.setDeal(deal);
         orderDetail.setDealOption(dealOption);
-        orderDetail.addItems(items);
-        orderDetail.setOrder(order);
         orderDetail.setType(type);
+        orderDetail.addItems(items);
+        order.addOption(orderDetail);
         return orderDetail;
     }
 }

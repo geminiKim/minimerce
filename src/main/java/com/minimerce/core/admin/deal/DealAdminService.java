@@ -28,7 +28,7 @@ public class DealAdminService {
     }
 
     @Transactional
-    public Page<Deal> findAll(Pageable pageable) {
+    public Page<Deal> find(Pageable pageable) {
         return dealRepository.findAll(pageable);
     }
 

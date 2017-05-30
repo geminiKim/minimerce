@@ -27,32 +27,32 @@ public class DealOptionItemAdminService {
     }
 
     @Transactional
-    public DealOptionItem find(long optionItemId) {
-        return optionItemRepository.findOne(optionItemId);
+    public DealOptionItem find(Long optionId, Long itemId) {
+        return optionItemRepository.findByOptionIdAndId(optionId, itemId);
     }
 
     @Transactional
-    public Page<DealOptionItem> findAll(Pageable pageable) {
-        return optionItemRepository.findAll(pageable);
+    public Page<DealOptionItem> find(Long optionId, Pageable pageable) {
+        return optionItemRepository.findByOptionId(pageable, optionId);
     }
 
     @Transactional
-    public void save(long optionId, DealOptionItem optionItem) {
+    public void save(Long optionId, DealOptionItem optionItem) {
         DealOption option = optionRepository.findOne(optionId);
         optionItem.setOption(option);
         optionItemRepository.save(optionItem);
     }
 
     @Transactional
-    public void save(long optionId, List<DealOptionItem> optionItems) {
+    public void save(Long optionId, List<DealOptionItem> optionItems) {
         DealOption option = optionRepository.findOne(optionId);
         optionItems.forEach(e -> e.setOption(option));
         optionItemRepository.save(optionItems);
     }
 
     @Transactional
-    public void delete(long optionItemId) {
-        DealOptionItem optionItem = optionItemRepository.findOne(optionItemId);
+    public void delete(Long optionId, Long itemId) {
+        DealOptionItem optionItem = optionItemRepository.findByOptionIdAndId(optionId, itemId);
         optionItem.delete();
     }
 }

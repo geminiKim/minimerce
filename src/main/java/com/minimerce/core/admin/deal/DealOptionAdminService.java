@@ -27,13 +27,13 @@ public class DealOptionAdminService {
     }
 
     @Transactional
-    public DealOption find(long optionId) {
-        return optionRepository.findOne(optionId);
+    public DealOption find(Long dealId, Long optionId) {
+        return optionRepository.findByDealIdAndId(dealId, optionId);
     }
 
     @Transactional
-    public Page<DealOption> findAll(Pageable pageable) {
-        return optionRepository.findAll(pageable);
+    public Page<DealOption> find(Long dealId, Pageable pageable) {
+        return optionRepository.findByDealId(pageable, dealId);
     }
 
     @Transactional
@@ -51,8 +51,8 @@ public class DealOptionAdminService {
     }
 
     @Transactional
-    public void delete(long optionId) {
-        DealOption option = optionRepository.findOne(optionId);
+    public void delete(Long dealId, long optionId) {
+        DealOption option = optionRepository.findByDealIdAndId(dealId, optionId);
         option.delete();
     }
 }

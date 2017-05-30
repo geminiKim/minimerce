@@ -32,13 +32,6 @@ public class UsableItemAdminServiceTest {
     }
 
     @Test
-    public void testShouldBeUpdateItem() {
-        UsableItem item = UsableItemBuilder.anUsableItem().withId(1L).build();
-        itemService.update(item);
-        verify(mockItemRepository, times(1)).save(item);
-    }
-
-    @Test
     public void testShouldBeDeleteItem() {
         UsableItem item = UsableItemBuilder.anUsableItem().withDeleted(Yn.N).build();
         when(mockItemRepository.findOne(1L)).thenReturn(item);
