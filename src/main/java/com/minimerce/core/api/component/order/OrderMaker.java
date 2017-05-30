@@ -5,10 +5,13 @@ import com.minimerce.core.api.domain.order.option.OrderOption;
 import com.minimerce.core.api.support.exception.MinimerceException;
 import com.minimerce.core.api.support.object.order.OrderRequest;
 import com.minimerce.core.api.support.object.response.ErrorCode;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * Created by gemini on 01/04/2017.
@@ -43,10 +46,11 @@ public class OrderMaker {
     }
 
     private String buildTitle(List<OrderOption> details) {
-        return null;
+        if(details.size() == 1) return details.get(0).getDealOption().getName();
+        else return details.get(0).getDealOption().getName() + " more " + (details.size() - 1) + " options";
     }
 
     private String buildDealIds(List<OrderOption> details) {
-        return null;
+        return StringUtils.join(details.stream().map(e -> e.getDeal().getId()).collect(toList()));
     }
 }

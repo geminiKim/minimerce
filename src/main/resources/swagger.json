@@ -57,6 +57,12 @@
             "schema":{
               "$ref":"#/definitions/OrderResponse"
             }
+          },
+          "UsableOrderItems": {
+            "description": "data->options->items (Ordered UsableItem)",
+            "schema":{
+              "$ref":"#/definitions/UsableOrderItem"
+            }
           }
         }
       },
@@ -73,7 +79,7 @@
           {
             "in":"body",
             "name":"request",
-            "description":"request",
+            "description":"New order request",
             "required":true,
             "schema":{
               "$ref":"#/definitions/OrderRequest"
@@ -84,6 +90,12 @@
             "description":"OK",
             "schema":{
               "$ref":"#/definitions/OrderResponse"
+            }
+          },
+          "UsableOrderItems": {
+            "description": "data->options->items (Ordered UsableItem)",
+            "schema":{
+              "$ref":"#/definitions/UsableOrderItem"
             }
           }
         }
@@ -98,18 +110,6 @@
     }
   },
   "definitions":{
-    "OrderResponse":{
-      "type":"object",
-      "required": [ "data", "result" ],
-      "properties":{
-        "data":{
-          "type":"object"
-        },
-        "result":{
-          "$ref":"#/definitions/ApiResult"
-        }
-      }
-    },
     "ApiResult":{
       "type":"object",
       "required": [ "code", "isError", "message", "status" ],
@@ -131,6 +131,378 @@
           "type":"integer",
           "format":"int32",
           "default":200
+        }
+      }
+    },
+    "OrderResponse":{
+      "type":"object",
+      "required": [ "data", "result" ],
+      "properties":{
+        "data":{
+          "$ref":"#/definitions/Order"
+        },
+        "result":{
+          "$ref":"#/definitions/ApiResult"
+        }
+      }
+    },
+    "Deal":{
+      "type":"object",
+      "properties":{
+        "createdAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "deleted":{
+          "type":"string",
+          "enum":[
+            "Y",
+            "N"]
+        },
+        "description":{
+          "type":"string"
+        },
+        "display":{
+          "type":"string",
+          "enum":[
+            "Y",
+            "N"]
+        },
+        "displayPrice":{
+          "type":"integer",
+          "format":"int32"
+        },
+        "id":{
+          "type":"integer",
+          "format":"int64"
+        },
+        "imageJson":{
+          "type":"string"
+        },
+        "informationJson":{
+          "type":"string"
+        },
+        "name":{
+          "type":"string"
+        },
+        "options":{
+          "type":"array",
+          "items":{
+            "$ref":"#/definitions/DealOption"
+          }
+        },
+        "price":{
+          "type":"integer",
+          "format":"int32"
+        },
+        "priceUnit":{
+          "type":"string"
+        },
+        "saleEndAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "saleStartAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "status":{
+          "type":"string",
+          "enum":[
+            "SALE"]
+        },
+        "thumbnailJson":{
+          "type":"string"
+        },
+        "type":{
+          "type":"string",
+          "enum":[
+            "USABLE"]
+        },
+        "updatedAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        }
+      }
+    },
+    "DealOption":{
+      "type":"object",
+      "properties":{
+        "cancelType":{
+          "type":"string",
+          "enum":[
+            "DIRECT",
+            "APPROVE"]
+        },
+        "createdAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "deleted":{
+          "type":"string",
+          "enum":[
+            "Y",
+            "N"]
+        },
+        "description":{
+          "type":"string"
+        },
+        "display":{
+          "type":"string",
+          "enum":[
+            "Y",
+            "N"]
+        },
+        "displayPrice":{
+          "type":"integer",
+          "format":"int32"
+        },
+        "id":{
+          "type":"integer",
+          "format":"int64"
+        },
+        "imageJson":{
+          "type":"string"
+        },
+        "informationJson":{
+          "type":"string"
+        },
+        "items":{
+          "type":"array",
+          "items":{
+            "$ref":"#/definitions/DealOptionItem"
+          }
+        },
+        "name":{
+          "type":"string"
+        },
+        "priceUnit":{
+          "type":"string"
+        },
+        "sort":{
+          "type":"integer",
+          "format":"int32"
+        },
+        "status":{
+          "type":"string",
+          "enum":[
+            "SALE"]
+        },
+        "thumbnailJson":{
+          "type":"string"
+        },
+        "type":{
+          "type":"string",
+          "enum":[
+            "USABLE"]
+        },
+        "updatedAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        }
+      }
+    },
+    "Order":{
+      "type":"object",
+      "required": [ "clientId", "clientOrderId", "createdAt", "customerId", "dealIds", "id", "orderedAt", "price", "title", "updatedAt" , "options" ],
+      "properties":{
+        "id":{
+          "type":"integer",
+          "format":"int64",
+          "default":1
+        },
+        "clientId":{
+          "type":"integer",
+          "format":"int64",
+          "default":1
+        },
+        "clientOrderId":{
+          "type":"integer",
+          "format":"int64",
+          "default":1
+        },
+        "customerId":{
+          "type":"integer",
+          "format":"int64",
+          "default":1
+        },
+        "title":{
+          "type":"string",
+          "default":"test-order-1"
+        },
+        "price":{
+          "type":"integer",
+          "format":"int32",
+          "default":10000
+        },
+        "dealIds":{
+          "type":"string",
+          "default":"1"
+        },
+        "orderedAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "createdAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "updatedAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "options":{
+          "type":"array",
+          "items":{
+            "$ref":"#/definitions/OrderOption"
+          }
+        }
+      }
+    },
+    "OrderOption":{
+      "type":"object",
+      "required": [ "cancelStatus", "clientId", "createdAt", "items", "status", "id", "type", "price", "title", "updatedAt" ],
+      "properties":{
+        "id":{
+          "type":"integer",
+          "format":"int64",
+          "default":1
+        },
+        "clientId":{
+          "type":"integer",
+          "format":"int64",
+          "default":1
+        },
+        "title":{
+          "type":"string",
+          "default":"test-order-option-1"
+        },
+        "type":{
+          "type":"string",
+          "enum":[
+            "USABLE"],
+          "description":"Option Type"
+        },
+        "status":{
+          "type":"string",
+          "enum":[
+            "ORDERED",
+            "USED"],
+          "default":"ORDERED"
+        },
+        "cancelStatus":{
+          "type":"string",
+          "enum":[
+            "NOT_CANCEL"]
+        },
+        "price":{
+          "type":"integer",
+          "format":"int32",
+          "default":10000
+        },
+        "createdAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "updatedAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "items":{
+          "type":"array",
+          "description":"Different by Option Type",
+          "items":{
+            "type":"string",
+            "default":"Check Response Messages"
+          }
+        }
+      }
+    },
+    "UsableOrderItem":{
+      "type":"object",
+      "required": [ "availableEndAt", "availableStartAt", "cancelStatus", "clientId", "costPrice", "id", "createdAt", "salePrice", "status", "title", "type", "updatedAt", "usableCount", "usedCount" ],
+      "properties":{
+        "id":{
+          "type":"integer",
+          "format":"int64",
+          "default":1
+        },
+        "clientId":{
+          "type":"integer",
+          "format":"int64",
+          "default":1
+        },
+        "title":{
+          "type":"string",
+          "default":"test-usable-order-item-1"
+        },
+        "type":{
+          "type":"string",
+          "enum":[
+            "USABLE"]
+        },
+        "status":{
+          "type":"string",
+          "enum":[
+            "ORDERED",
+            "USED"],
+          "default":"ORDERED"
+        },
+        "cancelStatus":{
+          "type":"string",
+          "enum":[
+            "NOT_CANCEL"]
+        },
+        "salePrice":{
+          "type":"integer",
+          "format":"int32",
+          "default":10000
+        },
+        "costPrice":{
+          "type":"integer",
+          "format":"int32",
+          "default":9000
+        },
+        "usableCount":{
+          "type":"integer",
+          "format":"int32",
+          "default":1
+        },
+        "usedCount":{
+          "type":"integer",
+          "format":"int32",
+          "default":0
+        },
+        "availableStartAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "availableEndAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "createdAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
+        },
+        "updatedAt":{
+          "type":"string",
+          "format":"date-time",
+          "default":"1992-05-30 00:00:00"
         }
       }
     },
