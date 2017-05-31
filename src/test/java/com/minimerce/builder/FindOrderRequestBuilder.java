@@ -1,6 +1,6 @@
 package com.minimerce.builder;
 
-import com.minimerce.core.api.support.object.order.FindOrderRequest;
+import com.minimerce.core.support.object.order.FindOrderRequest;
 
 /**
  * Created by gemini on 20/04/2017.

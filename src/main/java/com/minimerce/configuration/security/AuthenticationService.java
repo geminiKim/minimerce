@@ -1,8 +1,8 @@
 package com.minimerce.configuration.security;
 
 import com.google.common.collect.Lists;
-import com.minimerce.core.api.domain.client.Client;
-import com.minimerce.core.api.domain.client.ClientRole;
+import com.minimerce.core.domain.client.Client;
+import com.minimerce.core.domain.client.ClientRole;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

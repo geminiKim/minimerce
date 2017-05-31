@@ -1,6 +1,6 @@
 package com.minimerce.configuration.security;
 
-import com.minimerce.core.api.support.util.AES256Utils;
+import com.minimerce.core.support.util.AES256Utils;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;

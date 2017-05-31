@@ -1,8 +1,8 @@
 package com.minimerce.builder;
 
 import com.google.common.collect.Lists;
-import com.minimerce.core.api.domain.order.Order;
-import com.minimerce.core.api.domain.order.option.OrderOption;
+import com.minimerce.core.domain.order.Order;
+import com.minimerce.core.domain.order.option.OrderOption;
 
 import java.time.LocalDateTime;
 import java.util.List;

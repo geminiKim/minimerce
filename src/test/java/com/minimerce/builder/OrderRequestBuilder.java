@@ -1,7 +1,7 @@
 package com.minimerce.builder;
 
-import com.minimerce.core.api.support.object.order.OrderRequest;
-import com.minimerce.core.api.support.object.order.OrderRequestDetail;
+import com.minimerce.core.support.object.order.OrderRequest;
+import com.minimerce.core.support.object.order.OrderRequestDetail;
 import org.assertj.core.util.Lists;
 
 import java.time.LocalDateTime;

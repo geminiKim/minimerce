@@ -1,7 +1,7 @@
 package com.minimerce.configuration.security;
 
-import com.minimerce.core.api.domain.client.Client;
-import com.minimerce.core.api.domain.client.ClientRepository;
+import com.minimerce.core.domain.client.Client;
+import com.minimerce.core.domain.client.ClientRepository;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 

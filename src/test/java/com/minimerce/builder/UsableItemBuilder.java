@@ -1,8 +1,8 @@
 package com.minimerce.builder;
 
-import com.minimerce.core.api.domain.item.usable.UsableItem;
-import com.minimerce.core.api.support.object.type.DealType;
-import com.minimerce.core.api.support.util.Yn;
+import com.minimerce.core.domain.item.usable.UsableItem;
+import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.util.Yn;
 
 import java.time.LocalDateTime;
 
