@@ -1,5 +1,6 @@
 package com.minimerce.core.service.api.order;
 
+import com.minimerce.core.component.item.StockReducer;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderInserter;
 import com.minimerce.core.component.order.OrderMaker;
@@ -19,16 +20,19 @@ public class OrderService {
     private final OrderMaker orderMaker;
     private final OrderInserter orderInserter;
     private final OrderFinder orderFinder;
+    private final StockReducer stockReducer;
 
     @Inject
-    public OrderService(OrderMaker orderMaker, OrderInserter orderInserter, OrderFinder orderFinder) {
+    public OrderService(OrderMaker orderMaker, OrderInserter orderInserter, OrderFinder orderFinder, StockReducer stockReducer) {
         this.orderMaker = orderMaker;
         this.orderInserter = orderInserter;
         this.orderFinder = orderFinder;
+        this.stockReducer = stockReducer;
     }
 
     public Order order(Long clientId, OrderRequest request) {
         Order order = orderMaker.make(clientId, request);
+        stockReducer.reduce(order);
         return orderInserter.insert(order);
     }
 

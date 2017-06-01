@@ -26,7 +26,7 @@ public class OrderServiceTest {
         mockOrderMaker = mock(OrderMaker.class);
         mockOrderInserter = mock(OrderInserter.class);
         mockOrderFinder = mock(OrderFinder.class);
-        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder);
+        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, stockReducer);
     }
 
     @Test
