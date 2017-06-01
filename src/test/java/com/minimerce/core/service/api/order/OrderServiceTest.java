@@ -2,6 +2,7 @@ package com.minimerce.core.service.api.order;
 
 import com.minimerce.builder.FindOrderRequestBuilder;
 import com.minimerce.builder.OrderRequestBuilder;
+import com.minimerce.core.component.item.StockReducer;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderInserter;
 import com.minimerce.core.component.order.OrderMaker;
@@ -20,13 +21,15 @@ public class OrderServiceTest {
     private OrderMaker mockOrderMaker;
     private OrderInserter mockOrderInserter;
     private OrderFinder mockOrderFinder;
+    private StockReducer mockStockReducer;
 
     @Before
     public void setup() {
         mockOrderMaker = mock(OrderMaker.class);
         mockOrderInserter = mock(OrderInserter.class);
         mockOrderFinder = mock(OrderFinder.class);
-        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, stockReducer);
+        mockStockReducer = mock(StockReducer.class);
+        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, mockStockReducer);
     }
 
     @Test
