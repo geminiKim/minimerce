@@ -2,7 +2,7 @@ package com.minimerce.core.service.api.order;
 
 import com.minimerce.builder.FindOrderRequestBuilder;
 import com.minimerce.builder.OrderRequestBuilder;
-import com.minimerce.core.component.item.StockReducer;
+import com.minimerce.core.component.item.StockProcessor;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderInserter;
 import com.minimerce.core.component.order.OrderMaker;
@@ -21,15 +21,15 @@ public class OrderServiceTest {
     private OrderMaker mockOrderMaker;
     private OrderInserter mockOrderInserter;
     private OrderFinder mockOrderFinder;
-    private StockReducer mockStockReducer;
+    private StockProcessor mockStockProcessor;
 
     @Before
     public void setup() {
         mockOrderMaker = mock(OrderMaker.class);
         mockOrderInserter = mock(OrderInserter.class);
         mockOrderFinder = mock(OrderFinder.class);
-        mockStockReducer = mock(StockReducer.class);
-        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, mockStockReducer);
+        mockStockProcessor = mock(StockProcessor.class);
+        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, mockStockProcessor);
     }
 
     @Test
@@ -37,6 +37,7 @@ public class OrderServiceTest {
         OrderRequest request = OrderRequestBuilder.anOrderRequest().build();
         orderService.order(1L, request);
         verify(mockOrderMaker, times(1)).make(1L, request);
+        verify(mockStockProcessor, times(1)).reduce(any());
         verify(mockOrderInserter, times(1)).insert(any());
     }
 

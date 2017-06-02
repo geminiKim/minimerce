@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
  * Created by gemini on 01/06/2017.
  */
 @Component
-public class StockReducer {
+public class StockProcessor {
     public void reduce(Order order) {
-
     }
 }
