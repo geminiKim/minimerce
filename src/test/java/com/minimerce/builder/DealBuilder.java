@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.DealStatus;
 import com.minimerce.core.domain.deal.option.DealOption;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import com.minimerce.core.support.util.Yn;
 
 import java.time.LocalDateTime;
@@ -19,7 +19,7 @@ public final class DealBuilder {
     private LocalDateTime updatedAt = LocalDateTime.now();
     private String name = "Test Deal";
     private String description = "Test Deal Description";
-    private DealType type = DealType.USABLE;
+    private ProductType type = ProductType.USABLE;
     private Yn display = Yn.Y;
     private DealStatus status = DealStatus.SALE;
     private LocalDateTime saleStartAt = LocalDateTime.now();
@@ -65,7 +65,7 @@ public final class DealBuilder {
         return this;
     }
 
-    public DealBuilder withType(DealType type) {
+    public DealBuilder withType(ProductType type) {
         this.type = type;
         return this;
     }

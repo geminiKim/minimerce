@@ -1,10 +1,11 @@
 package com.minimerce.builder;
 
+import com.minimerce.core.domain.item.Item;
 import com.minimerce.core.domain.order.item.OrderItem;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 
 import java.time.LocalDateTime;
 
@@ -17,12 +18,13 @@ public final class OrderItemBuilder {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
     private String title = "Test Order Item";
-    private DealType type = DealType.USABLE;
+    private ProductType type = ProductType.USABLE;
     private int salePrice = 1000;
     private int costPrice = 500;
     private OrderStatus status = OrderStatus.ORDERED;
     private CancelStatus cancelStatus = CancelStatus.NOT_CANCEL;
     private OrderOption option = new OrderOption();
+    private Item item = new Item();
 
 
     private OrderItemBuilder() {
@@ -62,7 +64,7 @@ public final class OrderItemBuilder {
         return this;
     }
 
-    public OrderItemBuilder withType(DealType type) {
+    public OrderItemBuilder withType(ProductType type) {
         this.type = type;
         return this;
     }
@@ -89,7 +91,12 @@ public final class OrderItemBuilder {
     }
 
     public OrderItem build() {
-        OrderItem orderItem = new OrderItem();
+        OrderItem orderItem = new OrderItem() {
+            @Override
+            public Item getItem() {
+                return item;
+            }
+        };
         orderItem.setId(id);
         orderItem.setClientId(clientId);
         orderItem.setCreatedAt(createdAt);

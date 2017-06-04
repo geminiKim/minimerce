@@ -3,7 +3,7 @@ package com.minimerce.core.domain.deal;
 import com.google.common.collect.Lists;
 import com.minimerce.core.domain.BaseDomain;
 import com.minimerce.core.domain.deal.option.DealOption;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import com.minimerce.core.support.util.Yn;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,7 +26,7 @@ public class Deal extends BaseDomain {
     private String description;
     @Column
     @Enumerated(EnumType.STRING)
-    private DealType type;
+    private ProductType type;
     @Column
     @Enumerated(EnumType.STRING)
     private DealStatus status;

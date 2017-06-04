@@ -8,7 +8,7 @@ import com.minimerce.core.domain.order.item.OrderItem;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,7 +29,7 @@ public final class OrderOptionBuilder {
     private Order order = new Order();
     private Deal deal = new Deal();
     private DealOption dealOption = new DealOption();
-    private DealType type = DealType.USABLE;
+    private ProductType type = ProductType.USABLE;
 
     private OrderOptionBuilder() {
     }
@@ -98,7 +98,7 @@ public final class OrderOptionBuilder {
         return this;
     }
 
-    public OrderOptionBuilder withType(DealType type) {
+    public OrderOptionBuilder withType(ProductType type) {
         this.type = type;
         return this;
     }

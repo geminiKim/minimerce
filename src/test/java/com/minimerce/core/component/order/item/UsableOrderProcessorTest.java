@@ -6,7 +6,7 @@ import com.minimerce.core.domain.order.item.usable.UsableOrderItem;
 import com.minimerce.core.domain.order.item.usable.UsableOrderItemRepository;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -54,6 +54,6 @@ public class UsableOrderProcessorTest {
     }
 
     private OrderOption UsableOrderOption() {
-        return OrderOptionBuilder.anOrderOption().withType(DealType.USABLE).build();
+        return OrderOptionBuilder.anOrderOption().withType(ProductType.USABLE).build();
     }
 }

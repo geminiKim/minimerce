@@ -9,7 +9,7 @@ import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.domain.order.item.OrderItem;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,7 +39,7 @@ public class OrderOption extends BaseDomain {
     private String title;
     @Column
     @Enumerated(EnumType.STRING)
-    private DealType type;
+    private ProductType type;
     @Column
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
@@ -62,6 +62,6 @@ public class OrderOption extends BaseDomain {
     }
 
     public void updateStatus() {
-        if(type == DealType.USABLE) status = items.stream().filter(e -> e.getStatus() == OrderStatus.USED).count() > 0 ? OrderStatus.USED : OrderStatus.ORDERED;
+        if(type == ProductType.USABLE) status = items.stream().filter(e -> e.getStatus() == OrderStatus.USED).count() > 0 ? OrderStatus.USED : OrderStatus.ORDERED;
     }
 }

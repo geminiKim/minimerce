@@ -8,7 +8,7 @@ import com.minimerce.core.domain.deal.option.item.DealOptionItem;
 import com.minimerce.core.domain.order.item.OrderItem;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,13 +33,13 @@ public class UsableOrderItemMakerTest {
         DealOptionItem optionItem = DealOptionItemBuilder.aDealOptionItem().build();
         optionItem.setItem(UsableItemBuilder.anUsableItem().build());
 
-        DealOption option = DealOptionBuilder.aDealOption().withType(DealType.USABLE).build();
+        DealOption option = DealOptionBuilder.aDealOption().withType(ProductType.USABLE).build();
         option.addItem(optionItem);
 
         List<OrderItem> items = maker.make(option);
 
         assertThat(items.get(0).getTitle(), is("test-usable-item"));
-        assertThat(items.get(0).getType(), is(DealType.USABLE));
+        assertThat(items.get(0).getType(), is(ProductType.USABLE));
         assertThat(items.get(0).getSalePrice(), is(1000));
         assertThat(items.get(0).getCostPrice(), is(500));
         assertThat(items.get(0).getStatus(), is(OrderStatus.ORDERED));

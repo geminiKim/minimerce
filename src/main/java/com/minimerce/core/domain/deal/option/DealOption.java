@@ -8,7 +8,7 @@ import com.minimerce.core.domain.deal.DealStatus;
 import com.minimerce.core.domain.deal.option.item.DealOptionItem;
 import com.minimerce.core.domain.item.Item;
 import com.minimerce.core.support.object.type.CancelType;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import com.minimerce.core.support.util.Yn;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,7 +35,7 @@ public class DealOption extends BaseDomain {
     private String description;
     @Column
     @Enumerated(EnumType.STRING)
-    private DealType type;
+    private ProductType type;
     @Column
     @Enumerated(EnumType.STRING)
     private DealStatus status;

@@ -32,7 +32,7 @@ public class OrderService {
 
     public Order order(Long clientId, OrderRequest request) {
         Order order = orderMaker.make(clientId, request);
-        stockProcessor.reduce(order);
+        stockProcessor.reduce(request);
         return orderInserter.insert(order);
     }
 

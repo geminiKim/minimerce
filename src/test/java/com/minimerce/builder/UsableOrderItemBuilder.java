@@ -5,7 +5,7 @@ import com.minimerce.core.domain.order.item.usable.UsableOrderItem;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 
 import java.time.LocalDateTime;
 
@@ -24,7 +24,7 @@ public final class UsableOrderItemBuilder {
     private int usedCount = 0;
     private LocalDateTime availableStartAt = LocalDateTime.now();
     private LocalDateTime availableEndAt = LocalDateTime.now();
-    private DealType type = DealType.USABLE;
+    private ProductType type = ProductType.USABLE;
     private OrderStatus status = OrderStatus.ORDERED;
     private CancelStatus cancelStatus = CancelStatus.NOT_CANCEL;
     private int salePrice = 5000;
@@ -92,7 +92,7 @@ public final class UsableOrderItemBuilder {
         return this;
     }
 
-    public UsableOrderItemBuilder withType(DealType type) {
+    public UsableOrderItemBuilder withType(ProductType type) {
         this.type = type;
         return this;
     }

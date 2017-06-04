@@ -1,6 +1,6 @@
 package com.minimerce.core.component.item;
 
-import com.minimerce.core.domain.order.Order;
+import com.minimerce.core.support.object.order.OrderRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,8 +18,8 @@ public class StockProcessor {
         this.reducer = reducer;
     }
 
-    public void reduce(Order order) {
-        List<Stock> stocks = converter.convert(order);
+    public void reduce(OrderRequest request) {
+        List<Stock> stocks = converter.convert(request.getDetails());
         reducer.reduce(stocks);
     }
 }

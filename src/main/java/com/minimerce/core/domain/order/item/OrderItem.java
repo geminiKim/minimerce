@@ -2,10 +2,11 @@ package com.minimerce.core.domain.order.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.core.domain.BaseDomain;
+import com.minimerce.core.domain.item.Item;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +20,7 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorColumn(name = "type")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class OrderItem extends BaseDomain {
+public abstract class OrderItem extends BaseDomain {
     @Column
     private Long clientId;
     @JsonIgnore
@@ -29,7 +30,7 @@ public class OrderItem extends BaseDomain {
     private String title;
     @Column(insertable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    private DealType type;
+    private ProductType type;
     @Column
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
@@ -40,4 +41,6 @@ public class OrderItem extends BaseDomain {
     private int salePrice;
     @Column
     private int costPrice;
+
+    public abstract Item getItem();
 }

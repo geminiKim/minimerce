@@ -1,6 +1,6 @@
 package com.minimerce.core.component.item;
 
-import com.minimerce.builder.OrderBuilder;
+import com.minimerce.builder.OrderRequestBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,7 +26,7 @@ public class StockProcessorTest {
 
     @Test
     public void testShouldBeCallReduce() {
-        stockProcessor.reduce(OrderBuilder.anOrder().build());
+        stockProcessor.reduce(OrderRequestBuilder.anOrderRequest().build());
 
         verify(mockConverter).convert(any());
         verify(mockReducer).reduce(any());

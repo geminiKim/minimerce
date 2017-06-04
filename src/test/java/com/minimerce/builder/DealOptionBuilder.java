@@ -6,7 +6,7 @@ import com.minimerce.core.domain.deal.DealStatus;
 import com.minimerce.core.domain.deal.option.DealOption;
 import com.minimerce.core.domain.deal.option.item.DealOptionItem;
 import com.minimerce.core.support.object.type.CancelType;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import com.minimerce.core.support.util.Yn;
 
 import java.time.LocalDateTime;
@@ -21,7 +21,7 @@ public final class DealOptionBuilder {
     private LocalDateTime updatedAt = LocalDateTime.now();
     private String name = "Test Deal Option";
     private String description = "Test Deal Option Description";
-    private DealType type = DealType.USABLE;
+    private ProductType type = ProductType.USABLE;
     private DealStatus status = DealStatus.SALE;
     private Yn display = Yn.Y;
     private int displayPrice = 15000;
@@ -72,7 +72,7 @@ public final class DealOptionBuilder {
         return this;
     }
 
-    public DealOptionBuilder withType(DealType type) {
+    public DealOptionBuilder withType(ProductType type) {
         this.type = type;
         return this;
     }

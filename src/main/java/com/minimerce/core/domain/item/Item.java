@@ -1,7 +1,7 @@
 package com.minimerce.core.domain.item;
 
 import com.minimerce.core.domain.BaseDomain;
-import com.minimerce.core.support.object.type.DealType;
+import com.minimerce.core.support.object.type.ProductType;
 import com.minimerce.core.support.util.Yn;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class Item extends BaseDomain {
     private String name;
     @Column(insertable = false, updatable = false)
     @Enumerated(EnumType.STRING)
-    private DealType type;
+    private ProductType type;
     @Column
     private int salePrice;
     @Column
