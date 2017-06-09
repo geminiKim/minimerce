@@ -1,5 +1,6 @@
 package com.minimerce.core.component.item;
 
+import com.minimerce.builder.StockBuilder;
 import com.minimerce.core.support.object.type.ProductType;
 import org.assertj.core.util.Lists;
 import org.junit.Before;

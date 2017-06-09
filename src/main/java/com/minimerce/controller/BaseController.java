@@ -1,6 +1,7 @@
 package com.minimerce.controller;
 
 import com.minimerce.core.support.exception.MinimerceException;
+import com.minimerce.core.support.exception.MinimerceSpecificException;
 import com.minimerce.core.support.object.response.ApiResponse;
 import com.minimerce.core.support.object.response.HttpResult;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,11 @@ public class BaseController {
     public ApiResponse handleException(Throwable throwable) {
         log.error(throwable.getMessage(), throwable);
         return ApiResponse.httpError(HttpResult.INTERNAL_SERVER_ERROR);
+    }
+    @ExceptionHandler(MinimerceSpecificException.class)
+    public ApiResponse handleMinimerceSpecificException(MinimerceSpecificException exception) {
+        log.error(exception.getMessage(), exception);
+        return ApiResponse.specificError(exception.getError(), exception.getData());
     }
     @ExceptionHandler(MinimerceException.class)
     public ApiResponse handleMinimerceException(MinimerceException exception) {

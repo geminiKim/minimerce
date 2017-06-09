@@ -34,6 +34,10 @@ public class ApiResponse {
         return of(errorCode, EMPTY_DATA);
     }
 
+    public static ApiResponse specificError(ErrorCode errorCode, Object data) {
+        return of(errorCode, data);
+    }
+
     public ApiResult getResult() {
         return result;
     }

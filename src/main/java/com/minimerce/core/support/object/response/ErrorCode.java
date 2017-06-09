@@ -14,10 +14,11 @@ public enum ErrorCode implements ApiResult {
     NOT_FOUND_ORDER(10003, "Not found order"),
     ALREADY_USE_COMPLETED_ORDER(10004, "Already use complete order"),
     ALREADY_RESTORED_ORDER(10004, "Already restored order"),
+    SHORTAGE_STOCK(10005, "Shortage stock"),
 
     NOT_FOUND_DEAL(20000, "Not found deal"),
     NOT_SALE_DEAL(20001, "Not sale deal"),
-    NOT_DISPLAYED_DEAL(20002, "not displayed deal"),
+    NOT_DISPLAYED_DEAL(20002, "Not displayed deal"),
 
 
     UNKNOWN(-1, "Unknown Error");
