@@ -2,6 +2,7 @@ package com.minimerce.core.component.item;
 
 import com.minimerce.core.support.object.type.ProductType;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -18,6 +19,7 @@ public class StockReducer {
         this.usableStockReducer = usableStockReducer;
     }
 
+    @Transactional
     public void reduce(List<Stock> stocks) {
         for (Stock stock : stocks) {
             if(ProductType.USABLE == stock.getType()) usableStockReducer.reduce(stock);

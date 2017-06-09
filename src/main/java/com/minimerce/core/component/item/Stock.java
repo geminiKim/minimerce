@@ -9,11 +9,13 @@ import lombok.Getter;
 @Getter
 public class Stock {
     private ProductType type;
+    private long optionId;
     private long itemId;
     private int quantity;
 
-    public Stock(ProductType type, long itemId, int quantity) {
+    public Stock(ProductType type, long optionId, long itemId, int quantity) {
         this.type = type;
+        this.optionId = optionId;
         this.itemId = itemId;
         this.quantity = quantity;
     }

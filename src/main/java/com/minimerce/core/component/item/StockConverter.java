@@ -25,7 +25,7 @@ public class StockConverter {
         for(OrderRequestDetail request : requests) {
             DealOption option = saleDealReader.findBySaleDealOption(request.getOptionId());
             for (Item item : option.getOptionItems()) {
-                stocks.add(new Stock(item.getType(), item.getId(), request.getQuantity()));
+                stocks.add(new Stock(item.getType(), option.getId(), item.getId(), request.getQuantity()));
             }
         }
         return stocks;
