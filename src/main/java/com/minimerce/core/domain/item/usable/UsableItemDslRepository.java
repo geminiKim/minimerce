@@ -5,6 +5,7 @@ import com.minimerce.core.support.exception.MinimerceSpecificException;
 import com.minimerce.core.support.object.response.ErrorCode;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by gemini on 25/03/2017.
@@ -15,6 +16,7 @@ public class UsableItemDslRepository extends QueryDslRepositorySupport {
         super(UsableItem.class);
     }
 
+    @Transactional
     public void decreaseStock(Stock stock) {
         long execute = update(QUsableItem.usableItem)
                 .set(QUsableItem.usableItem.stock, QUsableItem.usableItem.stock.subtract(stock.getQuantity()))

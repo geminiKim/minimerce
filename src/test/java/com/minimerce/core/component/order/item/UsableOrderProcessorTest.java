@@ -32,7 +32,7 @@ public class UsableOrderProcessorTest {
     }
 
     @Test
-    public void consume() throws Exception {
+    public void testNotUseItemConsume() {
         UsableOrderItem usableOrder = usableOrderBuilder.withOption(UsableOrderOption()).withUsedCount(0).build();
         when(mockUsableOrderItemRepository.findOne(1L)).thenReturn(usableOrder);
 
@@ -43,7 +43,7 @@ public class UsableOrderProcessorTest {
     }
 
     @Test
-    public void restore() throws Exception {
+    public void testUsedItemRestore() {
         UsableOrderItem usableOrder = usableOrderBuilder.withOption(UsableOrderOption()).withUsedCount(1).build();
         when(mockUsableOrderItemRepository.findOne(1L)).thenReturn(usableOrder);
 

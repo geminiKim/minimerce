@@ -26,7 +26,7 @@ public class AuthenticationService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
-    public List<GrantedAuthority> buildAuthorities(ClientRole role) {
+    private List<GrantedAuthority> buildAuthorities(ClientRole role) {
         if(ClientRole.ADMIN == role) return Lists.newArrayList((GrantedAuthority) () -> ClientRole.ADMIN.name());
         else return Lists.newArrayList((GrantedAuthority) () -> ClientRole.USER.name());
     }

@@ -5,6 +5,7 @@ import com.minimerce.core.component.deal.SaleDealReader;
 import com.minimerce.core.domain.deal.option.DealOption;
 import com.minimerce.core.domain.item.Item;
 import com.minimerce.core.support.object.order.OrderRequestDetail;
+import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * Created by gemini on 03/06/2017.
  */
+@Component
 public class StockConverter {
     private final SaleDealReader saleDealReader;
 
