@@ -21,7 +21,7 @@ public class ClientAuthService {
     }
 
     public Client auth(String keyValue) {
-        Client client = clientRepository.findByApiKey(ApiKeyEncryptUtils.decode(keyValue));
+        Client client = clientRepository.findByApiKey(ApiKeyEncryptUtils.encode(keyValue));
         if(null == client) throw new AccessDeniedException("Invalid Api Key");
         return client;
     }
