@@ -7,9 +7,11 @@ import com.minimerce.core.support.object.response.HttpResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -40,8 +42,10 @@ public class BaseController {
     public ApiResponse handleNotFoundException() {
         return ApiResponse.httpError(HttpResult.NOT_FOUND);
     }
+    @ResponseBody
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public ApiResponse handleNotSupportes(Exception e) {
+    public ApiResponse handleNotSupportes(HttpRequestMethodNotSupportedException e) {
         return ApiResponse.httpError(HttpResult.METHOD_NOT_ALLOWED);
     }
     @ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
