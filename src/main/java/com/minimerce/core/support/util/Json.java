@@ -3,6 +3,8 @@ package com.minimerce.core.support.util;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.minimerce.configuration.MapperConfiguration;
 
+import java.util.Map;
+
 /**
  * Created by gemini on 21/05/2017.
  */
@@ -22,6 +24,14 @@ public class Json {
     public static String toJson(Object object) {
         try {
             return getMapper().writeValueAsString(object);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Map<String, Object> toMap(Object object) {
+        try {
+            return getMapper().convertValue(object, Map.class);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

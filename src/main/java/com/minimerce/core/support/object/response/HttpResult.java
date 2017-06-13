@@ -34,6 +34,7 @@ public class HttpResult implements ApiResult {
         return error;
     }
 
+    public static HttpResult of(HttpStatus status, boolean error) { return new HttpResult(status, error); }
     public static HttpResult OK = new HttpResult(HttpStatus.OK, false);
     public static HttpResult BAD_REQUEST = new HttpResult(HttpStatus.BAD_REQUEST, true);
     public static HttpResult UNAUTHORIZED = new HttpResult(HttpStatus.UNAUTHORIZED, true);
