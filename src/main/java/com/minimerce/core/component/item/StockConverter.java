@@ -1,10 +1,11 @@
 package com.minimerce.core.component.item;
 
 import com.google.common.collect.Lists;
-import com.minimerce.core.component.deal.SaleDealReader;
-import com.minimerce.core.domain.deal.option.DealOption;
-import com.minimerce.core.domain.item.Item;
+import com.minimerce.core.domain.deal.option.Option;
+import com.minimerce.core.domain.deal.option.OptionRepository;
+import com.minimerce.core.support.exception.MinimerceException;
 import com.minimerce.core.support.object.order.OrderRequestDetail;
+import com.minimerce.core.support.object.response.ErrorCode;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -15,20 +16,19 @@ import java.util.List;
  */
 @Component
 public class StockConverter {
-    private final SaleDealReader saleDealReader;
+    private final OptionRepository optionRepository;
 
     @Inject
-    public StockConverter(SaleDealReader saleDealReader) {
-        this.saleDealReader = saleDealReader;
+    public StockConverter(OptionRepository optionRepository) {
+        this.optionRepository = optionRepository;
     }
 
     public List<Stock> convert(List<OrderRequestDetail> requests) {
         List<Stock> stocks = Lists.newArrayList();
         for(OrderRequestDetail request : requests) {
-            DealOption option = saleDealReader.findBySaleDealOption(request.getOptionId());
-            for (Item item : option.getOptionItems()) {
-                stocks.add(new Stock(item.getType(), option.getId(), item.getId(), request.getQuantity()));
-            }
+            Option option = optionRepository.findOne(request.getOptionId());
+            if(null == option) throw new MinimerceException(ErrorCode.NOT_FOUND_DEAL);
+            stocks.add(new Stock(option.getType(), option.getId(), request.getQuantity()));
         }
         return stocks;
     }

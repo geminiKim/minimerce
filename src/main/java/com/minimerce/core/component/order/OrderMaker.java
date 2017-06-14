@@ -46,8 +46,8 @@ public class OrderMaker {
     }
 
     private String buildTitle(List<OrderOption> details) {
-        if(details.size() == 1) return details.get(0).getDealOption().getName();
-        else return details.get(0).getDealOption().getName() + " more " + (details.size() - 1) + " options";
+        if(details.size() == 1) return details.get(0).getOption().getName();
+        else return details.get(0).getOption().getName() + " more " + (details.size() - 1) + " options";
     }
 
     private String buildDealIds(List<OrderOption> details) {

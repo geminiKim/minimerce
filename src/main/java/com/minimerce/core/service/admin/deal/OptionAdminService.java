@@ -2,8 +2,8 @@ package com.minimerce.core.service.admin.deal;
 
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.DealRepository;
-import com.minimerce.core.domain.deal.option.DealOption;
-import com.minimerce.core.domain.deal.option.DealOptionRepository;
+import com.minimerce.core.domain.deal.option.Option;
+import com.minimerce.core.domain.deal.option.OptionRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,35 +16,35 @@ import java.util.List;
  * Created by gemini on 23/04/2017.
  */
 @Service
-public class DealOptionAdminService {
+public class OptionAdminService {
     private final DealRepository dealRepository;
-    private final DealOptionRepository optionRepository;
+    private final OptionRepository optionRepository;
 
     @Inject
-    public DealOptionAdminService(DealRepository dealRepository, DealOptionRepository optionRepository) {
+    public OptionAdminService(DealRepository dealRepository, OptionRepository optionRepository) {
         this.dealRepository = dealRepository;
         this.optionRepository = optionRepository;
     }
 
     @Transactional
-    public DealOption find(Long dealId, Long optionId) {
+    public Option find(Long dealId, Long optionId) {
         return optionRepository.findByDealIdAndId(dealId, optionId);
     }
 
     @Transactional
-    public Page<DealOption> find(Long dealId, Pageable pageable) {
+    public Page<Option> find(Long dealId, Pageable pageable) {
         return optionRepository.findByDealId(pageable, dealId);
     }
 
     @Transactional
-    public void save(long dealId, DealOption option) {
+    public void save(long dealId, Option option) {
         Deal deal = dealRepository.findOne(dealId);
         option.setDeal(deal);
         optionRepository.save(option);
     }
 
     @Transactional
-    public void save(long dealId, List<DealOption> options) {
+    public void save(long dealId, List<Option> options) {
         Deal deal = dealRepository.findOne(dealId);
         options.forEach(e -> e.setDeal(deal));
         optionRepository.save(options);
@@ -52,7 +52,7 @@ public class DealOptionAdminService {
 
     @Transactional
     public void delete(Long dealId, long optionId) {
-        DealOption option = optionRepository.findByDealIdAndId(dealId, optionId);
+        Option option = optionRepository.findByDealIdAndId(dealId, optionId);
         option.delete();
     }
 }

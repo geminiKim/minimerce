@@ -9,7 +9,6 @@ import com.minimerce.core.support.object.type.ProductType;
 public final class StockBuilder {
     private ProductType type = ProductType.USABLE;
     private long optionId = 1L;
-    private long itemId = 1L;
     private int quantity = 1;
 
     private StockBuilder() {
@@ -29,18 +28,13 @@ public final class StockBuilder {
         return this;
     }
 
-    public StockBuilder withItemId(long itemId) {
-        this.itemId = itemId;
-        return this;
-    }
-
     public StockBuilder withQuantity(int quantity) {
         this.quantity = quantity;
         return this;
     }
 
     public Stock build() {
-        Stock stock = new Stock(type, optionId, itemId, quantity);
+        Stock stock = new Stock(type, optionId, quantity);
         return stock;
     }
 }

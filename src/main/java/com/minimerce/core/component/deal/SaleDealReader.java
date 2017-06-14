@@ -3,8 +3,8 @@ package com.minimerce.core.component.deal;
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.DealRepository;
 import com.minimerce.core.domain.deal.DealStatus;
-import com.minimerce.core.domain.deal.option.DealOption;
-import com.minimerce.core.domain.deal.option.DealOptionRepository;
+import com.minimerce.core.domain.deal.option.Option;
+import com.minimerce.core.domain.deal.option.OptionRepository;
 import com.minimerce.core.support.exception.MinimerceException;
 import com.minimerce.core.support.object.response.ErrorCode;
 import com.minimerce.core.support.util.Yn;
@@ -18,12 +18,12 @@ import javax.inject.Inject;
 @Component
 public class SaleDealReader {
     private final DealRepository dealRepository;
-    private final DealOptionRepository dealOptionRepository;
+    private final OptionRepository optionRepository;
 
     @Inject
-    public SaleDealReader(DealRepository dealRepository, DealOptionRepository dealOptionRepository) {
+    public SaleDealReader(DealRepository dealRepository, OptionRepository optionRepository) {
         this.dealRepository = dealRepository;
-        this.dealOptionRepository = dealOptionRepository;
+        this.optionRepository = optionRepository;
     }
 
     public Deal findBySaleDeal(Long dealId) {
@@ -34,8 +34,8 @@ public class SaleDealReader {
         return deal;
     }
 
-    public DealOption findBySaleDealOption(Long optionId) {
-        DealOption option = dealOptionRepository.findOne(optionId);
+    public Option findBySaleOption(Long optionId) {
+        Option option = optionRepository.findOne(optionId);
         if(null == option) throw new MinimerceException(ErrorCode.NOT_FOUND_DEAL);
         if(DealStatus.SALE != option.getStatus()) throw new MinimerceException(ErrorCode.NOT_SALE_DEAL);
         if(Yn.N == option.getDisplay()) throw new MinimerceException(ErrorCode.NOT_DISPLAYED_DEAL);

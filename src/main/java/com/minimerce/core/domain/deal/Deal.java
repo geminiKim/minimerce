@@ -2,7 +2,7 @@ package com.minimerce.core.domain.deal;
 
 import com.google.common.collect.Lists;
 import com.minimerce.core.domain.BaseDomain;
-import com.minimerce.core.domain.deal.option.DealOption;
+import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.support.object.type.ProductType;
 import com.minimerce.core.support.util.Yn;
 import lombok.AccessLevel;
@@ -55,13 +55,13 @@ public class Deal extends BaseDomain {
 
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "deal")
-    public List<DealOption> options = Lists.newArrayList();
+    public List<Option> options = Lists.newArrayList();
 
-    public void addOption(DealOption option) {
+    public void addOption(Option option) {
         option.setDeal(this);
         this.options.add(option);
     }
-    public void addOptions(List<DealOption> options) {
+    public void addOptions(List<Option> options) {
         options.forEach(e -> addOption(e));
     }
 

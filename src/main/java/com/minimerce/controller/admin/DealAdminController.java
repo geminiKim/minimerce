@@ -2,11 +2,9 @@ package com.minimerce.controller.admin;
 
 import com.minimerce.controller.BaseController;
 import com.minimerce.core.domain.deal.Deal;
-import com.minimerce.core.domain.deal.option.DealOption;
-import com.minimerce.core.domain.deal.option.item.DealOptionItem;
+import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.service.admin.deal.DealAdminService;
-import com.minimerce.core.service.admin.deal.DealOptionAdminService;
-import com.minimerce.core.service.admin.deal.DealOptionItemAdminService;
+import com.minimerce.core.service.admin.deal.OptionAdminService;
 import com.minimerce.core.support.object.response.ApiResponse;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +19,12 @@ import java.util.List;
 @RequestMapping(value = "/admin/v1")
 public class DealAdminController extends BaseController {
     private final DealAdminService dealService;
-    private final DealOptionAdminService optionService;
-    private final DealOptionItemAdminService optionItemService;
+    private final OptionAdminService optionService;
 
     @Inject
-    public DealAdminController(DealAdminService dealService, DealOptionAdminService optionService, DealOptionItemAdminService optionItemService) {
+    public DealAdminController(DealAdminService dealService, OptionAdminService optionService) {
         this.dealService = dealService;
         this.optionService = optionService;
-        this.optionItemService = optionItemService;
     }
 
     @GetMapping(value = "/deals")
@@ -65,43 +61,18 @@ public class DealAdminController extends BaseController {
         return ApiResponse.ok(optionService.find(dealId, optionId));
     }
     @PostMapping(value = "/{dealId}/options") @PutMapping(value = "/{dealId}/options")
-    public ApiResponse saveOptions(@PathVariable Long dealId, @RequestBody List<DealOption> options) {
+    public ApiResponse saveOptions(@PathVariable Long dealId, @RequestBody List<Option> options) {
         optionService.save(dealId, options);
         return ApiResponse.ok();
     }
     @PostMapping(value = "/{dealId}/options/{optionId}") @PutMapping(value = "/{dealId}/options/{optionId}")
-    public ApiResponse saveOption(@PathVariable Long dealId, @RequestBody DealOption option) {
+    public ApiResponse saveOption(@PathVariable Long dealId, @RequestBody Option option) {
         optionService.save(dealId, option);
         return ApiResponse.ok();
     }
     @DeleteMapping(value = "/{dealId}/options/{optionId}")
     public ApiResponse deleteOption(@PathVariable Long dealId, @PathVariable Long optionId) {
         optionService.delete(dealId, optionId);
-        return ApiResponse.ok();
-    }
-
-
-    @GetMapping(value = "/options/{optionId}/items")
-    public ApiResponse findOptionItems(@PathVariable Long optionId, Pageable pageable) {
-        return ApiResponse.ok(optionItemService.find(optionId, pageable));
-    }
-    @GetMapping(value = "/options/{optionId}/items/{itemId}")
-    public ApiResponse findOptionItem(@PathVariable Long optionId, @PathVariable Long itemId) {
-        return ApiResponse.ok(optionItemService.find(optionId, itemId));
-    }
-    @PostMapping(value = "/options/{optionId}/items") @PutMapping(value = "/options/{optionId}/items")
-    public ApiResponse saveOptionItems(@PathVariable Long optionId, @RequestBody List<DealOptionItem> optionItems) {
-        optionItemService.save(optionId, optionItems);
-        return ApiResponse.ok();
-    }
-    @PostMapping(value = "/options/{optionId}/items/{itemId}") @PutMapping(value = "/options/{optionId}/items/{itemId}")
-    public ApiResponse saveOptionItem(@PathVariable Long optionId, @RequestBody DealOptionItem optionItem) {
-        optionItemService.save(optionId, optionItem);
-        return ApiResponse.ok();
-    }
-    @DeleteMapping(value = "/options/{optionId}/items/{itemId}")
-    public ApiResponse deleteOptionItem(@PathVariable Long optionId, @PathVariable Long itemId) {
-        optionItemService.delete(optionId, itemId);
         return ApiResponse.ok();
     }
 }

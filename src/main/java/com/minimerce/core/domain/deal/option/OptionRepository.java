@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
  * Created by gemini on 23/03/2017.
  */
 @Repository
-public interface DealOptionRepository extends JpaRepository<DealOption, Long> {
-    Page<DealOption> findByDealId(Pageable pageable, Long dealId);
-    DealOption findByDealIdAndId(Long dealId, Long optionId);
+public interface OptionRepository extends JpaRepository<Option, Long> {
+    Page<Option> findByDealId(Pageable pageable, Long dealId);
+    Option findByDealIdAndId(Long dealId, Long optionId);
 }

@@ -1,17 +1,14 @@
 package com.minimerce.builder;
 
-import com.google.common.collect.Lists;
 import com.minimerce.core.domain.deal.Deal;
-import com.minimerce.core.domain.deal.option.DealOption;
+import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.order.Order;
-import com.minimerce.core.domain.order.item.OrderItem;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
 import com.minimerce.core.support.object.type.ProductType;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Created by gemini on 04/04/2017.
@@ -25,10 +22,9 @@ public final class OrderOptionBuilder {
     private int price = 5000;
     private OrderStatus status = OrderStatus.ORDERED;
     private CancelStatus cancelStatus = CancelStatus.NOT_CANCEL;
-    private List<OrderItem> items = Lists.newArrayList();
     private Order order = new Order();
     private Deal deal = new Deal();
-    private DealOption dealOption = new DealOption();
+    private Option option = new Option();
     private ProductType type = ProductType.USABLE;
 
     private OrderOptionBuilder() {
@@ -88,13 +84,8 @@ public final class OrderOptionBuilder {
         return this;
     }
 
-    public OrderOptionBuilder withDealOption(DealOption dealOption) {
-        this.dealOption = dealOption;
-        return this;
-    }
-
-    public OrderOptionBuilder withItems(List<OrderItem> items) {
-        this.items = items;
+    public OrderOptionBuilder withDealOption(Option option) {
+        this.option = option;
         return this;
     }
 
@@ -114,9 +105,8 @@ public final class OrderOptionBuilder {
         orderDetail.setStatus(status);
         orderDetail.setCancelStatus(cancelStatus);
         orderDetail.setDeal(deal);
-        orderDetail.setDealOption(dealOption);
+        orderDetail.setOption(option);
         orderDetail.setType(type);
-        orderDetail.addItems(items);
         order.addOption(orderDetail);
         return orderDetail;
     }

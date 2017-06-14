@@ -1,8 +1,8 @@
-package com.minimerce.core.domain.order.item.usable;
+package com.minimerce.core.domain.order.option.usable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.minimerce.core.domain.item.usable.UsableItem;
-import com.minimerce.core.domain.order.item.OrderItem;
+import com.minimerce.core.domain.deal.option.usable.UsableOption;
+import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.exception.MinimerceException;
 import com.minimerce.core.support.object.order.OrderStatus;
 import com.minimerce.core.support.object.response.ErrorCode;
@@ -13,16 +13,16 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
- * Created by gemini on 25/03/2017.
+ * Created by gemini on 13/06/2017.
  */
 @Setter
 @Getter
 @Entity
 @DiscriminatorValue("USABLE")
-public class UsableOrderItem extends OrderItem {
+public class UsableOrderOption extends OrderOption {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public UsableItem item;
+    public UsableOption item;
     @Column
     private int usableCount;
     @Column
@@ -36,13 +36,11 @@ public class UsableOrderItem extends OrderItem {
         if(usedCount + 1 > usableCount) throw new MinimerceException(ErrorCode.ALREADY_USE_COMPLETED_ORDER);
         usedCount++;
         setStatus(OrderStatus.USED);
-        option.updateStatus();
     }
 
     public void restore() {
         if(usedCount - 1 < 0) throw new MinimerceException(ErrorCode.ALREADY_RESTORED_ORDER);
         usedCount--;
         setStatus(OrderStatus.ORDERED);
-        option.updateStatus();
     }
 }

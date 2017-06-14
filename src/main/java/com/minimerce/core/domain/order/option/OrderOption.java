@@ -1,21 +1,17 @@
 package com.minimerce.core.domain.order.option;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Lists;
 import com.minimerce.core.domain.BaseDomain;
 import com.minimerce.core.domain.deal.Deal;
-import com.minimerce.core.domain.deal.option.DealOption;
+import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.order.Order;
-import com.minimerce.core.domain.order.item.OrderItem;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
 import com.minimerce.core.support.object.type.ProductType;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by gemini on 25/03/2017.
@@ -23,6 +19,7 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@DiscriminatorColumn(name = "type")
 public class OrderOption extends BaseDomain {
     @Column
     private Long clientId;
@@ -34,10 +31,10 @@ public class OrderOption extends BaseDomain {
     public Deal deal;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public DealOption dealOption;
+    public Option option;
     @Column
     private String title;
-    @Column
+    @Column(insertable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     private ProductType type;
     @Column
@@ -48,20 +45,4 @@ public class OrderOption extends BaseDomain {
     private CancelStatus cancelStatus;
     @Column
     private int price;
-
-    @Setter(AccessLevel.NONE)
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "option")
-    public List<OrderItem> items = Lists.newArrayList();
-
-    public void addItem(OrderItem item) {
-        item.setOption(this);
-        this.items.add(item);
-    }
-    public void addItems(List<OrderItem> items) {
-        items.forEach(e -> addItem(e));
-    }
-
-    public void updateStatus() {
-        if(type == ProductType.USABLE) status = items.stream().filter(e -> e.getStatus() == OrderStatus.USED).count() > 0 ? OrderStatus.USED : OrderStatus.ORDERED;
-    }
 }

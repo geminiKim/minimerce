@@ -3,7 +3,7 @@ package com.minimerce.builder;
 import com.google.common.collect.Lists;
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.DealStatus;
-import com.minimerce.core.domain.deal.option.DealOption;
+import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.support.object.type.ProductType;
 import com.minimerce.core.support.util.Yn;
 
@@ -30,7 +30,7 @@ public final class DealBuilder {
     private int price = 10000;
     private int displayPrice = 15000;
     private String priceUnit = "원";
-    private List<DealOption> options = Lists.newArrayList();
+    private List<Option> options = Lists.newArrayList();
     private Yn deleted = Yn.N;
 
     private DealBuilder() {
@@ -120,7 +120,7 @@ public final class DealBuilder {
         return this;
     }
 
-    public DealBuilder withOptions(List<DealOption> options) {
+    public DealBuilder withOptions(List<Option> options) {
         this.options = options;
         return this;
     }
