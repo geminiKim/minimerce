@@ -6,7 +6,8 @@ import com.minimerce.core.domain.order.OrderRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by gemini on 24/05/2017.
@@ -26,6 +27,6 @@ public class OrderInserterTest {
         Order order = OrderBuilder.anOrder().build();
         inserter.insert(order);
 
-        verify(mockOrderRepository, times(1)).save(order);
+        verify(mockOrderRepository).save(order);
     }
 }

@@ -37,14 +37,14 @@ public class OptionAdminServiceTest {
     @Test
     public void testShouldBeFind() {
         optionService.find(1L, 1L);
-        verify(mockOptionRepository, times(1)).findByDealIdAndId(1L, 1L);
+        verify(mockOptionRepository).findByDealIdAndId(1L, 1L);
     }
 
     @Test
     public void testShouldBeFindWithPageable() {
         Pageable pageable = PageableBuilder.aPageable().build();
         optionService.find(1L, pageable);
-        verify(mockOptionRepository, times(1)).findByDealId(pageable, 1L);
+        verify(mockOptionRepository).findByDealId(pageable, 1L);
     }
 
     @Test
@@ -54,8 +54,8 @@ public class OptionAdminServiceTest {
 
         List<Option> options = Lists.newArrayList(OptionBuilder.anOption().build());
         optionService.save(1L, options);
-        verify(mockDealRepository, times(1)).findOne(1L);
-        verify(mockOptionRepository, times(1)).save(options);
+        verify(mockDealRepository).findOne(1L);
+        verify(mockOptionRepository).save(options);
     }
 
     @Test
@@ -65,8 +65,8 @@ public class OptionAdminServiceTest {
 
         Option option = OptionBuilder.anOption().build();
         optionService.save(1L, option);
-        verify(mockDealRepository, times(1)).findOne(1L);
-        verify(mockOptionRepository, times(1)).save(option);
+        verify(mockDealRepository).findOne(1L);
+        verify(mockOptionRepository).save(option);
     }
 
     @Test

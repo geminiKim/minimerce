@@ -32,28 +32,28 @@ public class DealAdminServiceTest {
     @Test
     public void testShouldBeFind() {
         dealAdminService.find(1L);
-        verify(mockDealRepository, times(1)).findOne(1L);
+        verify(mockDealRepository).findOne(1L);
     }
 
     @Test
     public void testShouldBeFindWithPageable() {
         Pageable pageable = PageableBuilder.aPageable().build();
         dealAdminService.find(pageable);
-        verify(mockDealRepository, times(1)).findAll(pageable);
+        verify(mockDealRepository).findAll(pageable);
     }
 
     @Test
     public void testShouldBeSaveDeals() {
         List<Deal> deals = Lists.newArrayList(DealBuilder.aDeal().build());
         dealAdminService.save(deals);
-        verify(mockDealRepository, times(1)).save(deals);
+        verify(mockDealRepository).save(deals);
     }
 
     @Test
     public void testShouldBeSaveDeal() {
         Deal deal = DealBuilder.aDeal().build();
         dealAdminService.save(deal);
-        verify(mockDealRepository, times(1)).save(deal);
+        verify(mockDealRepository).save(deal);
     }
 
     @Test

@@ -36,21 +36,21 @@ public class OrderServiceTest {
     public void testShouldBeCallOrder() {
         OrderRequest request = OrderRequestBuilder.anOrderRequest().build();
         orderService.order(1L, request);
-        verify(mockOrderMaker, times(1)).make(1L, request);
-        verify(mockStockProcessor, times(1)).reduce(any());
-        verify(mockOrderInserter, times(1)).insert(any());
+        verify(mockOrderMaker).make(1L, request);
+        verify(mockStockProcessor).reduce(any());
+        verify(mockOrderInserter).insert(any());
     }
 
     @Test
     public void testShouldBeCallFindOrders() {
         FindOrderRequest request = FindOrderRequestBuilder.aFindOrderRequest().build();
         orderService.findOrder(1L, request);
-        verify(mockOrderFinder, times(1)).findOrder(1L, request);
+        verify(mockOrderFinder).findOrder(1L, request);
     }
 
     @Test
     public void testShouldBeCallFindOrder() {
         orderService.findCustomerOrders(1L, 5L);
-        verify(mockOrderFinder, times(1)).findOrders(1L, 5L);
+        verify(mockOrderFinder).findOrders(1L, 5L);
     }
 }

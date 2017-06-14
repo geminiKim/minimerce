@@ -8,7 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by gemini on 20/04/2017.
@@ -38,20 +39,20 @@ public class OrderFinderTest {
     public void testShouldBeFindByOrderId() {
         FindOrderRequest request = FindOrderRequestBuilder.aFindOrderRequest().withOrderId(500L).build();
         finder.findOrder(1L, request);
-        verify(mockOrderRepository, times(1)).findByClientIdAndId(1L, 500L);
+        verify(mockOrderRepository).findByClientIdAndId(1L, 500L);
     }
 
     @Test
     public void testShouldBeFindByClientOrderId() {
         FindOrderRequest request = FindOrderRequestBuilder.aFindOrderRequest().withClientOrderId(400L).build();
         finder.findOrder(1L, request);
-        verify(mockOrderRepository, times(1)).findByClientIdAndClientOrderId(1L, 400L);
+        verify(mockOrderRepository).findByClientIdAndClientOrderId(1L, 400L);
     }
 
     @Test
     public void testShouldBeFindByCustomerId() {
         finder.findOrders(1L, 2L);
-        verify(mockOrderRepository, times(1)).findByClientIdAndCustomerId(1L, 2L);
+        verify(mockOrderRepository).findByClientIdAndCustomerId(1L, 2L);
     }
 
 }
