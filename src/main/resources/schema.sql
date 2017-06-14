@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `order_option` (
 
 CREATE TABLE IF NOT EXISTS `usable_option` (
   `id` bigint(20) NOT NULL,
-  `normalPrice` int(11) NOT NULL,
+  `normal_price` int(11) NOT NULL,
   `sale_price` int(11) NOT NULL,
   `cost_price` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
