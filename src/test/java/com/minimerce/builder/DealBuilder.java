@@ -27,8 +27,8 @@ public final class DealBuilder {
     private String informationJson = "{}";
     private String imageJson = "{}";
     private String thumbnailJson = "{}";
-    private int price = 10000;
-    private int displayPrice = 15000;
+    private int salePrice = 10000;
+    private int normalPrice = 15000;
     private String priceUnit = "원";
     private List<Option> options = Lists.newArrayList();
     private Yn deleted = Yn.N;
@@ -105,13 +105,13 @@ public final class DealBuilder {
         return this;
     }
 
-    public DealBuilder withPrice(int salePrice) {
-        this.price = salePrice;
+    public DealBuilder withSalePrice(int salePrice) {
+        this.salePrice = salePrice;
         return this;
     }
 
-    public DealBuilder withDisplayPrice(int displayPrice) {
-        this.displayPrice = displayPrice;
+    public DealBuilder withNormalPrice(int displayPrice) {
+        this.normalPrice = displayPrice;
         return this;
     }
 
@@ -145,8 +145,8 @@ public final class DealBuilder {
         deal.setInformationJson(informationJson);
         deal.setImageJson(imageJson);
         deal.setThumbnailJson(thumbnailJson);
-        deal.setPrice(price);
-        deal.setDisplayPrice(displayPrice);
+        deal.setSalePrice(salePrice);
+        deal.setNormalPrice(normalPrice);
         deal.setPriceUnit(priceUnit);
         deal.addOptions(options);
         deal.setDeleted(deleted);

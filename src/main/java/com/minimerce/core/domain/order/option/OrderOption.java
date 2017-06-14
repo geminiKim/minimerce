@@ -3,7 +3,6 @@ package com.minimerce.core.domain.order.option;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.core.domain.BaseDomain;
 import com.minimerce.core.domain.deal.Deal;
-import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.support.object.order.CancelStatus;
 import com.minimerce.core.support.object.order.OrderStatus;
@@ -29,9 +28,6 @@ public class OrderOption extends BaseDomain {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     public Deal deal;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Option option;
     @Column
     private String title;
     @Column(insertable = false, updatable = false)
@@ -44,5 +40,7 @@ public class OrderOption extends BaseDomain {
     @Enumerated(EnumType.STRING)
     private CancelStatus cancelStatus;
     @Column
-    private int price;
+    private int salePrice;
+    @Column
+    private int costPrice;
 }

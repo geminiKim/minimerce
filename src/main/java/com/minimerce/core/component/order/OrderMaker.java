@@ -42,12 +42,12 @@ public class OrderMaker {
     }
 
     private int getPrice(List<OrderOption> details) {
-        return details.stream().mapToInt(e -> e.getPrice()).sum();
+        return details.stream().mapToInt(e -> e.getSalePrice()).sum();
     }
 
     private String buildTitle(List<OrderOption> details) {
-        if(details.size() == 1) return details.get(0).getOption().getName();
-        else return details.get(0).getOption().getName() + " more " + (details.size() - 1) + " options";
+        if(details.size() == 1) return details.get(0).getTitle();
+        else return details.get(0).getTitle() + " more " + (details.size() - 1) + " options";
     }
 
     private String buildDealIds(List<OrderOption> details) {

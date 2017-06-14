@@ -43,7 +43,6 @@ public class OrderOptionMaker {
                 order.setStatus(OrderStatus.ORDERED);
                 order.setCancelStatus(CancelStatus.NOT_CANCEL);
                 order.setDeal(deal);
-                order.setOption(option);
 //                order.setPrice(option.getOptionItems().stream().mapToInt(e -> e.getSalePrice()));
 //                order.addItems(ImmutableList.copyOf(items));
                 orders.add(order);

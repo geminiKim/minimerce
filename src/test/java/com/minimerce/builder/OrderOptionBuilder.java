@@ -1,7 +1,6 @@
 package com.minimerce.builder;
 
 import com.minimerce.core.domain.deal.Deal;
-import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.object.order.CancelStatus;
@@ -19,12 +18,12 @@ public final class OrderOptionBuilder {
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime updatedAt = LocalDateTime.now();
     private String title = "Test Order Detail";
-    private int price = 5000;
+    private int salePrice = 5000;
+    private int costPrice = 300;
     private OrderStatus status = OrderStatus.ORDERED;
     private CancelStatus cancelStatus = CancelStatus.NOT_CANCEL;
     private Order order = new Order();
     private Deal deal = new Deal();
-    private Option option = new Option();
     private ProductType type = ProductType.USABLE;
 
     private OrderOptionBuilder() {
@@ -64,8 +63,13 @@ public final class OrderOptionBuilder {
         return this;
     }
 
-    public OrderOptionBuilder withPrice(int price) {
-        this.price = price;
+    public OrderOptionBuilder withSalePrice(int salePrice) {
+        this.salePrice = salePrice;
+        return this;
+    }
+
+    public OrderOptionBuilder withCostPrice(int costPrice) {
+        this.costPrice = costPrice;
         return this;
     }
 
@@ -84,11 +88,6 @@ public final class OrderOptionBuilder {
         return this;
     }
 
-    public OrderOptionBuilder withDealOption(Option option) {
-        this.option = option;
-        return this;
-    }
-
     public OrderOptionBuilder withType(ProductType type) {
         this.type = type;
         return this;
@@ -101,11 +100,11 @@ public final class OrderOptionBuilder {
         orderDetail.setCreatedAt(createdAt);
         orderDetail.setUpdatedAt(updatedAt);
         orderDetail.setTitle(title);
-        orderDetail.setPrice(price);
+        orderDetail.setSalePrice(salePrice);
+        orderDetail.setCostPrice(costPrice);
         orderDetail.setStatus(status);
         orderDetail.setCancelStatus(cancelStatus);
         orderDetail.setDeal(deal);
-        orderDetail.setOption(option);
         orderDetail.setType(type);
         order.addOption(orderDetail);
         return orderDetail;

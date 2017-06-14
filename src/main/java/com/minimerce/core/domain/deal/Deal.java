@@ -31,9 +31,9 @@ public class Deal extends BaseDomain {
     @Enumerated(EnumType.STRING)
     private DealStatus status;
     @Column
-    private int displayPrice;
+    private int normalPrice;
     @Column
-    private int price;
+    private int salePrice;
     @Column
     private String priceUnit;
     @Column

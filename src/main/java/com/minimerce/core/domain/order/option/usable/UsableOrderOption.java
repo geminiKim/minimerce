@@ -22,11 +22,11 @@ import java.time.LocalDateTime;
 public class UsableOrderOption extends OrderOption {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public UsableOption item;
-    @Column
-    private int usableCount;
+    public UsableOption option;
     @Column
     private int usedCount;
+    @Column
+    private int usableCount;
     @Column
     private LocalDateTime availableStartAt;
     @Column
