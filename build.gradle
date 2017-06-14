@@ -50,6 +50,23 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
+
+/**** Boot Run Tasks ****/
+task dev(type: org.springframework.boot.gradle.run.BootRunTask, group: 'application') {
+	doFirst() {
+		main = project.mainClassName
+		classpath = sourceSets.main.runtimeClasspath
+		systemProperty 'spring.profiles.active', 'dev'
+	}
+}
+task production(type: org.springframework.boot.gradle.run.BootRunTask, group: 'application') {
+	doFirst() {
+		main = project.mainClassName
+		classpath = sourceSets.main.runtimeClasspath
+		systemProperty 'spring.profiles.active', 'production'
+	}
+}
+
 /**** Test Tasks ****/
 test {
 	useJUnit {
