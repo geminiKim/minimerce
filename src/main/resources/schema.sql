@@ -81,7 +81,6 @@ CREATE TABLE IF NOT EXISTS `order_option` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_DEAL_ID` (`deal_id`),
-  KEY `IDX_OPTION_ID` (`option_id`),
   KEY `IDX_ORDER_ID` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
