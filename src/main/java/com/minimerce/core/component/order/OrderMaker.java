@@ -1,5 +1,6 @@
 package com.minimerce.core.component.order;
 
+import com.minimerce.core.component.order.option.OrderOptionMaker;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.support.exception.MinimerceException;

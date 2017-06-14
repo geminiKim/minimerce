@@ -1,4 +1,4 @@
-package com.minimerce.core.component.order.usable;
+package com.minimerce.core.component.order.option.usable;
 
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.option.OrderOption;

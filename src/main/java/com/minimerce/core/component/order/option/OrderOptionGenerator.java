@@ -1,6 +1,6 @@
-package com.minimerce.core.component.order;
+package com.minimerce.core.component.order.option;
 
-import com.minimerce.core.component.order.usable.UsableOrderOptionGenerator;
+import com.minimerce.core.component.order.option.usable.UsableOrderOptionGenerator;
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.option.OrderOption;

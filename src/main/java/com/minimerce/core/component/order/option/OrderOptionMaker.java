@@ -1,4 +1,4 @@
-package com.minimerce.core.component.order;
+package com.minimerce.core.component.order.option;
 
 import com.google.common.collect.Lists;
 import com.minimerce.core.component.deal.SaleDealReader;
