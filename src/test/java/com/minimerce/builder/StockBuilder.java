@@ -1,6 +1,6 @@
 package com.minimerce.builder;
 
-import com.minimerce.core.component.item.Stock;
+import com.minimerce.core.component.stock.Stock;
 import com.minimerce.core.support.object.type.ProductType;
 
 /**

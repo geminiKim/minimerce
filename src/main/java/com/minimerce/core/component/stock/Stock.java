@@ -1,4 +1,4 @@
-package com.minimerce.core.component.item;
+package com.minimerce.core.component.stock;
 
 import com.minimerce.core.support.object.type.ProductType;
 import lombok.Getter;

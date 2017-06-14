@@ -1,4 +1,4 @@
-package com.minimerce.core.component.item;
+package com.minimerce.core.component.stock;
 
 import com.minimerce.builder.OrderRequestBuilder;
 import org.junit.Before;

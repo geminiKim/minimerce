@@ -1,6 +1,6 @@
 package com.minimerce.core.domain.deal.option.usable;
 
-import com.minimerce.core.component.item.Stock;
+import com.minimerce.core.component.stock.Stock;
 import com.minimerce.core.support.exception.MinimerceSpecificException;
 import com.minimerce.core.support.object.response.ErrorCode;
 import org.springframework.data.jpa.repository.support.QueryDslRepositorySupport;

@@ -2,10 +2,10 @@ package com.minimerce.core.service.api.order;
 
 import com.minimerce.builder.FindOrderRequestBuilder;
 import com.minimerce.builder.OrderRequestBuilder;
-import com.minimerce.core.component.item.StockProcessor;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderInserter;
 import com.minimerce.core.component.order.OrderMaker;
+import com.minimerce.core.component.stock.StockProcessor;
 import com.minimerce.core.support.object.order.FindOrderRequest;
 import com.minimerce.core.support.object.order.OrderRequest;
 import org.junit.Before;

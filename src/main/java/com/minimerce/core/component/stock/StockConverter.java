@@ -1,4 +1,4 @@
-package com.minimerce.core.component.item;
+package com.minimerce.core.component.stock;
 
 import com.google.common.collect.Lists;
 import com.minimerce.core.domain.deal.option.Option;
