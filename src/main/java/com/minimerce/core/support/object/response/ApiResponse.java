@@ -4,8 +4,6 @@ package com.minimerce.core.support.object.response;
  * Created by gemini on 21/05/2017.
  */
 public class ApiResponse {
-    private final static Object EMPTY_DATA = new Object();
-
     private final ApiResult result;
     private final Object data;
 
@@ -23,15 +21,15 @@ public class ApiResponse {
     }
 
     public static ApiResponse ok() {
-        return of(HttpResult.OK, EMPTY_DATA);
+        return of(HttpResult.OK, null);
     }
 
     public static ApiResponse httpError(HttpResult httpResult) {
-        return of(httpResult, EMPTY_DATA);
+        return of(httpResult, null);
     }
 
     public static ApiResponse error(ErrorCode errorCode) {
-        return of(errorCode, EMPTY_DATA);
+        return of(errorCode, null);
     }
 
     public static ApiResponse specificError(ErrorCode errorCode, Object data) {
