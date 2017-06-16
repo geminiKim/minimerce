@@ -36,12 +36,12 @@ public class SaleDealReader {
 
     public Option findBySaleOption(Long optionId) {
         Option option = optionRepository.findOne(optionId);
-        if(null == option) throw new MinimerceException(ErrorCode.NOT_FOUND_DEAL);
+        if(null == option) throw new MinimerceException(ErrorCode.NOT_FOUND_OPTION);
         if(null == option.getDeal()) throw new MinimerceException(ErrorCode.NOT_FOUND_DEAL);
         if(DealStatus.SALE != option.getDeal().getStatus()) throw new MinimerceException(ErrorCode.NOT_SALE_DEAL);
-        if(DealStatus.SALE != option.getStatus()) throw new MinimerceException(ErrorCode.NOT_SALE_DEAL);
+        if(DealStatus.SALE != option.getStatus()) throw new MinimerceException(ErrorCode.NOT_SALE_OPTION);
         if(Yn.N == option.getDeal().getDisplay()) throw new MinimerceException(ErrorCode.NOT_DISPLAYED_DEAL);
-        if(Yn.N == option.getDisplay()) throw new MinimerceException(ErrorCode.NOT_DISPLAYED_DEAL);
+        if(Yn.N == option.getDisplay()) throw new MinimerceException(ErrorCode.NOT_DISPLAYED_OPTION);
         return option;
     }
 }

@@ -27,7 +27,7 @@ public class StockConverter {
         List<Stock> stocks = Lists.newArrayList();
         for(OrderRequestDetail request : requests) {
             Option option = optionRepository.findOne(request.getOptionId());
-            if(null == option) throw new MinimerceException(ErrorCode.NOT_FOUND_DEAL);
+            if(null == option) throw new MinimerceException(ErrorCode.NOT_FOUND_OPTION);
             stocks.add(new Stock(option.getType(), option.getId(), request.getQuantity()));
         }
         return stocks;

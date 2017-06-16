@@ -20,6 +20,10 @@ public enum ErrorCode implements ApiResult {
     NOT_SALE_DEAL(20001, "Not sale deal"),
     NOT_DISPLAYED_DEAL(20002, "Not displayed deal"),
 
+    NOT_FOUND_OPTION(20003, "Not found option"),
+    NOT_SALE_OPTION(20004, "Not sale option"),
+    NOT_DISPLAYED_OPTION(20005, "Not displayed option"),
+
 
     UNKNOWN(-1, "Unknown Error");
 

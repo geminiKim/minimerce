@@ -21,13 +21,11 @@ public final class OptionBuilder {
     private ProductType type = ProductType.USABLE;
     private DealStatus status = DealStatus.SALE;
     private Yn display = Yn.Y;
-    private int displayPrice = 15000;
     private String priceUnit = "원";
     private CancelType cancelType = CancelType.APPROVE;
     private String informationJson = "{}";
     private String imageJson = "{}";
     private String thumbnailJson = "{}";
-    private int sort = 0;
     private Deal deal = new Deal();
     private Yn deleted = Yn.N;
 
@@ -83,11 +81,6 @@ public final class OptionBuilder {
         return this;
     }
 
-    public OptionBuilder withDisplayPrice(int displayPrice) {
-        this.displayPrice = displayPrice;
-        return this;
-    }
-
     public OptionBuilder withPriceUnit(String priceUnit) {
         this.priceUnit = priceUnit;
         return this;
@@ -110,11 +103,6 @@ public final class OptionBuilder {
 
     public OptionBuilder withThumbnailJson(String thumbnailJson) {
         this.thumbnailJson = thumbnailJson;
-        return this;
-    }
-
-    public OptionBuilder withSort(int sort) {
-        this.sort = sort;
         return this;
     }
 
