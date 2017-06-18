@@ -24,7 +24,7 @@ public class OrderOptionGenerator {
     }
 
     public OrderOption generate(Long clientId, Option option) {
-        if(ProductType.USABLE == option.getType()) usableOrderOptionGenerator.generate(clientId, (UsableOption) option);
+        if(ProductType.USABLE == option.getType()) return usableOrderOptionGenerator.generate(clientId, (UsableOption) option);
         throw new MinimerceException(ErrorCode.NOT_SUPPORTED_PRODUCT_TYPE);
     }
 }

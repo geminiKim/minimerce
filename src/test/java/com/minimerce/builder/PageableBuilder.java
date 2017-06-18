@@ -36,7 +36,7 @@ public final class PageableBuilder {
 
             @Override
             public int getPageSize() {
-                return pageNumber;
+                return pageSize;
             }
 
             @Override
