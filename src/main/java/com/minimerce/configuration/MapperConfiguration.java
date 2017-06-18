@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
@@ -30,6 +31,7 @@ public class MapperConfiguration {
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        mapper.registerModule(getHibernate5Module());
         mapper.registerModule(getJavaTimeModule());
         return mapper;
     }
@@ -39,5 +41,12 @@ public class MapperConfiguration {
         javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DATE_TIME_FORMATTER));
         javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DATE_TIME_FORMATTER));
         return javaTimeModule;
+    }
+
+    private Hibernate5Module getHibernate5Module() {
+        Hibernate5Module hibernate5Module = new Hibernate5Module();
+        hibernate5Module.disable(Hibernate5Module.Feature.USE_TRANSIENT_ANNOTATION);
+        hibernate5Module.enable(Hibernate5Module.Feature.FORCE_LAZY_LOADING);
+        return hibernate5Module;
     }
 }
