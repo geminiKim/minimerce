@@ -1,15 +1,19 @@
 package com.minimerce.core.support.object.response;
 
+import java.time.LocalDateTime;
+
 /**
  * Created by gemini on 21/05/2017.
  */
 public class ApiResponse {
     private final ApiResult result;
     private final Object data;
+    private final LocalDateTime timestamp;
 
     private ApiResponse(ApiResult result, Object data) {
         this.result = result;
         this.data = data;
+        this.timestamp = LocalDateTime.now();
     }
 
     private static ApiResponse of(ApiResult result, Object data) {
@@ -42,5 +46,9 @@ public class ApiResponse {
 
     public Object getData() {
         return data;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 }

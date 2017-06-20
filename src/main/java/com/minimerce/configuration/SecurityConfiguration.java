@@ -1,5 +1,7 @@
-package com.minimerce.configuration.security;
+package com.minimerce.configuration;
 
+import com.minimerce.configuration.security.AuthenticationFilter;
+import com.minimerce.configuration.security.AuthenticationService;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -37,6 +39,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/docs", "/v1/docs", "/swagger-ui.html", "/swagger-resources/**", "/webjars/springfox-swagger-ui/**");
+        web.ignoring().antMatchers("/v2/api-docs", "/swagger-ui.html", "/swagger-resources/**", "/webjars/springfox-swagger-ui/**");
     }
 }
