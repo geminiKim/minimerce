@@ -9,10 +9,10 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by gemini on 21/05/2017.
  */
-public class ApiResponseTest {
+public class MinimerceApiResponseTest {
     @Test
     public void testApiResponseBadRequestJsonFormat() {
-        ApiResponse response = ApiResponse.httpError(HttpResult.BAD_REQUEST);
+        MinimerceApiResponse response = MinimerceApiResponse.httpError(HttpResult.BAD_REQUEST);
         System.out.println(Json.toJson(response));
         assertThat(response.getResult().getStatus(), is(400));
         assertThat(response.getResult().getCode(), is(400));
@@ -21,7 +21,7 @@ public class ApiResponseTest {
     }
     @Test
     public void testApiResponseUnknownErrorJsonFormat() {
-        ApiResponse response = ApiResponse.error(ErrorCode.UNKNOWN);
+        MinimerceApiResponse response = MinimerceApiResponse.error(ErrorCode.UNKNOWN);
         System.out.println(Json.toJson(response));
         assertThat(response.getResult().getStatus(), is(500));
         assertThat(response.getResult().getCode(), is(-1));
@@ -30,7 +30,7 @@ public class ApiResponseTest {
     }
     @Test
     public void testApiResponseOkJsonFormat() {
-        ApiResponse response = ApiResponse.ok(new Object());
+        MinimerceApiResponse response = MinimerceApiResponse.ok(new Object());
         System.out.println(Json.toJson(response));
         assertThat(response.getResult().getStatus(), is(200));
         assertThat(response.getResult().getCode(), is(200));

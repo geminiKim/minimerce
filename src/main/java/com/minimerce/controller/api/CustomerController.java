@@ -4,7 +4,7 @@ import com.minimerce.controller.BaseController;
 import com.minimerce.core.domain.client.Client;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.service.api.order.OrderService;
-import com.minimerce.core.support.object.response.ApiResponse;
+import com.minimerce.core.support.object.response.MinimerceApiResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -29,8 +29,8 @@ public class CustomerController extends BaseController {
     }
 
     @GetMapping(value = "/{customerId}/orders")
-    public ApiResponse findCustomerOrders(@AuthenticationPrincipal Client client, @PathVariable Long customerId, Pageable page)  {
+    public MinimerceApiResponse findCustomerOrders(@AuthenticationPrincipal Client client, @PathVariable Long customerId, Pageable page)  {
         Page<Order> orders = orderService.findCustomerOrders(client.getId(), customerId, page);
-        return ApiResponse.ok(orders);
+        return MinimerceApiResponse.ok(orders);
     }
 }

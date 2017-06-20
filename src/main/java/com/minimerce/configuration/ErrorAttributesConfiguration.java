@@ -1,7 +1,7 @@
 package com.minimerce.configuration;
 
-import com.minimerce.core.support.object.response.ApiResponse;
 import com.minimerce.core.support.object.response.HttpResult;
+import com.minimerce.core.support.object.response.MinimerceApiResponse;
 import com.minimerce.core.support.util.Json;
 import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
 import org.springframework.context.annotation.Configuration;
@@ -19,9 +19,9 @@ public class ErrorAttributesConfiguration extends DefaultErrorAttributes {
     public Map<String, Object> getErrorAttributes(RequestAttributes requestAttributes, boolean includeStackTrace) {
         try {
             HttpStatus statusCode = HttpStatus.valueOf((Integer) requestAttributes.getAttribute("javax.servlet.error.status_code", RequestAttributes.SCOPE_REQUEST));
-            return Json.toMap(ApiResponse.httpError(HttpResult.of(statusCode, true)));
+            return Json.toMap(MinimerceApiResponse.httpError(HttpResult.of(statusCode, true)));
         } catch (Exception e) {
-            return Json.toMap(ApiResponse.httpError(HttpResult.INTERNAL_SERVER_ERROR));
+            return Json.toMap(MinimerceApiResponse.httpError(HttpResult.INTERNAL_SERVER_ERROR));
         }
     }
 }

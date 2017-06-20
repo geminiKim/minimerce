@@ -5,38 +5,38 @@ import java.time.LocalDateTime;
 /**
  * Created by gemini on 21/05/2017.
  */
-public class ApiResponse {
+public class MinimerceApiResponse {
     private final ApiResult result;
     private final Object data;
     private final LocalDateTime timestamp;
 
-    private ApiResponse(ApiResult result, Object data) {
+    private MinimerceApiResponse(ApiResult result, Object data) {
         this.result = result;
         this.data = data;
         this.timestamp = LocalDateTime.now();
     }
 
-    private static ApiResponse of(ApiResult result, Object data) {
-        return new ApiResponse(result, data);
+    private static MinimerceApiResponse of(ApiResult result, Object data) {
+        return new MinimerceApiResponse(result, data);
     }
 
-    public static ApiResponse ok(Object data) {
+    public static MinimerceApiResponse ok(Object data) {
         return of(HttpResult.OK, data);
     }
 
-    public static ApiResponse ok() {
+    public static MinimerceApiResponse ok() {
         return of(HttpResult.OK, null);
     }
 
-    public static ApiResponse httpError(HttpResult httpResult) {
+    public static MinimerceApiResponse httpError(HttpResult httpResult) {
         return of(httpResult, null);
     }
 
-    public static ApiResponse error(ErrorCode errorCode) {
+    public static MinimerceApiResponse error(ErrorCode errorCode) {
         return of(errorCode, null);
     }
 
-    public static ApiResponse specificError(ErrorCode errorCode, Object data) {
+    public static MinimerceApiResponse specificError(ErrorCode errorCode, Object data) {
         return of(errorCode, data);
     }
 

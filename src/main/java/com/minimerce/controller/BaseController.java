@@ -2,8 +2,8 @@ package com.minimerce.controller;
 
 import com.minimerce.core.support.exception.MinimerceException;
 import com.minimerce.core.support.exception.MinimerceSpecificException;
-import com.minimerce.core.support.object.response.ApiResponse;
 import com.minimerce.core.support.object.response.HttpResult;
+import com.minimerce.core.support.object.response.MinimerceApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
@@ -22,49 +22,49 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class BaseController {
     @ExceptionHandler(TypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiResponse handleBadRequestException(TypeMismatchException e) {
-        return ApiResponse.httpError(HttpResult.BAD_REQUEST);
+    public MinimerceApiResponse handleBadRequestException(TypeMismatchException e) {
+        return MinimerceApiResponse.httpError(HttpResult.BAD_REQUEST);
     }
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ApiResponse handleRequestParameterException(MissingServletRequestParameterException e) {
-        return ApiResponse.httpError(HttpResult.BAD_REQUEST);
+    public MinimerceApiResponse handleRequestParameterException(MissingServletRequestParameterException e) {
+        return MinimerceApiResponse.httpError(HttpResult.BAD_REQUEST);
     }
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ApiResponse handleUnauthorized() {
-        return ApiResponse.httpError(HttpResult.UNAUTHORIZED);
+    public MinimerceApiResponse handleUnauthorized() {
+        return MinimerceApiResponse.httpError(HttpResult.UNAUTHORIZED);
     }
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ApiResponse handleForbidden() {
-        return ApiResponse.httpError(HttpResult.FORBIDDEN);
+    public MinimerceApiResponse handleForbidden() {
+        return MinimerceApiResponse.httpError(HttpResult.FORBIDDEN);
     }
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiResponse handleNotFoundException() {
-        return ApiResponse.httpError(HttpResult.NOT_FOUND);
+    public MinimerceApiResponse handleNotFoundException() {
+        return MinimerceApiResponse.httpError(HttpResult.NOT_FOUND);
     }
     @ResponseBody
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public ApiResponse handleNotSupportes(HttpRequestMethodNotSupportedException e) {
-        return ApiResponse.httpError(HttpResult.METHOD_NOT_ALLOWED);
+    public MinimerceApiResponse handleNotSupportes(HttpRequestMethodNotSupportedException e) {
+        return MinimerceApiResponse.httpError(HttpResult.METHOD_NOT_ALLOWED);
     }
     @ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
-    public ApiResponse handleRequestTimeout() {
-        return ApiResponse.httpError(HttpResult.REQUEST_TIMEOUT);
+    public MinimerceApiResponse handleRequestTimeout() {
+        return MinimerceApiResponse.httpError(HttpResult.REQUEST_TIMEOUT);
     }
     @ExceptionHandler(Throwable.class)
-    public ApiResponse handleException(Throwable throwable) {
+    public MinimerceApiResponse handleException(Throwable throwable) {
         log.error(throwable.getMessage(), throwable);
-        return ApiResponse.httpError(HttpResult.INTERNAL_SERVER_ERROR);
+        return MinimerceApiResponse.httpError(HttpResult.INTERNAL_SERVER_ERROR);
     }
     @ExceptionHandler(MinimerceSpecificException.class)
-    public ApiResponse handleMinimerceSpecificException(MinimerceSpecificException exception) {
+    public MinimerceApiResponse handleMinimerceSpecificException(MinimerceSpecificException exception) {
         log.error(exception.getMessage(), exception);
-        return ApiResponse.specificError(exception.getError(), exception.getData());
+        return MinimerceApiResponse.specificError(exception.getError(), exception.getData());
     }
     @ExceptionHandler(MinimerceException.class)
-    public ApiResponse handleMinimerceException(MinimerceException exception) {
+    public MinimerceApiResponse handleMinimerceException(MinimerceException exception) {
         log.error(exception.getMessage(), exception);
-        return ApiResponse.error(exception.getError());
+        return MinimerceApiResponse.error(exception.getError());
     }
 }
