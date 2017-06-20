@@ -16,12 +16,12 @@ import static org.mockito.Mockito.verify;
  */
 public class OrderOptionGeneratorTest {
     private OrderOptionGenerator generator;
-    private final UsableOrderOptionGenerator usableOrderOptionGenerator = mock(UsableOrderOptionGenerator.class);
+    private final UsableOrderOptionGenerator mockUsableOrderOptionGenerator = mock(UsableOrderOptionGenerator.class);
     private final UsableOptionBuilder optionBuilder = UsableOptionBuilder.anUsableOption();
 
     @Before
     public void setup() {
-        generator = new OrderOptionGenerator(usableOrderOptionGenerator);
+        generator = new OrderOptionGenerator(mockUsableOrderOptionGenerator);
     }
 
     @Test
@@ -30,6 +30,6 @@ public class OrderOptionGeneratorTest {
         Option usableOption = optionBuilder.withType(ProductType.USABLE).build();
         generator.generate(clientId, usableOption);
 
-        verify(usableOrderOptionGenerator).generate(clientId, (UsableOption) usableOption);
+        verify(mockUsableOrderOptionGenerator).generate(clientId, (UsableOption) usableOption);
     }
 }

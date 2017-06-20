@@ -13,12 +13,11 @@ import static org.mockito.Mockito.verify;
  * Created by gemini on 07/06/2017.
  */
 public class StockReducerTest {
-    private UsableStockReducer mockUsableReducer;
     private StockReducer reducer;
+    private UsableStockReducer mockUsableReducer = mock(UsableStockReducer.class);
 
     @Before
     public void setup() {
-        mockUsableReducer = mock(UsableStockReducer.class);
         reducer = new StockReducer(mockUsableReducer);
     }
     @Test

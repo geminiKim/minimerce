@@ -12,12 +12,11 @@ import static org.mockito.Mockito.verify;
  * Created by gemini on 14/06/2017.
  */
 public class UsableStockReducerTest {
-    private UsableOptionDslRepository mockUsableOptionDslRepository;
     private UsableStockReducer reducer;
+    private final UsableOptionDslRepository mockUsableOptionDslRepository = mock(UsableOptionDslRepository.class);
 
     @Before
     public void setup() {
-        mockUsableOptionDslRepository = mock(UsableOptionDslRepository.class);
         reducer = new UsableStockReducer(mockUsableOptionDslRepository);
     }
 

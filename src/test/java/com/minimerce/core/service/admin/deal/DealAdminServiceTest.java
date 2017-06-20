@@ -21,11 +21,10 @@ import static org.mockito.Mockito.*;
  */
 public class DealAdminServiceTest {
     private DealAdminService dealAdminService;
-    private DealRepository mockDealRepository;
+    private final DealRepository mockDealRepository = mock(DealRepository.class);
 
     @Before
     public void setUp() {
-        mockDealRepository = mock(DealRepository.class);
         dealAdminService = new DealAdminService(mockDealRepository);
     }
 

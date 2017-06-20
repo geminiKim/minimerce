@@ -19,14 +19,11 @@ import static org.mockito.Mockito.when;
  */
 public class SaleDealReaderTest {
     private SaleDealReader reader;
-    private DealRepository mockDealRepository;
-    private OptionRepository mockOptionRepository;
+    private final DealRepository mockDealRepository = mock(DealRepository.class);
+    private final OptionRepository mockOptionRepository = mock(OptionRepository.class);
 
     @Before
     public void setup() {
-        mockDealRepository = mock(DealRepository.class);
-        mockOptionRepository = mock(OptionRepository.class);
-
         when(mockDealRepository.findOne(1L)).thenReturn(buildTestOption().getDeal());
         when(mockOptionRepository.findOne(2L)).thenReturn(buildTestOption());
 

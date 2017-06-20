@@ -18,18 +18,14 @@ import static org.mockito.Mockito.*;
  */
 public class OrderServiceTest {
     private OrderService orderService;
-    private OrderMaker mockOrderMaker;
-    private OrderInserter mockOrderInserter;
-    private OrderFinder mockOrderFinder;
-    private StockProcessor mockStockProcessor;
+    private final OrderMaker mockOrderMaker = mock(OrderMaker.class);
+    private final OrderInserter mockOrderInserter = mock(OrderInserter.class);
+    private final OrderFinder mockOrderFinder = mock(OrderFinder.class);
+    private final StockProcessor mockstockProcessor = mock(StockProcessor.class);
 
     @Before
     public void setup() {
-        mockOrderMaker = mock(OrderMaker.class);
-        mockOrderInserter = mock(OrderInserter.class);
-        mockOrderFinder = mock(OrderFinder.class);
-        mockStockProcessor = mock(StockProcessor.class);
-        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, mockStockProcessor);
+        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, mockstockProcessor);
     }
 
     @Test
@@ -37,7 +33,7 @@ public class OrderServiceTest {
         OrderRequest request = OrderRequestBuilder.anOrderRequest().build();
         orderService.order(1L, request);
         verify(mockOrderMaker).make(1L, request);
-        verify(mockStockProcessor).reduce(any());
+        verify(mockstockProcessor).reduce(any());
         verify(mockOrderInserter).insert(any());
     }
 

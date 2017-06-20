@@ -25,22 +25,21 @@ import static org.mockito.Mockito.when;
  */
 public class OrderMakerTest {
     private OrderMaker maker;
-    private OrderOptionMaker mockOrderDetailMaker;
-    private final OrderRequestBuilder orderRequestBuilder = OrderRequestBuilder.anOrderRequest();
-    private final OrderRequestDetailBuilder orderRequestDetailBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
+    private final OrderOptionMaker mockOrderDetailMaker = mock(OrderOptionMaker.class);
+    private final OrderRequestBuilder mockOrderRequestBuilder = OrderRequestBuilder.anOrderRequest();
+    private final OrderRequestDetailBuilder mockOrderRequestDetailBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
 
     @Before
     public void setup() {
-        mockOrderDetailMaker = mock(OrderOptionMaker.class);
         when(mockOrderDetailMaker.make(anyLong(), any())).thenReturn(details());
         maker = new OrderMaker(mockOrderDetailMaker);
     }
 
     @Test
     public void testShouldBeBuildOrder() {
-        OrderRequest request = orderRequestBuilder.build();
-        request.addDetail(orderRequestDetailBuilder.build());
-        request.addDetail(orderRequestDetailBuilder.build());
+        OrderRequest request = mockOrderRequestBuilder.build();
+        request.addDetail(mockOrderRequestDetailBuilder.build());
+        request.addDetail(mockOrderRequestDetailBuilder.build());
 
         Order order = maker.make(1L, request);
         assertThat(order.getPrice(), is(10000));

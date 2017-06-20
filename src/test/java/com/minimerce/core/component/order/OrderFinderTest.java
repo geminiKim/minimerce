@@ -16,11 +16,10 @@ import static org.mockito.Mockito.verify;
  */
 public class OrderFinderTest {
     private OrderFinder finder;
-    private OrderRepository mockOrderRepository;
+    private final OrderRepository mockOrderRepository = mock(OrderRepository.class);
 
     @Before
     public void setup() {
-        mockOrderRepository = mock(OrderRepository.class);
         finder = new OrderFinder(mockOrderRepository);
 
     }

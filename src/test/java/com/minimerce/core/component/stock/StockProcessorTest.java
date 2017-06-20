@@ -13,14 +13,11 @@ import static org.mockito.Mockito.verify;
  */
 public class StockProcessorTest {
     private StockProcessor stockProcessor;
-    private StockConverter mockConverter;
-    private StockReducer mockReducer;
+    private StockConverter mockConverter = mock(StockConverter.class);
+    private StockReducer mockReducer = mock(StockReducer.class);
 
     @Before
     public void setup() {
-        mockConverter = mock(StockConverter.class);
-        mockReducer = mock(StockReducer.class);
-
         stockProcessor = new StockProcessor(mockConverter, mockReducer);
     }
 

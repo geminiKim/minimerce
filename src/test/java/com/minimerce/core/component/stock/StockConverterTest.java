@@ -25,16 +25,13 @@ import static org.mockito.Mockito.when;
  */
 public class StockConverterTest {
     private StockConverter converter;
-    private OptionRepository mockOptionRepository;
+    private final OptionRepository mockOptionRepository = mock(OptionRepository.class);
     private final OrderRequestDetailBuilder orderRequestDetailBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
     private final OptionBuilder optionBuilder = OptionBuilder.anOption();
 
     @Before
     public void setup() {
-        mockOptionRepository = mock(OptionRepository.class);
-
         when(mockOptionRepository.findOne(1L)).thenReturn(buildUsableOption());
-
         converter = new StockConverter(mockOptionRepository);
     }
 

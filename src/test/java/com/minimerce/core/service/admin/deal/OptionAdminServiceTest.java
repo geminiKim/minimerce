@@ -24,13 +24,11 @@ import static org.mockito.Mockito.*;
  */
 public class OptionAdminServiceTest {
     private OptionAdminService optionService;
-    private DealRepository mockDealRepository;
-    private OptionRepository mockOptionRepository;
+    private final DealRepository mockDealRepository = mock(DealRepository.class);
+    private final OptionRepository mockOptionRepository = mock(OptionRepository.class);
 
     @Before
     public void setUp() {
-        mockDealRepository = mock(DealRepository.class);
-        mockOptionRepository = mock(OptionRepository.class);
         optionService = new OptionAdminService(mockDealRepository, mockOptionRepository);
     }
 

@@ -14,11 +14,10 @@ import static org.mockito.Mockito.verify;
  */
 public class OrderInserterTest {
     private OrderInserter inserter;
-    private OrderRepository mockOrderRepository;
+    private final OrderRepository mockOrderRepository = mock(OrderRepository.class);
 
     @Before
     public void setup() {
-        mockOrderRepository = mock(OrderRepository.class);
         inserter = new OrderInserter(mockOrderRepository);
     }
 
