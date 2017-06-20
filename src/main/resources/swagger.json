@@ -58,10 +58,10 @@
               "$ref":"#/definitions/OrderResponse"
             }
           },
-          "UsableOrderItems": {
-            "description": "data->options->items (Ordered UsableItem)",
+          "UsableOrderOption": {
+            "description": "data->options (Ordered UsableOption)",
             "schema":{
-              "$ref":"#/definitions/UsableOrderItem"
+              "$ref":"#/definitions/UsableOrderOption"
             }
           }
         }
@@ -92,10 +92,10 @@
               "$ref":"#/definitions/OrderResponse"
             }
           },
-          "UsableOrderItems": {
-            "description": "data->options->items (Ordered UsableItem)",
+          "UsableOrderOptions": {
+            "description": "data->options (Ordered UsableOption)",
             "schema":{
-              "$ref":"#/definitions/UsableOrderItem"
+              "$ref":"#/definitions/UsableOrderOption"
             }
           }
         }
@@ -131,18 +131,6 @@
           "type":"integer",
           "format":"int32",
           "default":200
-        }
-      }
-    },
-    "OrderResponse":{
-      "type":"object",
-      "required": [ "data", "result" ],
-      "properties":{
-        "data":{
-          "$ref":"#/definitions/Order"
-        },
-        "result":{
-          "$ref":"#/definitions/ApiResult"
         }
       }
     },
@@ -189,7 +177,7 @@
         "options":{
           "type":"array",
           "items":{
-            "$ref":"#/definitions/DealOption"
+            "$ref":"#/definitions/Option"
           }
         },
         "price":{
@@ -229,7 +217,7 @@
         }
       }
     },
-    "DealOption":{
+    "Option":{
       "type":"object",
       "properties":{
         "cancelType":{
@@ -271,12 +259,6 @@
         },
         "informationJson":{
           "type":"string"
-        },
-        "items":{
-          "type":"array",
-          "items":{
-            "$ref":"#/definitions/DealOptionItem"
-          }
         },
         "name":{
           "type":"string"
@@ -362,8 +344,10 @@
         },
         "options":{
           "type":"array",
+          "description":"Different by ProductType",
           "items":{
-            "$ref":"#/definitions/OrderOption"
+            "type":"string",
+            "default":"Check Response Messages"
           }
         }
       }
@@ -404,10 +388,15 @@
           "enum":[
             "NOT_CANCEL"]
         },
-        "price":{
+        "salePrice":{
           "type":"integer",
           "format":"int32",
           "default":10000
+        },
+        "costPrice":{
+          "type":"integer",
+          "format":"int32",
+          "default":5000
         },
         "createdAt":{
           "type":"string",
@@ -418,20 +407,12 @@
           "type":"string",
           "format":"date-time",
           "default":"1992-05-30 00:00:00"
-        },
-        "items":{
-          "type":"array",
-          "description":"Different by Option Type",
-          "items":{
-            "type":"string",
-            "default":"Check Response Messages"
-          }
         }
       }
     },
-    "UsableOrderItem":{
+    "UsableOrderOption":{
       "type":"object",
-      "required": [ "availableEndAt", "availableStartAt", "cancelStatus", "clientId", "costPrice", "id", "createdAt", "salePrice", "status", "title", "type", "updatedAt", "usableCount", "usedCount" ],
+      "required": [ "cancelStatus", "clientId", "createdAt", "items", "status", "id", "type", "price", "title", "updatedAt" ],
       "properties":{
         "id":{
           "type":"integer",
@@ -445,12 +426,13 @@
         },
         "title":{
           "type":"string",
-          "default":"test-usable-order-item-1"
+          "default":"test-order-option-1"
         },
         "type":{
           "type":"string",
           "enum":[
-            "USABLE"]
+            "USABLE"],
+          "description":"Option Type"
         },
         "status":{
           "type":"string",
@@ -472,17 +454,17 @@
         "costPrice":{
           "type":"integer",
           "format":"int32",
-          "default":9000
-        },
-        "usableCount":{
-          "type":"integer",
-          "format":"int32",
-          "default":1
+          "default":5000
         },
         "usedCount":{
           "type":"integer",
           "format":"int32",
           "default":0
+        },
+        "usableCount":{
+          "type":"integer",
+          "format":"int32",
+          "default":1
         },
         "availableStartAt":{
           "type":"string",
@@ -566,6 +548,18 @@
           "type":"integer",
           "format":"int32",
           "default":10000
+        }
+      }
+    },
+    "OrderResponse":{
+      "type":"object",
+      "required": [ "data", "result" ],
+      "properties":{
+        "data":{
+          "$ref":"#/definitions/Order"
+        },
+        "result":{
+          "$ref":"#/definitions/ApiResult"
         }
       }
     }
