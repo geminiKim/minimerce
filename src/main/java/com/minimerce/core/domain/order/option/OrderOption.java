@@ -24,10 +24,10 @@ public class OrderOption extends BaseDomain {
     private Long clientId;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public Order order;
+    private Order order;
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public Deal deal;
+    private Deal deal;
     @Column
     private String title;
     @Column(insertable = false, updatable = false)

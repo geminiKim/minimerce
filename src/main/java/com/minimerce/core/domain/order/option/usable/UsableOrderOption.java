@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 public class UsableOrderOption extends OrderOption {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public UsableOption option;
+    private UsableOption option;
     @Column
     private int usedCount;
     @Column

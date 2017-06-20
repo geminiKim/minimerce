@@ -36,7 +36,7 @@ public class Order extends BaseDomain {
 
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
-    public List<OrderOption> options = Lists.newArrayList();
+    private List<OrderOption> options = Lists.newArrayList();
 
     public void addOption(OrderOption detail) {
         detail.setOrder(this);

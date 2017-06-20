@@ -24,7 +24,7 @@ import javax.persistence.*;
 public class Option extends BaseDomain {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    public Deal deal;
+    private Deal deal;
     @Column
     private String name;
     @Column

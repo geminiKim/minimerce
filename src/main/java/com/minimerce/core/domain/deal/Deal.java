@@ -55,7 +55,7 @@ public class Deal extends BaseDomain {
 
     @Setter(AccessLevel.NONE)
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "deal")
-    public List<Option> options = Lists.newArrayList();
+    private List<Option> options = Lists.newArrayList();
 
     public void addOption(Option option) {
         option.setDeal(this);
