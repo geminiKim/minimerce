@@ -2,9 +2,12 @@ package com.minimerce.controller.api;
 
 import com.minimerce.controller.BaseController;
 import com.minimerce.core.domain.client.Client;
+import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.service.api.order.OrderService;
 import com.minimerce.core.support.object.response.MinimerceApiResponse;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,6 +31,11 @@ public class CustomerController extends BaseController {
         this.orderService = orderService;
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(code = 0, message = "data", response = Page.class),
+            @ApiResponse(code = 1, message = "data->content", response = Order.class),
+            @ApiResponse(code = 2, message = "data->content->options (If you ordered the UsableOption.", response = UsableOption.class)
+    })
     @GetMapping(value = "/{customerId}/orders")
     public MinimerceApiResponse findCustomerOrders(@AuthenticationPrincipal Client client, @PathVariable Long customerId, Pageable page)  {
         Page<Order> orders = orderService.findCustomerOrders(client.getId(), customerId, page);
