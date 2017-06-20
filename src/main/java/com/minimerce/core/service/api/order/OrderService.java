@@ -7,10 +7,11 @@ import com.minimerce.core.component.stock.StockProcessor;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.support.object.order.FindOrderRequest;
 import com.minimerce.core.support.object.order.OrderRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.List;
 
 /**
  * Created by gemini on 20/04/2017.
@@ -40,7 +41,7 @@ public class OrderService {
         return orderFinder.findOrder(clientId, request);
     }
 
-    public List<Order> findCustomerOrders(Long clientId, Long customerId) {
-        return orderFinder.findOrders(clientId, customerId);
+    public Page<Order> findCustomerOrders(Long clientId, Long customerId, Pageable page) {
+        return orderFinder.findOrders(clientId, customerId, page);
     }
 }

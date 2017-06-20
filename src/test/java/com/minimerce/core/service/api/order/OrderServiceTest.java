@@ -2,6 +2,7 @@ package com.minimerce.core.service.api.order;
 
 import com.minimerce.builder.FindOrderRequestBuilder;
 import com.minimerce.builder.OrderRequestBuilder;
+import com.minimerce.builder.PageableBuilder;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderInserter;
 import com.minimerce.core.component.order.OrderMaker;
@@ -10,6 +11,7 @@ import com.minimerce.core.support.object.order.FindOrderRequest;
 import com.minimerce.core.support.object.order.OrderRequest;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.data.domain.Pageable;
 
 import static org.mockito.Mockito.*;
 
@@ -46,7 +48,8 @@ public class OrderServiceTest {
 
     @Test
     public void testShouldBeCallFindOrder() {
-        orderService.findCustomerOrders(1L, 5L);
-        verify(mockOrderFinder).findOrders(1L, 5L);
+        Pageable page = PageableBuilder.aPageable().build();
+        orderService.findCustomerOrders(1L, 5L, page);
+        verify(mockOrderFinder).findOrders(1L, 5L, page);
     }
 }

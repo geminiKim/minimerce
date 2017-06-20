@@ -1,11 +1,13 @@
 package com.minimerce.core.component.order;
 
 import com.minimerce.builder.FindOrderRequestBuilder;
+import com.minimerce.builder.PageableBuilder;
 import com.minimerce.core.domain.order.OrderRepository;
 import com.minimerce.core.support.exception.MinimerceException;
 import com.minimerce.core.support.object.order.FindOrderRequest;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.data.domain.Pageable;
 
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
@@ -50,8 +52,9 @@ public class OrderFinderTest {
 
     @Test
     public void testShouldBeFindByCustomerId() {
-        finder.findOrders(1L, 2L);
-        verify(mockOrderRepository).findByClientIdAndCustomerId(1L, 2L);
+        Pageable page = PageableBuilder.aPageable().build();
+        finder.findOrders(1L, 2L, page);
+        verify(mockOrderRepository).findByClientIdAndCustomerId(1L, 2L, page);
     }
 
 }

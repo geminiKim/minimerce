@@ -5,10 +5,11 @@ import com.minimerce.core.domain.order.OrderRepository;
 import com.minimerce.core.support.exception.MinimerceException;
 import com.minimerce.core.support.object.order.FindOrderRequest;
 import com.minimerce.core.support.object.response.ErrorCode;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
-import java.util.List;
 
 /**
  * Created by gemini on 20/04/2017.
@@ -28,7 +29,7 @@ public class OrderFinder {
         throw new MinimerceException(ErrorCode.NOT_FOUND_ORDER);
     }
 
-    public List<Order> findOrders(Long clientId, Long customerId) {
-        return orderRepository.findByClientIdAndCustomerId(clientId, customerId);
+    public Page<Order> findOrders(Long clientId, Long customerId, Pageable page) {
+        return orderRepository.findByClientIdAndCustomerId(clientId, customerId, page);
     }
 }
