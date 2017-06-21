@@ -8,6 +8,7 @@ import com.minimerce.core.service.api.order.OrderService;
 import com.minimerce.core.support.object.order.FindOrderRequest;
 import com.minimerce.core.support.object.order.OrderRequest;
 import com.minimerce.core.support.object.response.MinimerceApiResponse;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,6 +29,7 @@ public class OrderController extends BaseController {
         this.orderService = orderService;
     }
 
+    @ApiOperation(value = "new Order Request", tags = "Orders" , notes = "You can place a new Order.")
     @ApiResponses(value = {
             @ApiResponse(code = 0, message = "data", response = Order.class),
             @ApiResponse(code = 1, message = "data->options (If you ordered the UsableOption.", response = UsableOption.class)
@@ -38,6 +40,7 @@ public class OrderController extends BaseController {
         return MinimerceApiResponse.ok(order);
     }
 
+    @ApiOperation(value = "Find Order", tags = "Orders" , notes = "You can use orderId or clientOrderId to view Order.")
     @ApiResponses(value = {
             @ApiResponse(code = 0, message = "data", response = Order.class),
             @ApiResponse(code = 1, message = "data->options (If you ordered the UsableOption.", response = UsableOption.class)

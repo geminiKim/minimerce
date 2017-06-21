@@ -6,6 +6,7 @@ import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.service.api.order.OrderService;
 import com.minimerce.core.support.object.response.MinimerceApiResponse;
+import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.data.domain.Page;
@@ -31,8 +32,9 @@ public class CustomerController extends BaseController {
         this.orderService = orderService;
     }
 
+    @ApiOperation(value = "Find Orders By CustomerId", tags = "Customers" , notes = "You can use CustomerId to view customer order history.")
     @ApiResponses(value = {
-            @ApiResponse(code = 0, message = "data", response = Page.class),
+            @ApiResponse(code = 0, message = "pageable", response = Page.class),
             @ApiResponse(code = 1, message = "data->content", response = Order.class),
             @ApiResponse(code = 2, message = "data->content->options (If you ordered the UsableOption.", response = UsableOption.class)
     })
