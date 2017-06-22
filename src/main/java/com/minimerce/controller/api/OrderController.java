@@ -36,7 +36,7 @@ public class OrderController extends BaseController {
     })
     @PostMapping
     public MinimerceApiResponse order(@AuthenticationPrincipal Client client, @RequestBody OrderRequest request) {
-        Order order = orderService.order(client.getId(), request);
+        Order order = orderService.order(client, request);
         return MinimerceApiResponse.ok(order);
     }
 
@@ -49,7 +49,7 @@ public class OrderController extends BaseController {
     public MinimerceApiResponse findOrder(@AuthenticationPrincipal Client client,
                                           @RequestParam(required = false) Long orderId,
                                           @RequestParam(required = false) Long clientOrderId)  {
-        Order order = orderService.findOrder(client.getId(), new FindOrderRequest(orderId, clientOrderId));
+        Order order = orderService.findOrder(client, new FindOrderRequest(orderId, clientOrderId));
         return MinimerceApiResponse.ok(order);
     }
 }

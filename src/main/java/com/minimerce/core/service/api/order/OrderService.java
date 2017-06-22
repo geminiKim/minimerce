@@ -4,6 +4,7 @@ import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderInserter;
 import com.minimerce.core.component.order.OrderMaker;
 import com.minimerce.core.component.stock.StockProcessor;
+import com.minimerce.core.domain.client.Client;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.support.object.order.FindOrderRequest;
 import com.minimerce.core.support.object.order.OrderRequest;
@@ -31,17 +32,17 @@ public class OrderService {
         this.stockProcessor = stockProcessor;
     }
 
-    public Order order(Long clientId, OrderRequest request) {
-        Order order = orderMaker.make(clientId, request);
+    public Order order(Client client, OrderRequest request) {
+        Order order = orderMaker.make(client.getId(), request);
         stockProcessor.reduce(request);
         return orderInserter.insert(order);
     }
 
-    public Order findOrder(Long clientId, FindOrderRequest request) {
-        return orderFinder.findOrder(clientId, request);
+    public Order findOrder(Client client, FindOrderRequest request) {
+        return orderFinder.findOrder(client.getId(), request);
     }
 
-    public Page<Order> findCustomerOrders(Long clientId, Long customerId, Pageable page) {
-        return orderFinder.findOrders(clientId, customerId, page);
+    public Page<Order> findCustomerOrders(Client client, Long customerId, Pageable page) {
+        return orderFinder.findOrders(client.getId(), customerId, page);
     }
 }

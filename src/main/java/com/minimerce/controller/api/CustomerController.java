@@ -40,7 +40,7 @@ public class CustomerController extends BaseController {
     })
     @GetMapping(value = "/{customerId}/orders")
     public MinimerceApiResponse findCustomerOrders(@AuthenticationPrincipal Client client, @PathVariable Long customerId, Pageable page)  {
-        Page<Order> orders = orderService.findCustomerOrders(client.getId(), customerId, page);
+        Page<Order> orders = orderService.findCustomerOrders(client, customerId, page);
         return MinimerceApiResponse.ok(orders);
     }
 }
