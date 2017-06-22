@@ -1,9 +1,9 @@
 package com.minimerce.core.service.api.order;
 
+import com.minimerce.builder.ClientBuilder;
 import com.minimerce.builder.FindOrderRequestBuilder;
 import com.minimerce.builder.OrderRequestBuilder;
 import com.minimerce.builder.PageableBuilder;
-import com.minimerce.core.builder.ClientBuilder;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderInserter;
 import com.minimerce.core.component.order.OrderMaker;

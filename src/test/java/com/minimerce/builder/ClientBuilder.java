@@ -1,4 +1,4 @@
-package com.minimerce.core.builder;
+package com.minimerce.builder;
 
 import com.minimerce.core.domain.client.Client;
 import com.minimerce.core.domain.client.ClientRole;
