@@ -3,8 +3,8 @@ package com.minimerce.core.component.order.option.usable;
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.domain.order.option.usable.UsableOrderOption;
-import com.minimerce.core.object.order.CancelStatus;
-import com.minimerce.core.object.order.OrderStatus;
+import com.minimerce.core.object.order.status.CancelStatus;
+import com.minimerce.core.object.order.status.OrderStatus;
 import org.springframework.stereotype.Component;
 
 /**

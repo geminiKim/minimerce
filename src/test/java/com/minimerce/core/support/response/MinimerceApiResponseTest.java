@@ -1,4 +1,4 @@
-package com.minimerce.core.object.response;
+package com.minimerce.core.support.response;
 
 import com.minimerce.core.support.util.Json;
 import org.junit.Test;

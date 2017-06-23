@@ -1,4 +1,4 @@
-package com.minimerce.core.object.response;
+package com.minimerce.core.support.response;
 
 /**
  * Created by gemini on 23/05/2017.

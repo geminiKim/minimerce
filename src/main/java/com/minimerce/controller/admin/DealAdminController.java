@@ -3,9 +3,9 @@ package com.minimerce.controller.admin;
 import com.minimerce.controller.BaseController;
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.option.Option;
-import com.minimerce.core.object.response.MinimerceApiResponse;
 import com.minimerce.core.service.admin.deal.DealAdminService;
 import com.minimerce.core.service.admin.deal.OptionAdminService;
+import com.minimerce.core.support.response.MinimerceApiResponse;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 

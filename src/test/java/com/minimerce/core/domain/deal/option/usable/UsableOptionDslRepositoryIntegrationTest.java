@@ -5,8 +5,8 @@ import com.minimerce.builder.DealBuilder;
 import com.minimerce.builder.StockBuilder;
 import com.minimerce.builder.UsableOptionBuilder;
 import com.minimerce.core.component.stock.Stock;
-import com.minimerce.core.object.response.ErrorCode;
 import com.minimerce.core.support.exception.MinimerceSpecificException;
+import com.minimerce.core.support.response.ErrorCode;
 import org.junit.Before;
 import org.junit.Test;
 

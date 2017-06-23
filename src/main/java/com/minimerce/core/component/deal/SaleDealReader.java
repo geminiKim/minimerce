@@ -5,8 +5,8 @@ import com.minimerce.core.domain.deal.DealRepository;
 import com.minimerce.core.domain.deal.DealStatus;
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.deal.option.OptionRepository;
-import com.minimerce.core.object.response.ErrorCode;
 import com.minimerce.core.support.exception.MinimerceException;
+import com.minimerce.core.support.response.ErrorCode;
 import com.minimerce.core.support.util.Yn;
 import org.springframework.stereotype.Component;
 

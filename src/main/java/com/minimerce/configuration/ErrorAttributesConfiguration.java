@@ -1,7 +1,7 @@
 package com.minimerce.configuration;
 
-import com.minimerce.core.object.response.HttpResult;
-import com.minimerce.core.object.response.MinimerceApiResponse;
+import com.minimerce.core.support.response.HttpResult;
+import com.minimerce.core.support.response.MinimerceApiResponse;
 import com.minimerce.core.support.util.Json;
 import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
 import org.springframework.context.annotation.Configuration;

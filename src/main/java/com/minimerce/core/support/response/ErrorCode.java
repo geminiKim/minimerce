@@ -1,4 +1,4 @@
-package com.minimerce.core.object.response;
+package com.minimerce.core.support.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.http.HttpStatus;
