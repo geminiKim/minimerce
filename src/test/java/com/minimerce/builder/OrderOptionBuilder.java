@@ -3,9 +3,9 @@ package com.minimerce.builder;
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.domain.order.option.OrderOption;
+import com.minimerce.core.object.deal.type.ProductType;
 import com.minimerce.core.object.order.status.CancelStatus;
 import com.minimerce.core.object.order.status.OrderStatus;
-import com.minimerce.core.object.type.ProductType;
 
 import java.time.LocalDateTime;
 

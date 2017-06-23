@@ -1,6 +1,6 @@
 package com.minimerce.core.component.stock;
 
-import com.minimerce.core.object.type.ProductType;
+import com.minimerce.core.object.deal.type.ProductType;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

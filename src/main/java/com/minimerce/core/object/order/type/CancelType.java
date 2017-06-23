@@ -1,4 +1,4 @@
-package com.minimerce.core.object.type;
+package com.minimerce.core.object.order.type;
 
 /**
  * Created by gemini on 27/03/2017.

@@ -4,7 +4,7 @@ import com.minimerce.core.component.order.option.usable.UsableOrderOptionGenerat
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.option.OrderOption;
-import com.minimerce.core.object.type.ProductType;
+import com.minimerce.core.object.deal.type.ProductType;
 import com.minimerce.core.support.exception.MinimerceException;
 import com.minimerce.core.support.response.ErrorCode;
 import org.springframework.stereotype.Component;
