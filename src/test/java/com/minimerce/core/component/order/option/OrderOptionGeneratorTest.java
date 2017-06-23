@@ -4,7 +4,7 @@ import com.minimerce.builder.UsableOptionBuilder;
 import com.minimerce.core.component.order.option.usable.UsableOrderOptionGenerator;
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
-import com.minimerce.core.support.object.type.ProductType;
+import com.minimerce.core.object.type.ProductType;
 import org.junit.Before;
 import org.junit.Test;
 

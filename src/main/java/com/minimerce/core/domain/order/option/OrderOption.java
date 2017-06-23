@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.core.domain.BaseDomain;
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.order.Order;
-import com.minimerce.core.support.object.order.CancelStatus;
-import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.type.ProductType;
+import com.minimerce.core.object.order.CancelStatus;
+import com.minimerce.core.object.order.OrderStatus;
+import com.minimerce.core.object.type.ProductType;
 import lombok.Getter;
 import lombok.Setter;
 

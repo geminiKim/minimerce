@@ -6,7 +6,7 @@ import com.minimerce.builder.OrderRequestDetailBuilder;
 import com.minimerce.core.component.order.option.OrderOptionMaker;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.domain.order.option.OrderOption;
-import com.minimerce.core.support.object.order.OrderRequest;
+import com.minimerce.core.object.order.OrderRequest;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.minimerce.core.support.exception;
 
-import com.minimerce.core.support.object.response.ErrorCode;
+import com.minimerce.core.object.response.ErrorCode;
 
 /**
  * Created by gemini on 11/04/2017.

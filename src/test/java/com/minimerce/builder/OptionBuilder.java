@@ -3,8 +3,8 @@ package com.minimerce.builder;
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.DealStatus;
 import com.minimerce.core.domain.deal.option.Option;
-import com.minimerce.core.support.object.type.CancelType;
-import com.minimerce.core.support.object.type.ProductType;
+import com.minimerce.core.object.type.CancelType;
+import com.minimerce.core.object.type.ProductType;
 import com.minimerce.core.support.util.Yn;
 
 import java.time.LocalDateTime;

@@ -1,7 +1,7 @@
 package com.minimerce.configuration.security;
 
-import com.minimerce.core.support.object.response.HttpResult;
-import com.minimerce.core.support.object.response.MinimerceApiResponse;
+import com.minimerce.core.object.response.HttpResult;
+import com.minimerce.core.object.response.MinimerceApiResponse;
 import com.minimerce.core.support.util.Json;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;

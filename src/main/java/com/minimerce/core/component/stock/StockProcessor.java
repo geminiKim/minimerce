@@ -1,6 +1,6 @@
 package com.minimerce.core.component.stock;
 
-import com.minimerce.core.support.object.order.OrderRequest;
+import com.minimerce.core.object.order.OrderRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

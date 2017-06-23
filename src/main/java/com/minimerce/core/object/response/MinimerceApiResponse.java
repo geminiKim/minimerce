@@ -1,4 +1,4 @@
-package com.minimerce.core.support.object.response;
+package com.minimerce.core.object.response;
 
 import java.time.LocalDateTime;
 

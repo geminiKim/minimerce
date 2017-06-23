@@ -3,9 +3,9 @@ package com.minimerce.core.domain.order.option.usable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.option.OrderOption;
+import com.minimerce.core.object.order.OrderStatus;
+import com.minimerce.core.object.response.ErrorCode;
 import com.minimerce.core.support.exception.MinimerceException;
-import com.minimerce.core.support.object.order.OrderStatus;
-import com.minimerce.core.support.object.response.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 
