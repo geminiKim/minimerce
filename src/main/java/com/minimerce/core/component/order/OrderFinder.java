@@ -24,9 +24,14 @@ public class OrderFinder {
     }
 
     public Order findOrder(Long clientId, FindOrderRequest request) {
+        Order order = find(clientId, request);
+        if(null == order) throw new MinimerceException(ErrorCode.NOT_FOUND_ORDER);
+        return order;
+    }
+
+    private Order find(Long clientId, FindOrderRequest request) {
         if(request.isFindByOrderId()) return orderRepository.findByClientIdAndId(clientId, request.getOrderId());
-        if(request.isFindByClientOrderId()) return orderRepository.findByClientIdAndClientOrderId(clientId, request.getClientOrderId());
-        throw new MinimerceException(ErrorCode.NOT_FOUND_ORDER);
+        else return orderRepository.findByClientIdAndClientOrderId(clientId, request.getClientOrderId());
     }
 
     public Page<Order> findOrders(Long clientId, Long customerId, Pageable page) {
