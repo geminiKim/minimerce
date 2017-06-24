@@ -4,6 +4,8 @@ Minimerce is an E-Commerce API Platform.
 
 Provides product registration and ordering, state management, and external API creation.
 
+
+------------
 ### Run Minimerce Task
 ```
 $ ./gradlew production :: Run With 'production' properties
