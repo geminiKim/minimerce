@@ -40,7 +40,7 @@ public class OrderCancelServiceTest {
     }
 
     @Test
-    public void testShouldBeFullCancel() {
+    public void testShouldBeCancel() {
         Client client = ClientBuilder.aClient().build();
         OrderCancelRequest request = OrderCancelRequestBuilder.anOrderCancelRequest().build();
         service.cancel(client, request);
