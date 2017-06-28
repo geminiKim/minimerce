@@ -15,6 +15,7 @@ public enum ErrorCode implements ApiResult {
     ALREADY_USE_COMPLETED_ORDER(10004, "Already use complete order"),
     ALREADY_RESTORED_ORDER(10004, "Already restored order"),
     SHORTAGE_STOCK(10005, "Shortage stock"),
+    ALREADY_CANCELED_ORDER(10005, "Already canceled order"),
 
     NOT_FOUND_DEAL(20000, "Not found deal"),
     NOT_SALE_DEAL(20001, "Not sale deal"),
