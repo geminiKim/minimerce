@@ -7,7 +7,6 @@ import com.minimerce.core.domain.client.Client;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.object.order.FindOrderRequest;
 import com.minimerce.core.object.order.cancel.OrderCancelRequest;
-import com.minimerce.core.object.order.cancel.OrderCancelResponse;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,9 +25,9 @@ public class OrderCancelService {
         this.orderCanceler = orderCanceler;
     }
 
-    public OrderCancelResponse cancel(Client client, OrderCancelRequest request) {
+    public void cancel(Client client, OrderCancelRequest request) {
         Order order = orderFinder.findOrder(client.getId(), FindOrderRequest.of(request.getOrderId()));
         orderStatusValidator.validate(order.getOptions());
-        return orderCanceler.cancel(order.getOptions());
+        orderCanceler.cancel(order.getOptions());
     }
 }
