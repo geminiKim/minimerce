@@ -43,7 +43,7 @@ public class UsableOptionDslRepositoryIntegrationTest extends IntegrationTest {
     @Test
     public void testShouldBeSuccessDecreaseStock() {
         Stock stock = stockBuilder.withOptionId(testOptionId).withQuantity(1).build();
-        usableOptionDslRepository.decreaseStock(stock);
+        usableOptionDslRepository.decrease(stock);
 
         UsableOption option = usableOptionRepository.findOne(testOptionId);
         assertThat(option.getStock(), is(0));
@@ -53,7 +53,7 @@ public class UsableOptionDslRepositoryIntegrationTest extends IntegrationTest {
     public void testShouldBeThrowsExceptionBySHORTAGE_STOCK_ERROR() {
         try {
             Stock stock = stockBuilder.withOptionId(testOptionId).withQuantity(2).build();
-            usableOptionDslRepository.decreaseStock(stock);
+            usableOptionDslRepository.decrease(stock);
             fail();
         } catch (MinimerceSpecificException e) {
             assertThat(e.getError(), is(ErrorCode.SHORTAGE_STOCK));

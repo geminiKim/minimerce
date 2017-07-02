@@ -20,7 +20,7 @@ public class UsableOptionDslRepository extends QueryDslRepositorySupport {
     }
 
     @Transactional
-    public void decreaseStock(Stock stock) {
+    public void decrease(Stock stock) {
         long execute = update(usableOption)
                 .set(usableOption.stock, usableOption.stock.subtract(stock.getQuantity()))
                 .where(usableOption.stock.goe(stock.getQuantity()))

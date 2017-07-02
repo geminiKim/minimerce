@@ -18,6 +18,6 @@ public class UsableStockReducer {
     }
 
     public void reduce(Stock stock) {
-        usableOptionDslRepository.decreaseStock(stock);
+        usableOptionDslRepository.decrease(stock);
     }
 }

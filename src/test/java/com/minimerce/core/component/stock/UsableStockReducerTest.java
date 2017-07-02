@@ -24,6 +24,6 @@ public class UsableStockReducerTest {
     public void testShouldBeReduce() {
         Stock stock = StockBuilder.aStock().build();
         reducer.reduce(stock);
-        verify(mockUsableOptionDslRepository).decreaseStock(stock);
+        verify(mockUsableOptionDslRepository).decrease(stock);
     }
 }
