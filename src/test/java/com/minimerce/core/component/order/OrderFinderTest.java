@@ -1,10 +1,14 @@
 package com.minimerce.core.component.order;
 
 import com.minimerce.builder.FindOrderRequestBuilder;
+import com.minimerce.builder.OrderCancelRequestBuilder;
 import com.minimerce.builder.PageableBuilder;
 import com.minimerce.core.domain.order.OrderRepository;
+import com.minimerce.core.domain.order.option.OrderOptionRepository;
 import com.minimerce.core.object.order.FindOrderRequest;
+import com.minimerce.core.object.order.cancel.OrderCancelRequest;
 import com.minimerce.core.support.exception.MinimerceException;
+import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.domain.Pageable;
@@ -19,10 +23,11 @@ import static org.mockito.Mockito.verify;
 public class OrderFinderTest {
     private OrderFinder finder;
     private final OrderRepository mockOrderRepository = mock(OrderRepository.class);
+    private final OrderOptionRepository mockOrderOptionRepository = mock(OrderOptionRepository.class);
 
     @Before
     public void setup() {
-        finder = new OrderFinder(mockOrderRepository);
+        finder = new OrderFinder(mockOrderRepository, mockOrderOptionRepository);
 
     }
 
@@ -57,4 +62,17 @@ public class OrderFinderTest {
         verify(mockOrderRepository).findByClientIdAndCustomerId(1L, 2L, page);
     }
 
+    @Test
+    public void testShouldBeFindByFullCancelOptions() {
+        OrderCancelRequest request = OrderCancelRequestBuilder.anOrderCancelRequest().build();
+        finder.findCancelOptions(1L, request);
+        verify(mockOrderOptionRepository).findByClientIdAndOrderId(1L, request.getOrderId());
+    }
+
+    @Test
+    public void testShouldBeFindByPartialCancelOptions() {
+        OrderCancelRequest request = OrderCancelRequestBuilder.anOrderCancelRequest().withOrderOptionId(Lists.newArrayList(1L, 2L)).build();
+        finder.findCancelOptions(1L, request);
+        verify(mockOrderOptionRepository).findByClientIdAndOrderIdAndIdIn(1L, request.getOrderId(), request.getOrderOptionId());
+    }
 }
