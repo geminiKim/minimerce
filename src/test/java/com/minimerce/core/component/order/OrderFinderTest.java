@@ -1,6 +1,7 @@
 package com.minimerce.core.component.order;
 
 import com.minimerce.builder.FindOrderRequestBuilder;
+import com.minimerce.builder.OrderBuilder;
 import com.minimerce.builder.OrderCancelRequestBuilder;
 import com.minimerce.builder.PageableBuilder;
 import com.minimerce.core.domain.order.OrderRepository;
@@ -8,14 +9,16 @@ import com.minimerce.core.domain.order.option.OrderOptionRepository;
 import com.minimerce.core.object.order.FindOrderRequest;
 import com.minimerce.core.object.order.cancel.OrderCancelRequest;
 import com.minimerce.core.support.exception.MinimerceException;
+import com.minimerce.core.support.response.ErrorCode;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.domain.Pageable;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by gemini on 20/04/2017.
@@ -29,16 +32,18 @@ public class OrderFinderTest {
     public void setup() {
         finder = new OrderFinder(mockOrderRepository, mockOrderOptionRepository);
 
+        when(mockOrderRepository.findByClientIdAndId(1L, 500L)).thenReturn(OrderBuilder.anOrder().build());
+        when(mockOrderRepository.findByClientIdAndClientOrderId(1L, 400L)).thenReturn(OrderBuilder.anOrder().build());
     }
 
     @Test
-    public void testShouldBeThrowsNotExistOrderExceptionByNotSupportRequest() {
-        FindOrderRequest request = FindOrderRequestBuilder.aFindOrderRequest().withOrderId(500L).withClientOrderId(400L).build();
+    public void testShouldBeThrowsNotExistOrderExceptionByNotFoundOrder() {
+        FindOrderRequest request = FindOrderRequestBuilder.aFindOrderRequest().withOrderId(1L).build();
         try {
             finder.findOrder(1L, request);
             fail();
         } catch (MinimerceException e) {
-            e.printStackTrace();
+            assertThat(e.getError(), is(ErrorCode.NOT_FOUND_ORDER));
         }
     }
 

@@ -1,16 +1,15 @@
 package com.minimerce.core.service.api.order;
 
-import com.minimerce.builder.ClientBuilder;
-import com.minimerce.builder.FindOrderRequestBuilder;
-import com.minimerce.builder.OrderRequestBuilder;
-import com.minimerce.builder.PageableBuilder;
+import com.minimerce.builder.*;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderInserter;
 import com.minimerce.core.component.order.OrderMaker;
 import com.minimerce.core.component.stock.StockProcessor;
 import com.minimerce.core.domain.client.Client;
+import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.object.order.FindOrderRequest;
 import com.minimerce.core.object.order.OrderRequest;
+import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.data.domain.Pageable;
@@ -25,11 +24,17 @@ public class OrderServiceTest {
     private final OrderMaker mockOrderMaker = mock(OrderMaker.class);
     private final OrderInserter mockOrderInserter = mock(OrderInserter.class);
     private final OrderFinder mockOrderFinder = mock(OrderFinder.class);
-    private final StockProcessor mockstockProcessor = mock(StockProcessor.class);
+    private final StockProcessor mockStockProcessor = mock(StockProcessor.class);
 
     @Before
     public void setup() {
-        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, mockstockProcessor);
+        orderService = new OrderService(mockOrderMaker, mockOrderInserter, mockOrderFinder, mockStockProcessor);
+        when(mockOrderMaker.make(any(), any())).thenReturn(buildOrder());
+
+    }
+
+    private Order buildOrder() {
+        return OrderBuilder.anOrder().withOptions(Lists.newArrayList(OrderOptionBuilder.anOrderOption().build())).build();
     }
 
     @Test
@@ -38,7 +43,7 @@ public class OrderServiceTest {
         OrderRequest request = OrderRequestBuilder.anOrderRequest().build();
         orderService.order(client, request);
         verify(mockOrderMaker).make(client.getId(), request);
-        verify(mockstockProcessor).reduce(any());
+        verify(mockStockProcessor).reduce(any());
         verify(mockOrderInserter).insert(any());
     }
 
