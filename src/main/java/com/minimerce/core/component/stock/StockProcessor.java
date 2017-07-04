@@ -22,9 +22,4 @@ public class StockProcessor {
         List<Stock> stocks = converter.convert(options);
         reducer.reduce(stocks);
     }
-
-//    public void restore(List<OrderOption> options) {
-//        List<Stock> stocks = converter.convert(options);
-//        reducer.reduce(stocks);
-//    }
 }
