@@ -4,10 +4,11 @@ import com.minimerce.core.component.order.OrderCanceler;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderStatusValidator;
 import com.minimerce.core.domain.client.Client;
-import com.minimerce.core.domain.order.Order;
-import com.minimerce.core.object.order.FindOrderRequest;
+import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.object.order.cancel.OrderCancelRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by gemini on 20/06/2017.
@@ -26,8 +27,8 @@ public class OrderCancelService {
     }
 
     public void cancel(Client client, OrderCancelRequest request) {
-        Order order = orderFinder.findOrder(client.getId(), FindOrderRequest.of(request.getOrderId()));
-        orderStatusValidator.validate(order.getOptions());
-        orderCanceler.cancel(order.getOptions());
+        List<OrderOption> options = orderFinder.findCancelOptions(client.getId(), request);
+        orderStatusValidator.validate(options);
+        orderCanceler.cancel(options);
     }
 }
