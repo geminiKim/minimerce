@@ -1,35 +1,23 @@
 package com.minimerce.core.component.stock;
 
 import com.google.common.collect.Lists;
-import com.minimerce.core.domain.deal.option.Option;
-import com.minimerce.core.domain.deal.option.OptionRepository;
-import com.minimerce.core.object.order.OrderRequestDetail;
-import com.minimerce.core.support.exception.MinimerceException;
-import com.minimerce.core.support.response.ErrorCode;
+import com.minimerce.core.domain.order.option.OrderOption;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Inject;
 import java.util.List;
+
+import static java.util.stream.Collectors.groupingBy;
 
 /**
  * Created by gemini on 03/06/2017.
  */
 @Component
 public class StockConverter {
-    private final OptionRepository optionRepository;
-
-    @Inject
-    public StockConverter(OptionRepository optionRepository) {
-        this.optionRepository = optionRepository;
-    }
-
-    public List<Stock> convert(List<OrderRequestDetail> requests) {
+    public List<Stock> convert(List<OrderOption> options) {
         List<Stock> stocks = Lists.newArrayList();
-        for(OrderRequestDetail request : requests) {
-            Option option = optionRepository.findOne(request.getOptionId());
-            if(null == option) throw new MinimerceException(ErrorCode.NOT_FOUND_OPTION);
-            stocks.add(new Stock(option.getType(), option.getId(), request.getQuantity()));
-        }
+        options.stream()
+                .collect(groupingBy(e -> e.getId()))
+                .forEach((k, v) -> stocks.add(new Stock(v.get(0).getType(), k, v.size())));
         return stocks;
     }
 }

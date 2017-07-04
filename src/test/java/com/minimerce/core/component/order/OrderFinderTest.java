@@ -38,6 +38,7 @@ public class OrderFinderTest {
             finder.findOrder(1L, request);
             fail();
         } catch (MinimerceException e) {
+            e.printStackTrace();
         }
     }
 

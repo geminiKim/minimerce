@@ -1,6 +1,6 @@
 package com.minimerce.core.component.stock;
 
-import com.minimerce.core.object.order.OrderRequest;
+import com.minimerce.core.domain.order.option.OrderOption;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,8 +18,13 @@ public class StockProcessor {
         this.reducer = reducer;
     }
 
-    public void reduce(OrderRequest request) {
-        List<Stock> stocks = converter.convert(request.getDetails());
+    public void reduce(List<OrderOption> options) {
+        List<Stock> stocks = converter.convert(options);
         reducer.reduce(stocks);
     }
+
+//    public void restore(List<OrderOption> options) {
+//        List<Stock> stocks = converter.convert(options);
+//        reducer.reduce(stocks);
+//    }
 }

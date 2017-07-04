@@ -34,7 +34,7 @@ public class OrderService {
 
     public Order order(Client client, OrderRequest request) {
         Order order = orderMaker.make(client.getId(), request);
-        stockProcessor.reduce(request);
+        stockProcessor.reduce(order.getOptions());
         return orderInserter.insert(order);
     }
 

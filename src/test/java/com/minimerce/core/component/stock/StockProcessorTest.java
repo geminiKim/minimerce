@@ -1,8 +1,12 @@
 package com.minimerce.core.component.stock;
 
-import com.minimerce.builder.OrderRequestBuilder;
+import com.minimerce.builder.OrderOptionBuilder;
+import com.minimerce.core.domain.order.option.OrderOption;
+import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
@@ -16,6 +20,8 @@ public class StockProcessorTest {
     private StockConverter mockConverter = mock(StockConverter.class);
     private StockReducer mockReducer = mock(StockReducer.class);
 
+    private final OrderOptionBuilder orderOptionBuilder = OrderOptionBuilder.anOrderOption();
+
     @Before
     public void setup() {
         stockProcessor = new StockProcessor(mockConverter, mockReducer);
@@ -23,9 +29,10 @@ public class StockProcessorTest {
 
     @Test
     public void testShouldBeCallReduce() {
-        stockProcessor.reduce(OrderRequestBuilder.anOrderRequest().build());
+        List<OrderOption> options = Lists.newArrayList(orderOptionBuilder.build());
+        stockProcessor.reduce(options);
 
-        verify(mockConverter).convert(any());
+        verify(mockConverter).convert(options);
         verify(mockReducer).reduce(any());
     }
 }
