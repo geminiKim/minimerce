@@ -18,13 +18,13 @@ import static org.mockito.Mockito.verify;
 public class StockProcessorTest {
     private StockProcessor stockProcessor;
     private StockConverter mockConverter = mock(StockConverter.class);
-    private StockReducer mockReducer = mock(StockReducer.class);
+    private StockCounter mockCounter = mock(StockCounter.class);
 
     private final OrderOptionBuilder orderOptionBuilder = OrderOptionBuilder.anOrderOption();
 
     @Before
     public void setup() {
-        stockProcessor = new StockProcessor(mockConverter, mockReducer);
+        stockProcessor = new StockProcessor(mockConverter, mockCounter);
     }
 
     @Test
@@ -33,6 +33,15 @@ public class StockProcessorTest {
         stockProcessor.reduce(options);
 
         verify(mockConverter).convert(options);
-        verify(mockReducer).reduce(any());
+        verify(mockCounter).reduce(any());
+    }
+
+    @Test
+    public void testShouldBeCallRestore() {
+        List<OrderOption> options = Lists.newArrayList(orderOptionBuilder.build());
+        stockProcessor.restore(options);
+
+        verify(mockConverter).convert(options);
+        verify(mockCounter).restore(any());
     }
 }

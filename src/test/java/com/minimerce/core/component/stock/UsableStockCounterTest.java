@@ -11,19 +11,26 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by gemini on 14/06/2017.
  */
-public class UsableStockReducerTest {
-    private UsableStockReducer reducer;
+public class UsableStockCounterTest {
+    private UsableStockCounter reducer;
     private final UsableOptionDslRepository mockUsableOptionDslRepository = mock(UsableOptionDslRepository.class);
 
     @Before
     public void setup() {
-        reducer = new UsableStockReducer(mockUsableOptionDslRepository);
+        reducer = new UsableStockCounter(mockUsableOptionDslRepository);
     }
 
     @Test
-    public void testShouldBeReduce() {
+    public void testShouldBeDecrease() {
         Stock stock = StockBuilder.aStock().build();
-        reducer.reduce(stock);
+        reducer.decrease(stock);
         verify(mockUsableOptionDslRepository).decrease(stock);
+    }
+
+    @Test
+    public void testShouldBeIncrease() {
+        Stock stock = StockBuilder.aStock().build();
+        reducer.increase(stock);
+        verify(mockUsableOptionDslRepository).increase(stock);
     }
 }

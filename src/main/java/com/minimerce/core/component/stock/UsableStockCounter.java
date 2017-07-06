@@ -9,15 +9,19 @@ import javax.inject.Inject;
  * Created by gemini on 05/06/2017.
  */
 @Component
-public class UsableStockReducer {
+public class UsableStockCounter {
     private final UsableOptionDslRepository usableOptionDslRepository;
 
     @Inject
-    public UsableStockReducer(UsableOptionDslRepository usableOptionDslRepository) {
+    public UsableStockCounter(UsableOptionDslRepository usableOptionDslRepository) {
         this.usableOptionDslRepository = usableOptionDslRepository;
     }
 
-    public void reduce(Stock stock) {
+    public void decrease(Stock stock) {
+        usableOptionDslRepository.decrease(stock);
+    }
+
+    public void increase(Stock stock) {
         usableOptionDslRepository.decrease(stock);
     }
 }

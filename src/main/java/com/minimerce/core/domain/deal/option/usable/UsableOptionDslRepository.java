@@ -23,7 +23,19 @@ public class UsableOptionDslRepository extends QueryDslRepositorySupport {
     public void decrease(Stock stock) {
         long execute = update(usableOption)
                 .set(usableOption.stock, usableOption.stock.subtract(stock.getQuantity()))
-                .where(usableOption.stock.goe(stock.getQuantity()))
+                .where(
+                    usableOption.id.eq(stock.getOptionId())
+                    .and(usableOption.stock.goe(stock.getQuantity()))
+                )
+                .execute();
+        if(execute == 0) throw new MinimerceSpecificException(ErrorCode.SHORTAGE_STOCK, stock);
+    }
+
+    @Transactional
+    public void increase(Stock stock) {
+        long execute = update(usableOption)
+                .set(usableOption.stock, usableOption.stock.add(stock.getQuantity()))
+                .where(usableOption.id.eq(stock.getOptionId()))
                 .execute();
         if(execute == 0) throw new MinimerceSpecificException(ErrorCode.SHORTAGE_STOCK, stock);
     }

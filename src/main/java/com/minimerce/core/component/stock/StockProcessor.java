@@ -11,15 +11,20 @@ import java.util.List;
 @Component
 public class StockProcessor {
     private final StockConverter converter;
-    private final StockReducer reducer;
+    private final StockCounter counter;
 
-    public StockProcessor(StockConverter converter, StockReducer reducer) {
+    public StockProcessor(StockConverter converter, StockCounter counter) {
         this.converter = converter;
-        this.reducer = reducer;
+        this.counter = counter;
     }
 
     public void reduce(List<OrderOption> options) {
         List<Stock> stocks = converter.convert(options);
-        reducer.reduce(stocks);
+        counter.reduce(stocks);
+    }
+
+    public void restore(List<OrderOption> options) {
+        List<Stock> stocks = converter.convert(options);
+        counter.restore(stocks);
     }
 }
