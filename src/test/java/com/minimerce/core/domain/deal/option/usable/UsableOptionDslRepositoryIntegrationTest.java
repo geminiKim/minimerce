@@ -59,4 +59,13 @@ public class UsableOptionDslRepositoryIntegrationTest extends IntegrationTest {
             assertThat(e.getError(), is(ErrorCode.SHORTAGE_STOCK));
         }
     }
+
+    @Test
+    public void testShouldBeSuccessIncreaseStock() {
+        Stock stock = stockBuilder.withOptionId(testOptionId).withQuantity(1).build();
+        usableOptionDslRepository.increase(stock);
+
+        UsableOption option = usableOptionRepository.findOne(testOptionId);
+        assertThat(option.getStock(), is(2));
+    }
 }
