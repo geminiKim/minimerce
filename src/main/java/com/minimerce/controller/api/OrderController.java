@@ -6,6 +6,8 @@ import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.Order;
 import com.minimerce.core.object.order.FindOrderRequest;
 import com.minimerce.core.object.order.OrderRequest;
+import com.minimerce.core.object.order.cancel.OrderCancelRequest;
+import com.minimerce.core.service.api.order.OrderCancelService;
 import com.minimerce.core.service.api.order.OrderService;
 import com.minimerce.core.support.response.MinimerceApiResponse;
 import io.swagger.annotations.ApiOperation;
@@ -23,10 +25,12 @@ import javax.inject.Inject;
 @RequestMapping(value = "/v1/orders")
 public class OrderController extends BaseController {
     private final OrderService orderService;
+    private final OrderCancelService cancelService;
 
     @Inject
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderService orderService, OrderCancelService cancelService) {
         this.orderService = orderService;
+        this.cancelService = cancelService;
     }
 
     @ApiOperation(value = "new Order Request", tags = "Orders" , notes = "You can place a new Order.")
@@ -51,5 +55,12 @@ public class OrderController extends BaseController {
                                           @RequestParam(required = false) Long clientOrderId)  {
         Order order = orderService.findOrder(client, new FindOrderRequest(orderId, clientOrderId));
         return MinimerceApiResponse.ok(order);
+    }
+
+    @ApiOperation(value = "Cancel Order", tags = "Orders" , notes = "You can cancel Order")
+    @PutMapping
+    public MinimerceApiResponse cancelOrder(@AuthenticationPrincipal Client client, OrderCancelRequest request) {
+        cancelService.cancel(client, request);
+        return MinimerceApiResponse.ok();
     }
 }
