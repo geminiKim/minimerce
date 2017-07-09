@@ -58,7 +58,7 @@ public class OrderController extends BaseController {
     }
 
     @ApiOperation(value = "Cancel Order", tags = "Orders" , notes = "You can cancel Order")
-    @PutMapping
+    @PostMapping(value = "/{orderId}/cancel")
     public MinimerceApiResponse cancelOrder(@AuthenticationPrincipal Client client, OrderCancelRequest request) {
         cancelService.cancel(client, request);
         return MinimerceApiResponse.ok();
