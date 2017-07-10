@@ -21,7 +21,7 @@ public final class OptionBuilder {
     private ProductType type = ProductType.USABLE;
     private DealStatus status = DealStatus.SALE;
     private Yn display = Yn.Y;
-    private String priceUnit = "원";
+    private String priceUnit = "$";
     private CancelType cancelType = CancelType.APPROVE;
     private String informationJson = "{}";
     private String imageJson = "{}";
