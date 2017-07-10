@@ -6,6 +6,7 @@ import com.minimerce.builder.OrderOptionBuilder;
 import com.minimerce.core.component.order.OrderCanceler;
 import com.minimerce.core.component.order.OrderFinder;
 import com.minimerce.core.component.order.OrderStatusValidator;
+import com.minimerce.core.component.stock.StockProcessor;
 import com.minimerce.core.domain.client.Client;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.object.order.cancel.OrderCancelRequest;
@@ -25,6 +26,7 @@ public class OrderCancelServiceTest {
     private OrderCancelService service;
     private final OrderFinder mockOrderFinder = mock(OrderFinder.class);
     private final OrderStatusValidator mockOrderStatusValidator = mock(OrderStatusValidator.class);
+    private final StockProcessor mockStockProcessor = mock(StockProcessor.class);
     private final OrderCanceler mockOrderCanceler = mock(OrderCanceler.class);
 
     List<OrderOption> testOptions = Lists.newArrayList(OrderOptionBuilder.anOrderOption().build());
@@ -33,7 +35,7 @@ public class OrderCancelServiceTest {
     public void setup() {
         when(mockOrderFinder.findCancelOptions(any(), any())).thenReturn(testOptions);
 
-        service = new OrderCancelService(mockOrderFinder, mockOrderStatusValidator, mockOrderCanceler);
+        service = new OrderCancelService(mockOrderFinder, mockOrderStatusValidator, mockStockProcessor, mockOrderCanceler);
     }
 
     @Test
@@ -44,6 +46,7 @@ public class OrderCancelServiceTest {
 
         verify(mockOrderFinder).findCancelOptions(client.getId(), request);
         verify(mockOrderStatusValidator).validate(testOptions);
+        verify(mockStockProcessor).restore(testOptions);
         verify(mockOrderCanceler).cancel(testOptions);
     }
 }
