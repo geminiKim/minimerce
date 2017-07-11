@@ -3,7 +3,7 @@ package com.minimerce.core.component.order.option;
 import com.minimerce.builder.OptionBuilder;
 import com.minimerce.builder.OrderOptionBuilder;
 import com.minimerce.builder.OrderRequestDetailBuilder;
-import com.minimerce.core.component.deal.SaleDealReader;
+import com.minimerce.core.component.deal.DealFinder;
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.object.order.OrderRequestDetail;
 import org.assertj.core.util.Lists;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
  */
 public class OrderOptionMakerTest {
     private OrderOptionMaker maker;
-    private final SaleDealReader mockSaleDealReader = mock(SaleDealReader.class);
+    private final DealFinder mockDealFinder = mock(DealFinder.class);
     private final OrderOptionGenerator mockOrderOptionGenerator = mock(OrderOptionGenerator.class);
 
     private final OrderRequestDetailBuilder orderRequestDetailBuilder = OrderRequestDetailBuilder.anOrderRequestDetail();
@@ -27,10 +27,10 @@ public class OrderOptionMakerTest {
 
     @Before
     public void setup() {
-        when(mockSaleDealReader.findBySaleOption(any())).thenReturn(testOption);
+        when(mockDealFinder.findBySaleOption(any())).thenReturn(testOption);
         when(mockOrderOptionGenerator.generate(any(), any())).thenReturn(orderOptionBuilder.build());
 
-        maker = new OrderOptionMaker(mockSaleDealReader, mockOrderOptionGenerator);
+        maker = new OrderOptionMaker(mockDealFinder, mockOrderOptionGenerator);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class OrderOptionMakerTest {
         OrderRequestDetail request = orderRequestDetailBuilder.build();
         maker.make(clientId, Lists.newArrayList(request));
 
-        verify(mockSaleDealReader).findBySaleOption(request.getOptionId());
+        verify(mockDealFinder).findBySaleOption(request.getOptionId());
         verify(mockOrderOptionGenerator).generate(clientId, testOption);
     }
 }

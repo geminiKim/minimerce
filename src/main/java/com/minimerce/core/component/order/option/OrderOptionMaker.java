@@ -1,7 +1,7 @@
 package com.minimerce.core.component.order.option;
 
 import com.google.common.collect.Lists;
-import com.minimerce.core.component.deal.SaleDealReader;
+import com.minimerce.core.component.deal.DealFinder;
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.object.order.OrderRequestDetail;
@@ -18,19 +18,19 @@ import java.util.List;
  */
 @Component
 public class OrderOptionMaker {
-    private final SaleDealReader saleDealReader;
+    private final DealFinder dealFinder;
     private final OrderOptionGenerator orderOptionGenerator;
 
     @Inject
-    public OrderOptionMaker(SaleDealReader saleDealReader, OrderOptionGenerator orderOptionGenerator) {
-        this.saleDealReader = saleDealReader;
+    public OrderOptionMaker(DealFinder dealFinder, OrderOptionGenerator orderOptionGenerator) {
+        this.dealFinder = dealFinder;
         this.orderOptionGenerator = orderOptionGenerator;
     }
 
     public List<OrderOption> make(Long clientId, List<OrderRequestDetail> requestDetails) {
         List<OrderOption> orders = Lists.newArrayList();
         for(OrderRequestDetail each : requestDetails) {
-            Option option = saleDealReader.findBySaleOption(each.getOptionId());
+            Option option = dealFinder.findBySaleOption(each.getOptionId());
 
             OrderOption orderOption = orderOptionGenerator.generate(clientId, option);
             if(each.getUnitPrice() != orderOption.getSalePrice()) throw new MinimerceException(ErrorCode.NOT_EQUAL_UNIT_PRICE);
