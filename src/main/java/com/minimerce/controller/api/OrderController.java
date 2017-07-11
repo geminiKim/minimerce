@@ -2,8 +2,8 @@ package com.minimerce.controller.api;
 
 import com.minimerce.controller.BaseController;
 import com.minimerce.core.domain.client.Client;
-import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.Order;
+import com.minimerce.core.domain.order.option.usable.UsableOrderOption;
 import com.minimerce.core.object.order.FindOrderRequest;
 import com.minimerce.core.object.order.OrderRequest;
 import com.minimerce.core.object.order.cancel.OrderCancelRequest;
@@ -36,7 +36,7 @@ public class OrderController extends BaseController {
     @ApiOperation(value = "new Order Request", tags = "Orders" , notes = "You can place a new Order.")
     @ApiResponses(value = {
             @ApiResponse(code = 0, message = "data", response = Order.class),
-            @ApiResponse(code = 1, message = "data->options (If you ordered the UsableOption.", response = UsableOption.class)
+            @ApiResponse(code = 1, message = "data->options (If you ordered the UsableOption.", response = UsableOrderOption.class)
     })
     @PostMapping
     public MinimerceApiResponse order(@AuthenticationPrincipal Client client, @RequestBody OrderRequest request) {
@@ -47,7 +47,7 @@ public class OrderController extends BaseController {
     @ApiOperation(value = "Find Order", tags = "Orders" , notes = "You can use orderId or clientOrderId to view Order.")
     @ApiResponses(value = {
             @ApiResponse(code = 0, message = "data", response = Order.class),
-            @ApiResponse(code = 1, message = "data->options (If you ordered the UsableOption.", response = UsableOption.class)
+            @ApiResponse(code = 1, message = "data->options (If you ordered the UsableOption.", response = UsableOrderOption.class)
     })
     @GetMapping
     public MinimerceApiResponse findOrder(@AuthenticationPrincipal Client client,
