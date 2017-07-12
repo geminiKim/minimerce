@@ -1,6 +1,7 @@
 package com.minimerce.core.component.order;
 
 import com.minimerce.builder.UsableOrderOptionBuilder;
+import com.minimerce.core.component.order.option.usable.UsableOrderStatusValidator;
 import com.minimerce.core.domain.order.option.usable.UsableOrderOption;
 import org.assertj.core.util.Lists;
 import org.junit.Before;

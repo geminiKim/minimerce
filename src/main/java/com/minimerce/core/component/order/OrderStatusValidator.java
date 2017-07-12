@@ -1,5 +1,6 @@
 package com.minimerce.core.component.order;
 
+import com.minimerce.core.component.order.option.usable.UsableOrderStatusValidator;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.object.deal.type.ProductType;
 import org.springframework.stereotype.Component;
