@@ -22,6 +22,6 @@ public class UsableStockCounter {
     }
 
     public void increase(Stock stock) {
-        usableOptionDslRepository.decrease(stock);
+        usableOptionDslRepository.increase(stock);
     }
 }
