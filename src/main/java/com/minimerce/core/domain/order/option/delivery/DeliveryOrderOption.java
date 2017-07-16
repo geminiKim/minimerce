@@ -5,10 +5,7 @@ import com.minimerce.core.domain.order.option.OrderOption;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by gemini on 15/07/2017.
@@ -21,4 +18,8 @@ public class DeliveryOrderOption extends OrderOption {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private DeliveryOrderOption option;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status;
 }
