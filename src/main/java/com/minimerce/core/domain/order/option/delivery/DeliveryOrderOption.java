@@ -1,6 +1,7 @@
 package com.minimerce.core.domain.order.option.delivery;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.minimerce.core.domain.deal.option.delivery.DeliveryOption;
 import com.minimerce.core.domain.order.option.OrderOption;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,9 +18,9 @@ import javax.persistence.*;
 public class DeliveryOrderOption extends OrderOption {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    private DeliveryOrderOption option;
+    private DeliveryOption option;
 
     @Column
     @Enumerated(EnumType.STRING)
-    private DeliveryStatus status;
+    private DeliveryStatus deliveryStatus;
 }
