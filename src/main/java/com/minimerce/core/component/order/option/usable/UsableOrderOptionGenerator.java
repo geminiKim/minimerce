@@ -1,5 +1,6 @@
 package com.minimerce.core.component.order.option.usable;
 
+import com.minimerce.core.component.order.option.OrderOptionGeneratorComponent;
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.domain.order.option.usable.UsableOrderOption;
@@ -11,7 +12,8 @@ import org.springframework.stereotype.Component;
  * Created by gemini on 14/06/2017.
  */
 @Component
-public class UsableOrderOptionGenerator {
+public class UsableOrderOptionGenerator implements OrderOptionGeneratorComponent<UsableOption> {
+    @Override
     public OrderOption generate(Long clientId, UsableOption option) {
         UsableOrderOption orderOption = new UsableOrderOption();
         orderOption.setClientId(clientId);

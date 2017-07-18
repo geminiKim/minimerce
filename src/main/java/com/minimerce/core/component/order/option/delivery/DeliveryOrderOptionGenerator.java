@@ -1,5 +1,6 @@
 package com.minimerce.core.component.order.option.delivery;
 
+import com.minimerce.core.component.order.option.OrderOptionGeneratorComponent;
 import com.minimerce.core.domain.deal.option.delivery.DeliveryOption;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.domain.order.option.delivery.DeliveryOrderOption;
@@ -12,7 +13,8 @@ import org.springframework.stereotype.Component;
  * Created by gemini on 18/07/2017.
  */
 @Component
-public class DeliveryOrderOptionGenerator {
+public class DeliveryOrderOptionGenerator implements OrderOptionGeneratorComponent<DeliveryOption> {
+    @Override
     public OrderOption generate(Long clientId, DeliveryOption option) {
         DeliveryOrderOption orderOption = new DeliveryOrderOption();
         orderOption.setClientId(clientId);
