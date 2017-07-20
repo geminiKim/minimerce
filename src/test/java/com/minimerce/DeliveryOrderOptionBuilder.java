@@ -1,4 +1,4 @@
-package com.minimerce.builder;
+package com.minimerce;
 
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.option.delivery.DeliveryOption;
