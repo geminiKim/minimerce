@@ -1,7 +1,8 @@
-package com.minimerce.core.domain.deal.option.delivery;
+package com.minimerce.builder;
 
 import com.minimerce.core.domain.deal.Deal;
 import com.minimerce.core.domain.deal.DealStatus;
+import com.minimerce.core.domain.deal.option.delivery.DeliveryOption;
 import com.minimerce.core.object.deal.type.ProductType;
 import com.minimerce.core.object.order.type.CancelType;
 import com.minimerce.core.support.util.Yn;
