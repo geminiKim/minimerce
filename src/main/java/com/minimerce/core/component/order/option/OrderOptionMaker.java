@@ -2,6 +2,7 @@ package com.minimerce.core.component.order.option;
 
 import com.google.common.collect.Lists;
 import com.minimerce.core.component.deal.DealFinder;
+import com.minimerce.core.component.order.option.generator.OrderOptionGenerator;
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.object.order.OrderRequestDetail;

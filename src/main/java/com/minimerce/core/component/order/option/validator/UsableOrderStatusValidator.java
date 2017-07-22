@@ -1,4 +1,4 @@
-package com.minimerce.core.component.order.option.usable;
+package com.minimerce.core.component.order.option.validator;
 
 import com.minimerce.core.domain.order.option.OrderOption;
 import com.minimerce.core.object.order.status.CancelStatus;

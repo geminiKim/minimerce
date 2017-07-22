@@ -1,6 +1,7 @@
 package com.minimerce.core.component.order.option.usable;
 
 import com.minimerce.builder.UsableOptionBuilder;
+import com.minimerce.core.component.order.option.generator.UsableOrderOptionGenerator;
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.domain.order.option.usable.UsableOrderOption;
 import com.minimerce.core.object.order.status.CancelStatus;

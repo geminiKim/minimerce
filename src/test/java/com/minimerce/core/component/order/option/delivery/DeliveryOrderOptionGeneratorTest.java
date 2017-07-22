@@ -1,6 +1,7 @@
 package com.minimerce.core.component.order.option.delivery;
 
 import com.minimerce.builder.DeliveryOptionBuilder;
+import com.minimerce.core.component.order.option.generator.DeliveryOrderOptionGenerator;
 import com.minimerce.core.domain.deal.option.delivery.DeliveryOption;
 import com.minimerce.core.domain.order.option.delivery.DeliveryOrderOption;
 import com.minimerce.core.domain.order.option.delivery.DeliveryStatus;

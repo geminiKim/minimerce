@@ -4,6 +4,7 @@ import com.minimerce.builder.OptionBuilder;
 import com.minimerce.builder.OrderOptionBuilder;
 import com.minimerce.builder.OrderRequestDetailBuilder;
 import com.minimerce.core.component.deal.DealFinder;
+import com.minimerce.core.component.order.option.generator.OrderOptionGenerator;
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.object.order.OrderRequestDetail;
 import org.assertj.core.util.Lists;

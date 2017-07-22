@@ -1,4 +1,4 @@
-package com.minimerce.core.component.order.option;
+package com.minimerce.core.component.order.option.generator;
 
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.order.option.OrderOption;

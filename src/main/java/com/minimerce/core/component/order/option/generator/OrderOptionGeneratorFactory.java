@@ -1,7 +1,5 @@
-package com.minimerce.core.component.order.option;
+package com.minimerce.core.component.order.option.generator;
 
-import com.minimerce.core.component.order.option.delivery.DeliveryOrderOptionGenerator;
-import com.minimerce.core.component.order.option.usable.UsableOrderOptionGenerator;
 import com.minimerce.core.object.deal.type.ProductType;
 import com.minimerce.core.support.exception.MinimerceException;
 import com.minimerce.core.support.response.ErrorCode;

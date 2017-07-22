@@ -1,7 +1,9 @@
 package com.minimerce.core.component.order.option;
 
 import com.minimerce.builder.UsableOptionBuilder;
-import com.minimerce.core.component.order.option.usable.UsableOrderOptionGenerator;
+import com.minimerce.core.component.order.option.generator.OrderOptionGenerator;
+import com.minimerce.core.component.order.option.generator.OrderOptionGeneratorFactory;
+import com.minimerce.core.component.order.option.generator.UsableOrderOptionGenerator;
 import com.minimerce.core.domain.deal.option.Option;
 import com.minimerce.core.domain.deal.option.usable.UsableOption;
 import com.minimerce.core.object.deal.type.ProductType;
