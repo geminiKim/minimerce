@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * Created by gemini on 21/07/2017.
  */
 @Component
-public class DeliveryOrderStatusValidator implements OrderStatusValidator<DeliveryOrderOption> {
+public class DeliveryOrderStatusValidator implements OrderStatusValidatorComponent<DeliveryOrderOption> {
     @Override
     public void validate(DeliveryOrderOption option) {
         if(option.getDeliveryStatus().isDeliveryStarted()) throw new MinimerceException(ErrorCode.DELIVERY_STARTED_ORDER);

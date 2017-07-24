@@ -2,7 +2,7 @@ package com.minimerce.core.service.api.order;
 
 import com.minimerce.core.component.order.OrderCanceler;
 import com.minimerce.core.component.order.OrderFinder;
-import com.minimerce.core.component.order.OrderStatusValidator;
+import com.minimerce.core.component.order.option.validator.OrderStatusValidator;
 import com.minimerce.core.component.stock.StockProcessor;
 import com.minimerce.core.domain.client.Client;
 import com.minimerce.core.domain.order.option.OrderOption;

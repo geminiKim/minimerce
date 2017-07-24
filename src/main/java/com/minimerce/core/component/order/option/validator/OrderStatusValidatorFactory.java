@@ -18,7 +18,7 @@ public class OrderStatusValidatorFactory {
         this.deliveryOrderStatusValidator = deliveryOrderStatusValidator;
     }
 
-    public OrderStatusValidator getValidator(ProductType type) {
+    public OrderStatusValidatorComponent getValidator(ProductType type) {
         if(ProductType.USABLE == type) return usableOrderStatusValidator;
         if(ProductType.DELIVERY == type) return deliveryOrderStatusValidator;
         throw new MinimerceException(ErrorCode.NOT_SUPPORTED_PRODUCT_TYPE);
