@@ -16,11 +16,13 @@ public class UsableOrderOptionServiceTest {
     private UsableOrderOptionService usableOrderService;
     private final UsableOrderOptionRepository mockUsableOrderOptionRepository = mock(UsableOrderOptionRepository.class);
     private final UsableOrderOption testUsableOrder = UsableOrderOptionBuilder.anUsableOrderOption().build();
+    private final UsableOrderOption testUsedUsableOrder = UsableOrderOptionBuilder.anUsableOrderOption().withUsedCount(1).withStatus(OrderStatus.USED).build();
 
 
     @Before
     public void setup() {
         when(mockUsableOrderOptionRepository.findOne(1L)).thenReturn(testUsableOrder);
+        when(mockUsableOrderOptionRepository.findOne(2L)).thenReturn(testUsedUsableOrder);
 
         usableOrderService = new UsableOrderOptionService(mockUsableOrderOptionRepository);
     }
@@ -29,7 +31,15 @@ public class UsableOrderOptionServiceTest {
     public void testShouldBeUseOrderOption() {
         usableOrderService.use(1L);
 
-        assertThat(testUsableOrder.getUsedCount(), is(1));
-        assertThat(testUsableOrder.getStatus(), is(OrderStatus.USED));
+        assertThat(testUsedUsableOrder.getUsedCount(), is(1));
+        assertThat(testUsedUsableOrder.getStatus(), is(OrderStatus.USED));
+    }
+
+    @Test
+    public void testShouldBeRestoreOrderOption() {
+        usableOrderService.restore(2L);
+
+        assertThat(testUsedUsableOrder.getUsedCount(), is(0));
+        assertThat(testUsedUsableOrder.getStatus(), is(OrderStatus.ORDERED));
     }
 }

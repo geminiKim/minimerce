@@ -19,4 +19,9 @@ public class UsableOrderOptionService {
         UsableOrderOption usableOrder = usableOrderOptionRepository.findOne(usableOrderId);
         usableOrder.use();
     }
+
+    public void restore(long usableOrderId) {
+        UsableOrderOption usableOrder = usableOrderOptionRepository.findOne(usableOrderId);
+        usableOrder.restore();
+    }
 }
